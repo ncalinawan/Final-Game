@@ -8,7 +8,9 @@ let config = {
     physics: {
         default: 'arcade',
     },
-    //scene: []
+    scene: [Tutorial]
 }
 
 let game = new Phaser.Game(config);
+
+let cursors;
