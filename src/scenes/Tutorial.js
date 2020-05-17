@@ -4,16 +4,19 @@ class Tutorial extends Phaser.Scene{
     }
 
     preload(){
+        //main characters
         this.load.atlas('froggie', './assets/chars/frog/frog_walking.png', './assets/chars/frog/frog_walking.json');
+        this.load.atlas('mole', './assets/chars/mole/mole.png', './assets/chars/mole/mole.json');
+        this.load.atlas('cat', './assets/chars/cat/stretchy_cat.png', './assets/chars/cat/cat_walking.json');
+        
        // this.load.atlas('background', './assets/tutorial_background.png', './assets/tutorial_background.json');
         this.load.atlas('turtle', './assets/bgs/turtle.png', './assets/bgs/turtle.json');
         this.load.atlas('stuff', './assets/other/interaction.png', './assets/other/interaction.json');
         this.load.atlas('grass', './assets/bgs/grass.png', './assets/bgs/grass.json');
         this.load.atlas('stars', './assets/bgs/stars.png', './assets/bgs/stars.json');
-        this.load.atlas('mole', './assets/chars/mole/mole.png', './assets/chars/mole/mole.json');
         this.load.image('land','./assets/bgs/land.png');
         this.load.image('sky','./assets/bgs/sky.png');
-        this.load.image('distortion','./assets/distortion.png');
+        //this.load.image('distortion','./assets/distortion.png');
     }
 
     create(){
@@ -85,9 +88,22 @@ class Tutorial extends Phaser.Scene{
              repeat: -1
         });
 
+        //mole fren
         this.anims.create({
             key: 'molewalk',
             frames: this.anims.generateFrameNames('mole',{
+                prefix: 'walk_',
+                start: 1,
+                end: 3
+             }),
+             frameRate: 5,
+             repeat: -1
+        });
+
+        //l o n g  cat
+        this.anims.create({
+            key: 'catwalk',
+            frames: this.anims.generateFrameNames('cat',{
                 prefix: 'walk_',
                 start: 1,
                 end: 3
@@ -105,6 +121,9 @@ class Tutorial extends Phaser.Scene{
         this.mole = this.physics.add.sprite(40, 500, 'mole', 'walk_1').setScale(0.38);
         this.mole.setCollideWorldBounds(true);
 
+        this.cat = this.physics.add.sprite(340, 500, 'cat', 'walk_1').setScale(0.33);
+        this.cat.setCollideWorldBounds(true);
+
         //camera follow froggie :)
         this.cameras.main.setBounds(0, 0, 2400, 600);
         this.cameras.main.setZoom(1);
@@ -120,8 +139,12 @@ class Tutorial extends Phaser.Scene{
             this.mole.setVelocityX(-this.velocity)
             this.mole.setFlip(true, false);
 
+            this.cat.setVelocityX(-this.velocity)
+            this.cat.setFlip(true, false);
+
             this.frog.anims.play('frogwalk', true);
             this.mole.anims.play('molewalk', true);
+            this.cat.anims.play('catwalk', true);
         }else if(cursors.right.isDown){
             this.frog.setVelocityX(this.velocity)
             this.frog.resetFlip();
@@ -129,14 +152,20 @@ class Tutorial extends Phaser.Scene{
             this.mole.setVelocityX(this.velocity)
             this.mole.resetFlip();
 
+            this.cat.setVelocityX(this.velocity)
+            this.cat.resetFlip();
+
             this.frog.anims.play('frogwalk', true);
             this.mole.anims.play('molewalk', true);
+            this.cat.anims.play('catwalk', true);
         }else{
             this.frog.body.velocity.x = 0;
             this.mole.body.velocity.x = 0;
+            this.cat.body.velocity.x = 0;
 
             this.frog.anims.play('frogwalk', false);
             this.mole.anims.play('molewalk', false);
+            this.cat.anims.play('catwalk', false);
         }
         console.log(this.nearSign);
         if(this.frog.x >= this.sign.x && this.frog.x <= 1850){
