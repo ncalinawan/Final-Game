@@ -1,15 +1,51 @@
 [
 	[
 		{
-			"speaker" : "froggie",
-			"dialog" : "ASDFJKL:GLKJDFKL:SDF",
+			"speaker" : "cat",
+			"dialog" : "Huh, this seems important! You should check it out!",
 			"newSpeaker" : "true"
 		},
 		{
 			"speaker" : "froggie",
-			"dialog" : "ASDFJKL:GLKJDFKL:SDF",
+			"dialog" : "Alrighty, let's see what's here... (Press A to interact with things like this sign!)",
+			"newSpeaker" : "true"
+		},
+		{
+			"speaker" : "sign",
+			"dialog" : "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA --- (Ahem) Congrats, you learned how to interact with stuff.",
+			"newSpeaker" : "true"
+		},
+		{
+			"speaker" : "snek",
+			"dialog" : "GIVE FUIT!!! No entry until FUIT has been RECEIVED!!!",
+			"newSpeaker" : "true"
+		},
+		{
+			"speaker" : "cat",
+			"dialog" : "Of course they wouldn't let us enter that easily. Here comes the side quest...",
+			"newSpeaker" : "true"
+		},
+		{
+			"speaker" : "cat",
+			"dialog" : "I guess we'll just have to find their FUIT and give it to them to enter that door...",
+			"newSpeaker" : "true"
+		},
+		{
+			"speaker" : "froggie",
+			"dialog" : "Oh hey, look! There's an appl-- I mean FUIT -- buried underneath the dirt mound!",
+			"newSpeaker" : "true"
+		},
+		{
+			"speaker" : "froggie",
+			"dialog" : "I wonder how we'll reach it, though...",
+			"newSpeaker" : "true"
+		},
+		{
+			"speaker" : "mole",
+			"dialog" : "Oh!! I can DIG up the app -- FUIT -- for you! (Press [ whatever button we decide here ] to dig!",
 			"newSpeaker" : "true"
 		}
+		
 	]
 ]
 
