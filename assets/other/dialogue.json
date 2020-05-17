@@ -42,7 +42,7 @@
 		},
 		{
 			"speaker" : "mole",
-			"dialog" : "Oh!! I can DIG up the app -- FUIT -- for you! (Press [ whatever button we decide here ] to dig!",
+			"dialog" : "Oh!! I can DIG up the app -- FUIT -- for you! (Press [ D ] to dig!)",
 			"newSpeaker" : "true"
 		}
 		
