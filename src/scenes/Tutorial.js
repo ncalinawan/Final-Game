@@ -48,6 +48,7 @@ class Tutorial extends Phaser.Scene{
 
         this.load.json('dialogue', './assets/other/dialogue.json');
         this.load.image('dialoguebox', './assets/other/textbox.png');
+        this.load.json('sign', './assets/other/sign.json');
         this.load.bitmapFont('gem', './assets/font/gem.png', './assets/font/gem.xml');
     }
 
@@ -95,7 +96,7 @@ class Tutorial extends Phaser.Scene{
         this.keyHint = this.add.sprite(this.sign.x + 20, 310,'stuff', 'keyboard_button').setScale(0.2).setOrigin(0,0);
         this.nearSign = false;
 
-        this.dialog = this.cache.json.get('dialogue');
+        this.dialog = this.cache.json.get('sign');
         this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialoguebox').setOrigin(0);
         this.dialogText = this.add.bitmapText(this.TEXT_X, this.TEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
         this.nextText = this.add.bitmapText(this.NEXT_X, this.NEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
