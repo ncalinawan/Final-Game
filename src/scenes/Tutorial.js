@@ -44,11 +44,13 @@ class Tutorial extends Phaser.Scene{
         this.load.atlas('stars', './assets/bgs/stars.png', './assets/bgs/stars.json');
         this.load.image('land','./assets/bgs/land.png');
         this.load.image('sky','./assets/bgs/sky.png');
+        this.load.image('snek', './assets/npcs/snek.png');
         //this.load.image('distortion','./assets/distortion.png');
 
         this.load.json('dialogue', './assets/other/dialogue.json');
         this.load.image('dialoguebox', './assets/other/textbox.png');
         this.load.json('sign', './assets/other/sign.json');
+        this.load.json('snekBYE', './assets/other/snek.json');
         this.load.bitmapFont('gem', './assets/font/gem.png', './assets/font/gem.xml');
     }
 
@@ -87,9 +89,14 @@ class Tutorial extends Phaser.Scene{
 
         //add images in the midground to build depth 
         this.add.image(0,0, 'land').setOrigin(0,0);
-        this.add.sprite(2000,230,'stuff', 'door').setScale(0.8).setOrigin(0,0);             //scale to 80% of size
-        this.add.sprite(1450,480,'stuff', 'dirtmound').setScale(2).setOrigin(0,0);          //scale to 2x the original size
-        this.add.sprite(1525,490,'stuff', 'fuit').setScale(0.4).setOrigin(0,0);             //scale to of size
+        this.door = this.add.sprite(2120,270,'stuff', 'door').setScale(0.8).setOrigin(0,0);             //scale to 80% of size
+        this.dirt = this.add.sprite(1500,480,'stuff', 'dirtmound').setScale(2).setOrigin(0,0);          //scale to 2x the original size
+        this.fuit = this.add.sprite(1575,490,'stuff', 'fuit').setScale(0.4).setOrigin(0,0);             //scale to of size
+        
+        this.snek = this.physics.add.sprite(1950,430,'snek').setScale(0.2).setOrigin(0,0); 
+        this.snek.setCollideWorldBounds(true);
+        this.snek.setImmovable(true);
+        this.isBlocking = false;
 
         this.sign = this.physics.add.sprite(1750,400,'stuff', 'sign').setScale(0.4).setOrigin(0,0); 
         this.sign.setCollideWorldBounds(true);
@@ -101,6 +108,7 @@ class Tutorial extends Phaser.Scene{
         this.dialogText = this.add.bitmapText(this.TEXT_X, this.TEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
         this.nextText = this.add.bitmapText(this.NEXT_X, this.NEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
         this.dialogbox.visible = false;
+        this.isTalking = false;
 
         //grass animation [ foreground ]
         this.anims.create({
@@ -153,17 +161,17 @@ class Tutorial extends Phaser.Scene{
         
         this.physics.world.gravity.y = 1000;
         this.velocity = 300;
-        this.frog = this.physics.add.sprite(200, 500, 'froggie', 'frog_1').setScale(0.3);
+        this.frog = this.physics.add.sprite(340, 500, 'froggie', 'frog_1').setScale(0.3);
         this.frog.setCollideWorldBounds(true);
-        this.frog.setDepth(1);
+       // this.frog.setDepth(1);
 
         this.mole = this.physics.add.sprite(40, 500, 'mole', 'walk_1').setScale(0.38);
         this.mole.setCollideWorldBounds(true);
-
         this.isDigging = false;
 
-        this.cat = this.physics.add.sprite(340, 500, 'cat', 'walk_1').setScale(0.33);
+        this.cat = this.physics.add.sprite(190, 500, 'cat', 'walk_1').setScale(0.33);
         this.cat.setCollideWorldBounds(true);
+       
 
         //camera follow froggie :)
         this.cameras.main.setBounds(0, 0, 2400, 600);
@@ -172,11 +180,12 @@ class Tutorial extends Phaser.Scene{
         
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
     }
 
     update(){
-
-        if(cursors.left.isDown && this.isDigging == false){
+      
+        if(cursors.left.isDown && this.isDigging == false && this.isTalking == false){
             this.frog.setVelocityX(-this.velocity)
             this.frog.setFlip(true, false);
 
@@ -189,7 +198,7 @@ class Tutorial extends Phaser.Scene{
             this.frog.anims.play('frogwalk', true);
             this.mole.anims.play('molewalk', true);
             this.cat.anims.play('catwalk', true);
-        }else if(cursors.right.isDown && this.isDigging == false){
+        }else if(cursors.right.isDown && this.isDigging == false && this.isTalking == false){
             this.frog.setVelocityX(this.velocity)
             this.frog.resetFlip();
 
@@ -225,12 +234,34 @@ class Tutorial extends Phaser.Scene{
             this.dialogbox.visible = true;
             this.typeText();
             this.learnDig = true;
+            
         }
 
         if(Phaser.Input.Keyboard.JustDown(keyD) && this.learnDig == true){
             this.moleDive();
         }
 
+        if(this.isDigging == true && this.mole.x >= 1575 && this.mole.x <= 1675 ){
+            this.fuit.destroy();
+            this.fuitHave = true;
+          
+        }
+
+        this.physics.world.collide(this.frog, this.snek, this.snekBlock, null, this);
+        if(this.isBlocking == true){
+            this.mole.body.velocity.x = 0;
+            this.cat.body.velocity.x = 0;
+        }
+
+        if(cursors.left.isDown && this.isBlocking == true){
+        this.cat.setVelocityX(-this.velocity)
+        this.mole.setVelocityX(-this.velocity)
+        this.isBlocking = false;
+        }
+       
+        if(this.frog.x >= 2175 && this.frog.x <= 2350){
+            this.scene.start("First");
+        }
     }
 
     moleDive(){
@@ -247,9 +278,32 @@ class Tutorial extends Phaser.Scene{
             this.isDigging = false;
         }
     }
+
+    snekBlock(){
+        if(this.isBlocking == false){
+            this.isBlocking = true;
+        }
+        if(this.fuitHave == true){
+            this.dialogConvo = 0;
+            this.dialog = this.cache.json.get('snekBYE');
+            this.dialogbox.visible = true;
+            this.typeText();
+            this.snekText = this.time.delayedCall(3000, () => { //change value to however long dig animation is
+                this.typeText();
+            }, null, this);
+            this.snekGone = this.time.delayedCall(3000, () => { //change value to however long dig animation is
+                this.snek.destroy()
+            }, null, this);
+            
+            this.isBlocking = false;
+            
+        }
+    }
+
     typeText() {
         // lock input while typing
         this.dialogTyping = true;
+        this.isTalking = true;
 
         // clear text
         this.dialogText.text = '';
@@ -270,6 +324,7 @@ class Tutorial extends Phaser.Scene{
 
             // make text box invisible
             this.dialogbox.visible = false;
+            this.isTalking = false;
 
         } else {
             // if not, set current speaker

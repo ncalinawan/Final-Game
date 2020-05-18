@@ -9,6 +9,7 @@
     <script src="./lib/phaser.js"></script>
     <script src="./src/scenes/Title.js"></script>
     <script src="./src/scenes/Tutorial.js"></script>
+    <script src="./src/scenes/LevelOne.js"></script>
     <script src="./src/main.js"></script>
 </body>
 </html>
