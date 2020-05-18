@@ -2,7 +2,12 @@
 	[
 		{
 			"speaker" : "cat",
-			"dialog" : "Huh, this seems important! You should check it out!",
+			"dialog" : "Oh my dog what the [$$$ MONITIZATION $$$] is this place??? WHY ARE WE DISTORTED?????????",
+			"newSpeaker" : "true"
+		},
+		{
+			"speaker" : "cat",
+			"dialog" : "But uhhhh nevermind about that (and ourselves I guess). Can you check the sign since you're like the only who understands it?",
 			"newSpeaker" : "true"
 		},
 		{
@@ -27,12 +32,12 @@
 		},
 		{
 			"speaker" : "cat",
-			"dialog" : "Of course they wouldn't let us enter that easily. Here comes the side quest...",
+			"dialog" : "i didn't sign up for this in the first place",
 			"newSpeaker" : "true"
 		},
 		{
 			"speaker" : "cat",
-			"dialog" : "I guess we'll just have to find their FUIT and give it to them to enter that door...",
+			"dialog" : "Oh well, we gotta find the FUIT somewhere for the weird-lookin' snek to magically disappear.",
 			"newSpeaker" : "true"
 		},
 		{
