@@ -36,7 +36,10 @@ class Tutorial extends Phaser.Scene{
         this.load.atlas('froggie', './assets/chars/frog/frog_walking.png', './assets/chars/frog/frog_walking.json');
         this.load.atlas('mole', './assets/chars/mole/mole.png', './assets/chars/mole/mole.json');
         this.load.atlas('cat', './assets/chars/cat/stretchy_cat.png', './assets/chars/cat/cat_walking.json');
-        
+        this.load.image('shittyFrog', './assets/chars/frog/shitty_frog.png');
+        this.load.image('shittyCat', './assets/chars/cat/shitty_cat_unstretched.png')
+        this.load.image('shittyMole', './assets/chars/mole/shitty_mole.png')
+
        // this.load.atlas('background', './assets/tutorial_background.png', './assets/tutorial_background.json');
         this.load.atlas('turtle', './assets/bgs/turtle.png', './assets/bgs/turtle.json');
         this.load.atlas('stuff', './assets/other/interaction.png', './assets/other/interaction.json');
@@ -161,22 +164,23 @@ class Tutorial extends Phaser.Scene{
         
         this.physics.world.gravity.y = 1000;
         this.velocity = 300;
-        this.frog = this.physics.add.sprite(340, 500, 'froggie', 'frog_1').setScale(0.3);
-        this.frog.setCollideWorldBounds(true);
-       // this.frog.setDepth(1);
+        frog = this.physics.add.sprite(340, 500, 'froggie', 'frog_1').setScale(0.3);
+        frog.setCollideWorldBounds(true);
+        this.distorted = false;
+ 
 
-        this.mole = this.physics.add.sprite(40, 500, 'mole', 'walk_1').setScale(0.38);
-        this.mole.setCollideWorldBounds(true);
+        mole = this.physics.add.sprite(40, 500, 'mole', 'walk_1').setScale(0.38);
+        mole.setCollideWorldBounds(true);
         this.isDigging = false;
 
-        this.cat = this.physics.add.sprite(190, 500, 'cat', 'walk_1').setScale(0.33);
-        this.cat.setCollideWorldBounds(true);
+        cat = this.physics.add.sprite(190, 500, 'cat', 'walk_1').setScale(0.33);
+        cat.setCollideWorldBounds(true);
        
 
         //camera follow froggie :)
         this.cameras.main.setBounds(0, 0, 2400, 600);
         this.cameras.main.setZoom(1);
-        this.cameras.main.startFollow(this.frog);
+        this.cameras.main.startFollow(frog);
         
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
@@ -185,43 +189,71 @@ class Tutorial extends Phaser.Scene{
 
     update(){
       
+        if(this.distorted == false){
         if(cursors.left.isDown && this.isDigging == false && this.isTalking == false){
-            this.frog.setVelocityX(-this.velocity)
-            this.frog.setFlip(true, false);
+            frog.setVelocityX(-this.velocity)
+            frog.setFlip(true, false);
 
-            this.mole.setVelocityX(-this.velocity)
-            this.mole.setFlip(true, false);
+            mole.setVelocityX(-this.velocity)
+            mole.setFlip(true, false);
 
-            this.cat.setVelocityX(-this.velocity)
-            this.cat.setFlip(true, false);
+            cat.setVelocityX(-this.velocity)
+            cat.setFlip(true, false);
 
-            this.frog.anims.play('frogwalk', true);
-            this.mole.anims.play('molewalk', true);
-            this.cat.anims.play('catwalk', true);
+            frog.anims.play('frogwalk', true);
+            mole.anims.play('molewalk', true);
+            cat.anims.play('catwalk', true);
         }else if(cursors.right.isDown && this.isDigging == false && this.isTalking == false){
-            this.frog.setVelocityX(this.velocity)
-            this.frog.resetFlip();
+            frog.setVelocityX(this.velocity)
+            frog.resetFlip();
 
-            this.mole.setVelocityX(this.velocity)
-            this.mole.resetFlip();
+            mole.setVelocityX(this.velocity)
+            mole.resetFlip();
 
-            this.cat.setVelocityX(this.velocity)
-            this.cat.resetFlip();
+            cat.setVelocityX(this.velocity)
+            cat.resetFlip();
 
-            this.frog.anims.play('frogwalk', true);
-            this.mole.anims.play('molewalk', true);
-            this.cat.anims.play('catwalk', true);
+            frog.anims.play('frogwalk', true);
+            mole.anims.play('molewalk', true);
+            cat.anims.play('catwalk', true);
         }else{
-            this.frog.body.velocity.x = 0;
-            this.mole.body.velocity.x = 0;
-            this.cat.body.velocity.x = 0;
+            frog.body.velocity.x = 0;
+            mole.body.velocity.x = 0;
+            cat.body.velocity.x = 0;
 
-            this.frog.anims.play('frogwalk', false);
-            this.mole.anims.play('molewalk', false);
-            this.cat.anims.play('catwalk', false);
+            frog.anims.play('frogwalk', false);
+            mole.anims.play('molewalk', false);
+            cat.anims.play('catwalk', false);
+        }
+        }else{
+            if(cursors.left.isDown && this.isDigging == false && this.isTalking == false){
+            frog.setVelocityX(-this.velocity)
+            frog.setFlip(true, false);
+
+            mole.setVelocityX(-this.velocity)
+            mole.setFlip(true, false);
+
+            cat.setVelocityX(-this.velocity)
+            cat.setFlip(true, false);
+        }else if(cursors.right.isDown && this.isDigging == false && this.isTalking == false){
+            frog.setVelocityX(this.velocity)
+            frog.resetFlip();
+
+            mole.setVelocityX(this.velocity)
+            mole.resetFlip();
+
+            cat.setVelocityX(this.velocity)
+            cat.resetFlip();
+            
+
+        }else{
+            frog.body.velocity.x = 0;
+            mole.body.velocity.x = 0;
+            cat.body.velocity.x = 0;
+        }
         }
    
-        if(this.frog.x >= this.sign.x && this.frog.x <= 1850){
+        if(frog.x >= this.sign.x && frog.x <= 1850){
            this.keyHint.alpha = 1;
            this.nearSign = true;
         }else{
@@ -241,31 +273,46 @@ class Tutorial extends Phaser.Scene{
             this.moleDive();
         }
 
-        if(this.isDigging == true && this.mole.x >= 1575 && this.mole.x <= 1675 ){
+        if(this.isDigging == true && mole.x >= 1575 && mole.x <= 1675 ){
             this.fuit.destroy();
             this.fuitHave = true;
           
         }
 
-        this.physics.world.collide(this.frog, this.snek, this.snekBlock, null, this);
+        this.physics.world.collide(frog, this.snek, this.snekBlock, null, this);
         if(this.isBlocking == true){
-            this.mole.body.velocity.x = 0;
-            this.cat.body.velocity.x = 0;
+            mole.body.velocity.x = 0;
+            cat.body.velocity.x = 0;
         }
 
         if(cursors.left.isDown && this.isBlocking == true){
-        this.cat.setVelocityX(-this.velocity)
-        this.mole.setVelocityX(-this.velocity)
+        cat.setVelocityX(-this.velocity)
+        mole.setVelocityX(-this.velocity)
         this.isBlocking = false;
         }
        
-        if(this.frog.x >= 2175 && this.frog.x <= 2350){
+        if(frog.x >= 2175 && frog.x <= 2350){
             this.scene.start("First");
         }
+
+        if(frog.x >= 1400){
+            this.distort(frog);
+            this.distort(mole);
+            this.distort(cat);
+            this.distorted = true;
+        }
+
+        if(frog.x <= 1350){
+            this.fix(frog);
+            this.fix(mole);
+            this.fix(cat);
+            this.distorted = false;
+        }
+        
     }
 
     moleDive(){
-        this.mole.y -=50
+        mole.y -=50
         this.isDigging = true;
         this.valueChange = this.time.delayedCall(1000, () => { //change value to however long dig animation is
             this.moleDig();
@@ -298,6 +345,53 @@ class Tutorial extends Phaser.Scene{
             this.isBlocking = false;
             
         }
+    }
+
+    distort(sprite){
+        if(this.distorted == false){
+            if(sprite == frog){
+                frog.destroy();
+                frog = this.physics.add.sprite(sprite.x + 110, sprite.y + 155, 'shittyFrog').setScale(0.5);
+                frog.setCollideWorldBounds(true);
+                this.cameras.main.startFollow(frog);
+            }
+            if(sprite == cat){
+                cat.destroy();
+                cat = this.physics.add.sprite(sprite.x + 250, sprite.y + 250, 'shittyCat').setScale(0.3);
+                cat.setCollideWorldBounds(true);
+                
+            }
+            if(sprite == mole){
+                mole.destroy();
+                mole = this.physics.add.sprite(sprite.x+ 100, sprite.y + 120, 'shittyMole').setScale(0.5);
+                mole.setCollideWorldBounds(true);
+            
+            }
+        }
+    }
+
+    fix(sprite){
+        if(this.distorted == true){
+            if(sprite == frog){
+                frog.destroy();
+                frog = this.physics.add.sprite(sprite.x + 110, sprite.y + 270, 'froggie', 'frog_1').setScale(0.3);
+                frog.setCollideWorldBounds(true);
+                this.cameras.main.startFollow(frog);
+            }
+            if(sprite == cat){
+                cat.destroy();
+                cat = this.physics.add.sprite(sprite.x + 140, sprite.y + 225, 'cat', 'walk_1').setScale(0.33);
+                cat.setCollideWorldBounds(true);
+                
+            }
+            if(sprite == mole){
+                mole.destroy();
+                mole = this.physics.add.sprite(sprite.x+ 95, sprite.y + 170, 'mole', 'walk_1').setScale(0.38);
+                mole.setCollideWorldBounds(true);
+            
+            }
+        }
+
     }
 
     typeText() {

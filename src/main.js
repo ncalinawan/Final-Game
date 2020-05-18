@@ -19,3 +19,4 @@ let game = new Phaser.Game(config);
 
 let cursors;
 let keyA, keyD, keyF;
+let frog, mole, cat;
