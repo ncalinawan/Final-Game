@@ -190,67 +190,66 @@ class Tutorial extends Phaser.Scene{
     update(){
       
         if(this.distorted == false){
-        if(cursors.left.isDown && this.isDigging == false && this.isTalking == false){
-            frog.setVelocityX(-this.velocity)
-            frog.setFlip(true, false);
+            if(cursors.left.isDown && this.isDigging == false && this.isTalking == false){
+                frog.setVelocityX(-this.velocity)
+                frog.setFlip(true, false);
 
-            mole.setVelocityX(-this.velocity)
-            mole.setFlip(true, false);
+                mole.setVelocityX(-this.velocity)
+                mole.setFlip(true, false);
 
-            cat.setVelocityX(-this.velocity)
-            cat.setFlip(true, false);
+                cat.setVelocityX(-this.velocity)
+                cat.setFlip(true, false);
 
-            frog.anims.play('frogwalk', true);
-            mole.anims.play('molewalk', true);
-            cat.anims.play('catwalk', true);
-        }else if(cursors.right.isDown && this.isDigging == false && this.isTalking == false){
-            frog.setVelocityX(this.velocity)
-            frog.resetFlip();
+                frog.anims.play('frogwalk', true);
+                mole.anims.play('molewalk', true);
+                cat.anims.play('catwalk', true);
+            }else if(cursors.right.isDown && this.isDigging == false && this.isTalking == false){
+                frog.setVelocityX(this.velocity)
+                frog.resetFlip();
 
-            mole.setVelocityX(this.velocity)
-            mole.resetFlip();
+                mole.setVelocityX(this.velocity)
+                mole.resetFlip();
 
-            cat.setVelocityX(this.velocity)
-            cat.resetFlip();
+                cat.setVelocityX(this.velocity)
+                cat.resetFlip();
 
-            frog.anims.play('frogwalk', true);
-            mole.anims.play('molewalk', true);
-            cat.anims.play('catwalk', true);
-        }else{
-            frog.body.velocity.x = 0;
-            mole.body.velocity.x = 0;
-            cat.body.velocity.x = 0;
+                frog.anims.play('frogwalk', true);
+                mole.anims.play('molewalk', true);
+                cat.anims.play('catwalk', true);
+            }else{
+                frog.body.velocity.x = 0;
+                mole.body.velocity.x = 0;
+                cat.body.velocity.x = 0;
 
-            frog.anims.play('frogwalk', false);
-            mole.anims.play('molewalk', false);
-            cat.anims.play('catwalk', false);
-        }
+                frog.anims.play('frogwalk', false);
+                mole.anims.play('molewalk', false);
+                cat.anims.play('catwalk', false);
+            }
         }else{
             if(cursors.left.isDown && this.isDigging == false && this.isTalking == false){
-            frog.setVelocityX(-this.velocity)
-            frog.setFlip(true, false);
+                frog.setVelocityX(-this.velocity)
+                frog.setFlip(true, false);
 
-            mole.setVelocityX(-this.velocity)
-            mole.setFlip(true, false);
+                mole.setVelocityX(-this.velocity)
+                mole.setFlip(true, false);
 
-            cat.setVelocityX(-this.velocity)
-            cat.setFlip(true, false);
-        }else if(cursors.right.isDown && this.isDigging == false && this.isTalking == false){
-            frog.setVelocityX(this.velocity)
-            frog.resetFlip();
+                cat.setVelocityX(-this.velocity)
+                cat.setFlip(true, false);
+            }else if(cursors.right.isDown && this.isDigging == false && this.isTalking == false){
+                frog.setVelocityX(this.velocity)
+                frog.resetFlip();
 
-            mole.setVelocityX(this.velocity)
-            mole.resetFlip();
+                mole.setVelocityX(this.velocity)
+                mole.resetFlip();
 
-            cat.setVelocityX(this.velocity)
-            cat.resetFlip();
+                cat.setVelocityX(this.velocity)
+                cat.resetFlip();
             
-
-        }else{
-            frog.body.velocity.x = 0;
-            mole.body.velocity.x = 0;
-            cat.body.velocity.x = 0;
-        }
+            }else{
+                frog.body.velocity.x = 0;
+                mole.body.velocity.x = 0;
+                cat.body.velocity.x = 0;
+            }
         }
    
         if(frog.x >= this.sign.x && frog.x <= 1850){
@@ -286,9 +285,9 @@ class Tutorial extends Phaser.Scene{
         }
 
         if(cursors.left.isDown && this.isBlocking == true){
-        cat.setVelocityX(-this.velocity)
-        mole.setVelocityX(-this.velocity)
-        this.isBlocking = false;
+            cat.setVelocityX(-this.velocity)
+            mole.setVelocityX(-this.velocity)
+            this.isBlocking = false;
         }
        
         if(frog.x >= 2175 && frog.x <= 2350){
@@ -394,7 +393,7 @@ class Tutorial extends Phaser.Scene{
 
     }
 
-    typeText() {
+    typeText() { //by sir nathan altice
         // lock input while typing
         this.dialogTyping = true;
         this.isTalking = true;
