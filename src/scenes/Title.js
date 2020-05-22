@@ -5,14 +5,14 @@ class Title extends Phaser.Scene{
 
     preload() {
         this.load.atlas('title', './assets/title/title_and_names.png', './assets/title/title.json');
-        this.load.atlas('frog', './assets/title/frog_title_walk.png', './assets/title/frog_title.json');
-        this.load.atlas('cat', './assets/title/cat_title_walk.png', './assets/title/cat_title.json');
-        this.load.atlas('mole', './assets/title/mole_title_walk.png', './assets/title/mole_title.json');
+        this.load.atlas('frog_title', './assets/title/frog_title_walk.png', './assets/title/frog_title.json');
+        this.load.atlas('cat_title', './assets/title/cat_title_walk.png', './assets/title/cat_title.json');
+        this.load.atlas('mole_title', './assets/title/mole_title_walk.png', './assets/title/mole_title.json');
     }
 
     create(){
     //temporary background (to see the animations)
-    this.add.rectangle(0, 0, 2400, 600, 0xFFFFFF).setOrigin(0, 0);
+    this.add.rectangle(3600, 0, 3600, 600, 0xFFFFFF).setOrigin(0, 0);
 
     //title & names
         this.anims.create({
@@ -29,7 +29,7 @@ class Title extends Phaser.Scene{
     //frog walk
         this.anims.create({
             key: 'frog',
-            frames: this.anims.generateFrameNames('frog', {
+            frames: this.anims.generateFrameNames('frog_title', {
                 prefix: 'frog_title',
                 start: 1,
                 end: 4
@@ -41,7 +41,7 @@ class Title extends Phaser.Scene{
     //cat walk
         this.anims.create({
             key: 'cat',
-            frames: this.anims.generateFrameNames('cat', {
+            frames: this.anims.generateFrameNames('cat_title', {
                 prefix: 'title_cat',
                 start: 1,
                 end: 4
@@ -53,7 +53,7 @@ class Title extends Phaser.Scene{
     //mole walk
     this.anims.create({
         key: 'mole',
-        frames: this.anims.generateFrameNames('mole', {
+        frames: this.anims.generateFrameNames('mole_title', {
             prefix: 'title_mole',
             start: 1,
             end: 4
