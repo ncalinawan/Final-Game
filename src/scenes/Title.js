@@ -12,7 +12,7 @@ class Title extends Phaser.Scene{
 
     create(){
     //temporary background (to see the animations)
-    this.add.rectangle(3600, 0, 3600, 600, 0xFFFFFF).setOrigin(0, 0);
+    this.add.rectangle(0, 0, 3600, 600, 0xFFFFFF).setOrigin(0, 0);
 
     //title & names
         this.anims.create({
