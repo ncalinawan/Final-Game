@@ -12,11 +12,11 @@ let config = {
             height: 575
         }
     },
-    scene: [Tutorial, LevelOne]
+    scene: [Title, Tutorial, LevelOne]
 }
 
 let game = new Phaser.Game(config);
 
 let cursors;
-let keyA, keyD, keyF;
+let keyA, keyD, keyF, keyG;
 let frog, mole, cat;
