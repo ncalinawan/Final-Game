@@ -200,8 +200,6 @@ class Tutorial extends Phaser.Scene{
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
 
-        this.learnDig = true;
-        this.learnStretch = true;
     }
 
     update(){

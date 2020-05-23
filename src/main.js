@@ -12,7 +12,7 @@ let config = {
             height: 575
         }
     },
-    scene: [ Tutorial, LevelOne]
+    scene: [Title, Tutorial, LevelOne]
 }
 
 let game = new Phaser.Game(config);
