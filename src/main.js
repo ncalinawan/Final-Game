@@ -8,15 +8,15 @@ let config = {
     physics: {
         default: 'arcade',
         arcade:{
-            width: 2400,
+            width: 3600,
             height: 575
         }
     },
-    scene: [Title, Tutorial, LevelOne]
+    scene: [ Tutorial, LevelOne]
 }
 
 let game = new Phaser.Game(config);
 
 let cursors;
-let keyA, keyD, keyF, keyG;
+let keyA, keyS, keyD, keyF, keyG;
 let frog, mole, cat;

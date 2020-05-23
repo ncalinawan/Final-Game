@@ -4,20 +4,20 @@ class Tutorial extends Phaser.Scene{
 
         
         // dialog constants
-        this.DBOX_X = 1250;			    // dialog box x-position
-        this.DBOX_Y = 30;			    // dialog box y-position
+       // this.DBOX_X = 1;			    // dialog box x-position
+        this.DBOX_Y = 25;			    // dialog box y-position
         this.DBOX_FONT = 'gem';	// dialog box font key
 
-        this.TEXT_X = 1300;			// text w/in dialog box x-position
+       // this.TEXT_X = 1300;			// text w/in dialog box x-position
         this.TEXT_Y = 75;			// text w/in dialog box y-position
-        this.TEXT_SIZE = 24;		// text font size (in pixels)
-        this.TEXT_MAX_WIDTH = 715;	// max width of text within box
+        this.TEXT_SIZE = 32;		// text font size (in pixels)
+        this.TEXT_MAX_WIDTH = 900;	// max width of text within box
 
-        this.NEXT_TEXT = '[SPACE]';	// text to display for next prompt
-        this.NEXT_X = 775;			// next text prompt x-position
-        this.NEXT_Y = 574;			// next text prompt y-position
+        this.NEXT_TEXT = '[A]';	// text to display for next prompt
+      //  this.NEXT_X = 775;			// next text prompt x-position
+        this.NEXT_Y = 250;			// next text prompt y-position
 
-        this.LETTER_TIMER = 10;		// # ms each letter takes to "type" onscreen
+        this.LETTER_TIMER = 1;		// # ms each letter takes to "type" onscreen
 
         // dialog variables
         this.dialogConvo = 0;			// current "conversation"
@@ -35,12 +35,13 @@ class Tutorial extends Phaser.Scene{
         //main characters
         this.load.atlas('froggie', './assets/chars/frog/frog_walking.png', './assets/chars/frog/frog_walking.json');
         this.load.atlas('mole', './assets/chars/mole/mole.png', './assets/chars/mole/mole.json');
+        this.load.atlas('moleDig', './assets/chars/mole/mole_digging.png', './assets/chars/mole/mole_digging.json');
+
         this.load.atlas('cat', './assets/chars/cat/stretchy_cat.png', './assets/chars/cat/cat_walking.json');
         this.load.image('shittyFrog', './assets/chars/frog/shitty_frog.png');
         this.load.image('shittyCat', './assets/chars/cat/shitty_cat_unstretched.png')
         this.load.image('shittyMole', './assets/chars/mole/shitty_mole.png')
 
-       // this.load.atlas('background', './assets/tutorial_background.png', './assets/tutorial_background.json');
         this.load.atlas('turtle', './assets/bgs/turtle.png', './assets/bgs/turtle.json');
         this.load.atlas('stuff', './assets/other/interaction.png', './assets/other/interaction.json');
         this.load.atlas('grass', './assets/bgs/grass.png', './assets/bgs/grass.json');
@@ -48,8 +49,7 @@ class Tutorial extends Phaser.Scene{
         this.load.image('land','./assets/bgs/land.png');
         this.load.image('sky','./assets/bgs/sky.png');
         this.load.image('snek', './assets/npcs/snek.png');
-        //this.load.image('distortion','./assets/distortion.png');
-
+       
         this.load.json('dialogue', './assets/other/dialogue.json');
         this.load.image('dialoguebox', './assets/other/textbox.png');
         this.load.json('sign', './assets/other/sign.json');
@@ -92,21 +92,22 @@ class Tutorial extends Phaser.Scene{
 
         //add images in the midground to build depth 
         this.add.image(0,0, 'land').setOrigin(0,0);
-        this.door = this.add.sprite(2120,270,'stuff', 'door').setScale(0.8).setOrigin(0,0);             //scale to 80% of size
-        this.dirt = this.add.sprite(1500,480,'stuff', 'dirtmound').setScale(2).setOrigin(0,0);          //scale to 2x the original size
-        this.fuit = this.add.sprite(1575,490,'stuff', 'fuit').setScale(0.4).setOrigin(0,0);             //scale to of size
-        
-        this.snek = this.physics.add.sprite(1950,430,'snek').setScale(0.2).setOrigin(0,0); 
+
+        this.tree = this.add.sprite(1950, 0, 'stuff', 'tree').setScale(1).setOrigin(0,0);
+        this.door = this.add.sprite(3250,290,'stuff', 'door').setScale(0.8).setOrigin(0,0);             //scale to 80% of size
+        this.dirt = this.add.sprite(2550,500,'stuff', 'dirtmound').setScale(1.6).setOrigin(0,0);          //scale to 2x the original size
+        this.fuit = this.add.sprite(2580,50,'stuff', 'fuit').setScale(0.4).setOrigin(0,0);             //scale to of size
+        this.fuitGrounded = false;
+
+        this.snek = this.physics.add.sprite(3070,430,'snek').setScale(0.3).setOrigin(0,0); 
         this.snek.setCollideWorldBounds(true);
         this.snek.setImmovable(true);
         this.isBlocking = false;
 
-        this.sign = this.physics.add.sprite(1750,400,'stuff', 'sign').setScale(0.4).setOrigin(0,0); 
-        this.sign.setCollideWorldBounds(true);
+        this.sign = this.add.sprite(1280,400,'stuff', 'sign').setScale(0.4).setOrigin(0,0); 
         this.keyHint = this.add.sprite(this.sign.x + 20, 310,'stuff', 'keyboard_button').setScale(0.2).setOrigin(0,0);
         this.nearSign = false;
 
-        this.dialog = this.cache.json.get('sign');
         this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialoguebox').setOrigin(0);
         this.dialogText = this.add.bitmapText(this.TEXT_X, this.TEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
         this.nextText = this.add.bitmapText(this.NEXT_X, this.NEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
@@ -150,6 +151,17 @@ class Tutorial extends Phaser.Scene{
              repeat: -1
         });
 
+        this.anims.create({
+            key: 'moledig',
+            frames: this.anims.generateFrameNames('moleDig',{
+                prefix: 'mole_dig',
+                start: 1,
+                end: 4
+             }),
+             frameRate: 8,
+             repeat: 2
+        });
+
         //l o n g  cat
         this.anims.create({
             key: 'catwalk',
@@ -175,22 +187,28 @@ class Tutorial extends Phaser.Scene{
 
         cat = this.physics.add.sprite(190, 500, 'cat', 'walk_1').setScale(0.33);
         cat.setCollideWorldBounds(true);
+        this.isStretching = false;
        
 
         //camera follow froggie :)
-        this.cameras.main.setBounds(0, 0, 2400, 600);
+        this.cameras.main.setBounds(0, 0, 3600, 600);
         this.cameras.main.setZoom(1);
         this.cameras.main.startFollow(frog);
         
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S)
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+
+        this.learnDig = true;
+        this.learnStretch = true;
     }
 
     update(){
       
+        console.log(this.fuitGrounded);
         if(this.distorted == false){
-            if(cursors.left.isDown && this.isDigging == false && this.isTalking == false){
+            if(cursors.left.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
                 frog.setVelocityX(-this.velocity)
                 frog.setFlip(true, false);
 
@@ -203,7 +221,7 @@ class Tutorial extends Phaser.Scene{
                 frog.anims.play('frogwalk', true);
                 mole.anims.play('molewalk', true);
                 cat.anims.play('catwalk', true);
-            }else if(cursors.right.isDown && this.isDigging == false && this.isTalking == false){
+            }else if(cursors.right.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
                 frog.setVelocityX(this.velocity)
                 frog.resetFlip();
 
@@ -226,7 +244,7 @@ class Tutorial extends Phaser.Scene{
                 cat.anims.play('catwalk', false);
             }
         }else{
-            if(cursors.left.isDown && this.isDigging == false && this.isTalking == false){
+            if(cursors.left.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false ){
                 frog.setVelocityX(-this.velocity)
                 frog.setFlip(true, false);
 
@@ -235,7 +253,7 @@ class Tutorial extends Phaser.Scene{
 
                 cat.setVelocityX(-this.velocity)
                 cat.setFlip(true, false);
-            }else if(cursors.right.isDown && this.isDigging == false && this.isTalking == false){
+            }else if(cursors.right.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
                 frog.setVelocityX(this.velocity)
                 frog.resetFlip();
 
@@ -252,7 +270,7 @@ class Tutorial extends Phaser.Scene{
             }
         }
    
-        if(frog.x >= this.sign.x && frog.x <= 1850){
+        if(frog.x >= this.sign.x && frog.x <= 1420){
            this.keyHint.alpha = 1;
            this.nearSign = true;
         }else{
@@ -260,22 +278,41 @@ class Tutorial extends Phaser.Scene{
             this.nearSign = false;
         }
     
-        if(Phaser.Input.Keyboard.JustDown(keyA) && !this.dialogTyping && this.nearSign == true) {
-            // trigger dialog
-            this.dialogbox.visible = true;
-            this.typeText();
-            this.learnDig = true;
-            
+        if(Phaser.Input.Keyboard.JustDown(keyA)) {
+            if(!this.dialogTyping && this.nearSign == true){
+                // trigger dialog
+                this.dialogBoxMove('sign');
+                this.typeText();
+                this.learnDig = true;
+                this.learnStretch = true;
+            }
+            if(frog.x >= 3275 && frog.x <= 3470){
+                this.scene.start("First");
+            }
+            if(this.isTalking == true && this.nearSign == false){
+                this.typeText();
+                this.snek.destroy();
+            }
         }
 
-        if(Phaser.Input.Keyboard.JustDown(keyD) && this.learnDig == true){
+        if(Phaser.Input.Keyboard.JustDown(keyD) && this.learnDig == true && !this.isTalking){
             this.moleDive();
         }
 
-        if(this.isDigging == true && mole.x >= 1575 && mole.x <= 1675 ){
+        if(Phaser.Input.Keyboard.JustDown(keyS) && this.learnStretch == true && !this.isTalking){
+            this.catStretch();
+        }
+        
+        if(this.isStretching == true && cat.x >= 2590 && cat.x <= 2675){
+            if(this.fuitGrounded == false){
+                this.fuitDrop();
+                this.fuitGrounded = true;
+            }
+        }
+
+        if(this.isDigging == true && mole.x >= 2565 && mole.x <= 2665 && this.fuitGrounded == true){
             this.fuit.destroy();
             this.fuitHave = true;
-          
         }
 
         this.physics.world.collide(frog, this.snek, this.snekBlock, null, this);
@@ -290,18 +327,16 @@ class Tutorial extends Phaser.Scene{
             this.isBlocking = false;
         }
        
-        if(frog.x >= 2175 && frog.x <= 2350){
-            this.scene.start("First");
-        }
+        
 
-        if(frog.x >= 1400){
+        if(frog.x >= 2340){
             this.distort(frog);
             this.distort(mole);
             this.distort(cat);
             this.distorted = true;
         }
 
-        if(frog.x <= 1350){
+        if(frog.x <= 2225){
             this.fix(frog);
             this.fix(mole);
             this.fix(cat);
@@ -311,18 +346,44 @@ class Tutorial extends Phaser.Scene{
     }
 
     moleDive(){
-        mole.y -=50
-        this.isDigging = true;
-        this.valueChange = this.time.delayedCall(1000, () => { //change value to however long dig animation is
-            this.moleDig();
-        }, null, this);
-    
+        if(this.isDigging == false){    
+            this.isDigging = true;
+            if(this.distorted == false){
+                mole.anims.play('moledig', true)
+            }else if(this.distorted == true){
+                mole.y -= 50;
+            }
+            this.valueChange = this.time.delayedCall(1000, () => { //change value to however long dig animation is
+                if(this.isDigging == true){
+                    this.isDigging = false;
+                }
+            }, null, this);
+        }
     }
 
-    moleDig(){
-        if(this.isDigging == true){
-            this.isDigging = false;
+    catStretch(){
+        if(this.isStretching == false){
+            cat.y -= 400
+            this.isStretching = true;
+            this.valueChange = this.time.delayedCall(1000, () => { //change value to however long dig animation is
+                if(this.isStretching == true){
+                    this.isStretching = false;
+                }
+            }, null, this);
         }
+    }
+
+    fuitDrop(){
+        this.drop = this.time.addEvent({
+            delay: 1,
+            callback: function(){
+                if(this.fuit.y <= 500){
+                    this.fuit.y += 10
+                }
+            },
+            callbackScope: this,
+            loop: true
+        })
     }
 
     snekBlock(){
@@ -330,19 +391,9 @@ class Tutorial extends Phaser.Scene{
             this.isBlocking = true;
         }
         if(this.fuitHave == true){
-            this.dialogConvo = 0;
-            this.dialog = this.cache.json.get('snekBYE');
-            this.dialogbox.visible = true;
-            this.typeText();
-            this.snekText = this.time.delayedCall(3000, () => { //change value to however long dig animation is
-                this.typeText();
-            }, null, this);
-            this.snekGone = this.time.delayedCall(3000, () => { //change value to however long dig animation is
-                this.snek.destroy()
-            }, null, this);
-            
+            this.dialogBoxMove('snekBYE');
+            this.typeText();    
             this.isBlocking = false;
-            
         }
     }
 
@@ -387,10 +438,25 @@ class Tutorial extends Phaser.Scene{
                 mole.destroy();
                 mole = this.physics.add.sprite(sprite.x+ 95, sprite.y + 170, 'mole', 'walk_1').setScale(0.38);
                 mole.setCollideWorldBounds(true);
-            
+    
             }
         }
 
+    }
+
+    dialogBoxMove(text){
+        this.dialogbox.visible = true;
+        this.dialogConvo = 0;
+        this.dialog = this.cache.json.get(text);
+        this.dialogbox.destroy();
+        this.dialogText.destroy();
+        this.DBOX_X = frog.x - 500;			    // dialog box x-position
+        
+        this.TEXT_X = frog.x - 450;			// text w/in dialog box x-position
+
+        this.NEXT_X = frog.x + 450;			// next text prompt x-position
+        this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialoguebox').setOrigin(0);
+        this.dialogText = this.add.bitmapText(this.TEXT_X, this.TEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
     }
 
     typeText() { //by sir nathan altice
@@ -401,6 +467,7 @@ class Tutorial extends Phaser.Scene{
         // clear text
         this.dialogText.text = '';
         this.nextText.text = '';
+        this.dialogText.setDepth(1);
 
         // make sure there are lines left to read in this convo, otherwise jump to next convo
         if(this.dialogLine > this.dialog[this.dialogConvo].length - 1) {
