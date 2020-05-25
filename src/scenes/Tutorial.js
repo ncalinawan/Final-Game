@@ -4,17 +4,14 @@ class Tutorial extends Phaser.Scene{
 
         
         // dialog constants
-       // this.DBOX_X = 1;			    // dialog box x-position
         this.DBOX_Y = 25;			    // dialog box y-position
         this.DBOX_FONT = 'gem';	// dialog box font key
 
-       // this.TEXT_X = 1300;			// text w/in dialog box x-position
         this.TEXT_Y = 75;			// text w/in dialog box y-position
         this.TEXT_SIZE = 32;		// text font size (in pixels)
         this.TEXT_MAX_WIDTH = 900;	// max width of text within box
 
         this.NEXT_TEXT = '[A]';	// text to display for next prompt
-      //  this.NEXT_X = 775;			// next text prompt x-position
         this.NEXT_Y = 250;			// next text prompt y-position
 
         this.LETTER_TIMER = 1;		// # ms each letter takes to "type" onscreen
@@ -237,9 +234,11 @@ class Tutorial extends Phaser.Scene{
                 mole.body.velocity.x = 0;
                 cat.body.velocity.x = 0;
 
-                frog.anims.play('frogwalk', false);
-                mole.anims.play('molewalk', false);
-                cat.anims.play('catwalk', false);
+                if(this.isDigging == false){
+                    frog.anims.play('frogwalk', false);
+                    mole.anims.play('molewalk', false);
+                    cat.anims.play('catwalk', false);
+                }
             }
         }else{
             if(cursors.left.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false ){
@@ -287,7 +286,7 @@ class Tutorial extends Phaser.Scene{
             if(frog.x >= 3275 && frog.x <= 3470){
                 this.scene.start("First");
             }
-            if(this.isTalking == true && this.nearSign == false){
+            if(this.isTalking == true && this.nearSign == false && !this.dialogTyping){
                 this.typeText();
                 this.snek.destroy();
             }
