@@ -1,0 +1,44 @@
+[
+    [
+        {
+            "speaker" : "snek",
+            "dialog" : "H3Y UUUU!!!!! FUIT!!! GIVE FUIT!!!",
+            "newSpeaker" : "true"
+        },
+       {
+           "speaker" : "snek",
+            "dialog" : "GIVE",
+            "newSpeaker" : "true"
+        },
+  {
+           "speaker" : "snek",
+            "dialog" : "ME",
+            "newSpeaker" : "true"
+        },
+  {
+           "speaker" : "snek",
+            "dialog" : "FUIT!!!!!!!!!!!!!!!!!!!",
+            "newSpeaker" : "true"
+        },
+  {
+           "speaker" : "snek",
+            "dialog" : "No entry until FUIT has been RECEIVED!!!",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "cat",
+            "dialog" : "i didn't sign up for this in the first place",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "cat",
+            "dialog" : "Oh well, we gotta find the FUIT somewhere for the weird-lookin' snek to magically disappear.",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "cat",
+            "dialog" : "HEY, I SEE SOME FUIT! Want a snack, fellas? (Press S to  s  t  r  e  t  c  h  ! !)",
+            "newSpeaker" : "true"
+        }   
+    ]
+]

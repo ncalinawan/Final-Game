@@ -1,0 +1,31 @@
+[
+	[
+		{
+			"speaker" : "snek",
+			"dialog" : "Thank you for the FUIT! :3 i guess.. i can let you pass.. not like i wanted to.. baka",
+			"newSpeaker" : "true"
+		},
+		{
+			"speaker" : "mole",
+			"dialog" : "yooooooooooooo let’s go! We’re in boys!",
+			"newSpeaker" : "true"
+		},
+		{
+            "speaker" : "froggie",
+            "dialog" : "Nice! Let’s move forward friends! There’s a [TOTALLY NORMAL] door waiting for us.",
+            "newSpeaker" : "true"
+		},
+		{
+            "speaker" : "cat",
+            "dialog" : "I hope we can get out of this mess soon...",
+            "newSpeaker" : "true"
+        },
+  {
+            "speaker" : "cat",
+            "dialog" : "I just wanna go home and eat some good fish once we’re back to normal... 3,:",
+            "newSpeaker" : "true"
+        }
+
+
+    ]
+]

@@ -1,0 +1,19 @@
+[
+    [
+        {
+            "speaker" : "cat",
+            "dialog" : "OH CRAP I DROPPED IT! Haha, well, there it goes; deep into the spaghetti-looking dirt mound...",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "froggie",
+            "dialog" : "Hey Mole, do you think you can dig that up for us?",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "mole",
+            "dialog" : "haha check it out yo if you hit D, I might dig yoo",
+            "newSpeaker" : "true"
+        }
+    ]
+]

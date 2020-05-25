@@ -1,0 +1,34 @@
+[
+    [
+        {
+            "speaker" : "cat",
+            "dialog" : "Oh my dog what the [$$$ MONETIZATION $$$] is this place??? WHY ARE WE DISTORTED?????????",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "mole",
+            "dialog" : "YO YO I DON’T LIKE THIS. WHY AM I SO PIXELATED?",
+            "newSpeaker" : "true"
+        },
+  {
+            "speaker" : "mole",
+            "dialog" : "WE CAN’T MOVE PROPERLY YO",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "froggie",
+            "dialog" : "We may be distorted, but I think we still look pretty cute. ;)",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "cat",
+            "dialog" : "HOW ARE YOU SO [$$$ MONETIZATION pt. 2 $$$] CALM!?!?!??!",
+            "newSpeaker" : "true"
+        },
+  {
+            "speaker" : "froggie",
+            "dialog" : "[shrug emoji]",
+            "newSpeaker" : "true"
+        }
+    ]
+]
