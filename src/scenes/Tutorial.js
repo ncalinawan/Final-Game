@@ -31,14 +31,18 @@ class Tutorial extends Phaser.Scene{
     preload(){
         //main characters
         this.load.atlas('froggie', './assets/chars/frog/frog_walking.png', './assets/chars/frog/frog_walking.json');
+
         this.load.atlas('mole', './assets/chars/mole/mole.png', './assets/chars/mole/mole.json');
         this.load.atlas('moleDig', './assets/chars/mole/mole_digging.png', './assets/chars/mole/mole_digging.json');
 
         this.load.atlas('cat', './assets/chars/cat/stretchy_cat.png', './assets/chars/cat/cat_walking.json');
+        this.load.atlas('catStretch', './assets/chars/cat/cat_stretching.png', './assets/chars/cat/stretch.json');
+
         this.load.image('shittyFrog', './assets/chars/frog/shitty_frog.png');
         this.load.image('shittyCat', './assets/chars/cat/shitty_cat_unstretched.png')
         this.load.image('shittyMole', './assets/chars/mole/shitty_mole.png')
 
+        //other assets
         this.load.atlas('turtle', './assets/bgs/turtle.png', './assets/bgs/turtle.json');
         this.load.atlas('stuff', './assets/other/interaction.png', './assets/other/interaction.json');
         this.load.atlas('grass', './assets/bgs/grass.png', './assets/bgs/grass.json');
@@ -169,6 +173,17 @@ class Tutorial extends Phaser.Scene{
              }),
              frameRate: 5,
              repeat: -1
+        });
+        
+        this.anims.create({
+            key: 'catstretch',
+            frames: this.anims.generateFrameNames('catStretch',{
+                prefix: 'stretch_',
+                start: 1,
+                end: 12
+            }),
+            frameRate: 12,
+            repeat: 1
         });
         
         this.physics.world.gravity.y = 1000;
