@@ -29,20 +29,17 @@ class Tutorial extends Phaser.Scene{
     }
 
     preload(){
+        
         //main characters
         this.load.atlas('froggie', './assets/chars/frog/frog_walking.png', './assets/chars/frog/frog_walking.json');
-
         this.load.atlas('mole', './assets/chars/mole/mole.png', './assets/chars/mole/mole.json');
         this.load.atlas('moleDig', './assets/chars/mole/mole_digging.png', './assets/chars/mole/mole_digging.json');
-
+        this.load.atlas('stretchCat', './assets/chars/cat/cat_stretching.png', './assets/chars/cat/cat_walking.json');
         this.load.atlas('cat', './assets/chars/cat/stretchy_cat.png', './assets/chars/cat/cat_walking.json');
-        this.load.atlas('catStretch', './assets/chars/cat/cat_stretching.png', './assets/chars/cat/stretch.json');
-
         this.load.image('shittyFrog', './assets/chars/frog/shitty_frog.png');
         this.load.image('shittyCat', './assets/chars/cat/shitty_cat_unstretched.png')
         this.load.image('shittyMole', './assets/chars/mole/shitty_mole.png')
-
-        //other assets
+        //background assets
         this.load.atlas('turtle', './assets/bgs/turtle.png', './assets/bgs/turtle.json');
         this.load.atlas('stuff', './assets/other/interaction.png', './assets/other/interaction.json');
         this.load.atlas('grass', './assets/bgs/grass.png', './assets/bgs/grass.json');
@@ -50,12 +47,18 @@ class Tutorial extends Phaser.Scene{
         this.load.image('land','./assets/bgs/land.png');
         this.load.image('sky','./assets/bgs/sky.png');
         this.load.image('snek', './assets/npcs/snek.png');
-       
-        this.load.json('dialogue', './assets/other/dialogue.json');
+       //visual dialogue assets
         this.load.image('dialoguebox', './assets/other/textbox.png');
-        this.load.json('sign', './assets/other/sign.json');
-        this.load.json('snekBYE', './assets/other/snek.json');
         this.load.bitmapFont('gem', './assets/font/gem.png', './assets/font/gem.xml');
+
+        //dialogue preload
+        this.load.json('sign', './assets/other/tutorial/sign.json');
+        this.load.json('snekBYE', './assets/other/tutorial/snek.json');
+        this.load.json('dialogue', './assets/other/tutorial/dialogue.json');
+        this.load.json('sceneStart', './assets/other/tutorial/sceneStart.json');
+        this.load.json('distortion', './assets/other/tutorial/distortion.json');
+        this.load.json('fuit', './assets/other/tutorial/fuit.json');
+        this.load.json('fuitwhoops', './assets/other/tutorial/fuitwhoops.json');
     }
 
     create(){
@@ -105,10 +108,11 @@ class Tutorial extends Phaser.Scene{
         this.snek.setImmovable(true);
         this.isBlocking = false;
 
+        //key hint (interaction)
         this.sign = this.add.sprite(1280,400,'stuff', 'sign').setScale(0.4).setOrigin(0,0); 
         this.keyHint = this.add.sprite(this.sign.x + 20, 310,'stuff', 'keyboard_button').setScale(0.2).setOrigin(0,0);
         this.nearSign = false;
-
+        
         this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialoguebox').setOrigin(0);
         this.dialogText = this.add.bitmapText(this.TEXT_X, this.TEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
         this.nextText = this.add.bitmapText(this.NEXT_X, this.NEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
@@ -175,22 +179,12 @@ class Tutorial extends Phaser.Scene{
              repeat: -1
         });
         
-        this.anims.create({
-            key: 'catstretch',
-            frames: this.anims.generateFrameNames('catStretch',{
-                prefix: 'stretch_',
-                start: 1,
-                end: 12
-            }),
-            frameRate: 12,
-            repeat: 1
-        });
-        
         this.physics.world.gravity.y = 1000;
         this.velocity = 300;
         frog = this.physics.add.sprite(340, 500, 'froggie', 'frog_1').setScale(0.3);
         frog.setCollideWorldBounds(true);
         this.distorted = false;
+        this.start = true;
  
 
         mole = this.physics.add.sprite(40, 500, 'mole', 'walk_1').setScale(0.38);
@@ -215,8 +209,8 @@ class Tutorial extends Phaser.Scene{
     }
 
     update(){
-      
-        console.log(this.fuitGrounded);
+
+        //--------------------------------------------- movement ------------------------------------------
         if(this.distorted == false){
             if(cursors.left.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
                 frog.setVelocityX(-this.velocity)
@@ -281,7 +275,9 @@ class Tutorial extends Phaser.Scene{
                 cat.body.velocity.x = 0;
             }
         }
-   
+        
+        //-----------------------------------------------------------------------------------------------------------------------------------
+        //Keyhint appearing / disappearing
         if(frog.x >= this.sign.x && frog.x <= 1420){
            this.keyHint.alpha = 1;
            this.nearSign = true;
@@ -289,24 +285,54 @@ class Tutorial extends Phaser.Scene{
             this.keyHint.alpha = 0;
             this.nearSign = false;
         }
-    
+
+        //Scene Start dialogue
+        if (frog.x == 855 && this.start == true){
+            this.dialogBoxMove('sceneStart');
+            this.typeText(); 
+            this.start = false;
+        }
+
+        //distortion dialogue
+        if (frog.x == 2468){
+            this.dialogBoxMove('distortion');                    
+            this.typeText(); 
+        }
+        
         if(Phaser.Input.Keyboard.JustDown(keyA)) {
-            if(!this.dialogTyping && this.nearSign == true){
-                // trigger dialog
+            //sign dialogue
+            if(this.nearSign == true){
                 this.dialogBoxMove('sign');
                 this.typeText();
-                this.learnDig = true;
-                this.learnStretch = true;
+                this.learnDig = false;
+                this.learnStretch = false;
             }
             if(frog.x >= 3275 && frog.x <= 3470){
                 this.scene.start("First");
             }
-            if(this.isTalking == true && this.nearSign == false && !this.dialogTyping){
+            //1st snek dialogue 
+            if(frog.x == 3011.5 && this.learnStretch == false && this.learnDig == false){
+                this.dialogBoxMove('fuit');
+                this.typeText(); 
+                this.learnStretch = true; 
+                this.learnDig = true; 
+            }
+            
+            // 2nd snek dialogue -- maybe we can add an animation to make the snek disappearance less awks 
+            if (this.fuitHave == true ){
+                this.dialogBoxMove('snekBYE');
                 this.typeText();
-                this.snek.destroy();
+                this.valueChange = this.time.delayedCall(3000, () => { 
+                    this.snek.destroy();
+                }, null, this); 
+            }
+            if(this.isTalking == true && this.nearSign == false && !this.dialogTyping){ //I literally don't know what's going on here but it makes everything else work ;w;
+                this.typeText();
             }
         }
 
+        // ---------------------------------------------- digging / stretching ------------------------------------------------------------
+        
         if(Phaser.Input.Keyboard.JustDown(keyD) && this.learnDig == true && !this.isTalking){
             this.moleDive();
         }
@@ -322,6 +348,8 @@ class Tutorial extends Phaser.Scene{
             }
         }
 
+        //-------------------------------------------------------- Mechanics --------------------------------------------------------------
+        
         if(this.isDigging == true && mole.x >= 2565 && mole.x <= 2665 && this.fuitGrounded == true){
             this.fuit.destroy();
             this.fuitHave = true;
@@ -338,7 +366,6 @@ class Tutorial extends Phaser.Scene{
             mole.setVelocityX(-this.velocity)
             this.isBlocking = false;
         }
-       
         
 
         if(frog.x >= 2340){
@@ -361,11 +388,11 @@ class Tutorial extends Phaser.Scene{
         if(this.isDigging == false){    
             this.isDigging = true;
             if(this.distorted == false){
-                mole.anims.play('moledig', true)
+                mole.anims.play('moledig', true);
             }else if(this.distorted == true){
                 mole.y -= 50;
             }
-            this.valueChange = this.time.delayedCall(1000, () => { //change value to however long dig animation is
+            this.valueChange = this.time.delayedCall(100, () => { //change value to however long dig animation is
                 if(this.isDigging == true){
                     this.isDigging = false;
                 }
@@ -377,7 +404,12 @@ class Tutorial extends Phaser.Scene{
         if(this.isStretching == false){
             cat.y -= 400
             this.isStretching = true;
-            this.valueChange = this.time.delayedCall(1000, () => { //change value to however long dig animation is
+            if(this.distorted == false){
+                cat.anims.play('catStretch', true);
+            }else if (this.distorted == true){
+                cat.y -= 50;
+            }
+            this.valueChange = this.time.delayedCall(1000, () => { //change value to however long stretch animation is
                 if(this.isStretching == true){
                     this.isStretching = false;
                 }
@@ -394,17 +426,20 @@ class Tutorial extends Phaser.Scene{
                 }
             },
             callbackScope: this,
-            loop: true
+            loop: true,
         })
+        //play fruit drop dialogue
+        this.whoops = this.time.delayedCall(1000, () => {
+            this.dialogBoxMove('fuitwhoops');
+            this.typeText(); 
+    }, null, this);
     }
 
     snekBlock(){
         if(this.isBlocking == false){
             this.isBlocking = true;
         }
-        if(this.fuitHave == true){
-            this.dialogBoxMove('snekBYE');
-            this.typeText();    
+        if(this.fuitHave == true){  
             this.isBlocking = false;
         }
     }
