@@ -209,7 +209,7 @@ class Tutorial extends Phaser.Scene{
     }
 
     update(){
-
+        console.log(this.dialogTyping);
         //--------------------------------------------- movement ------------------------------------------
         if(this.distorted == false){
             if(cursors.left.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
@@ -299,7 +299,7 @@ class Tutorial extends Phaser.Scene{
             this.typeText(); 
         }
         
-        if(Phaser.Input.Keyboard.JustDown(keyA)) {
+        if(Phaser.Input.Keyboard.JustDown(keyA) && !this.dialogTyping) {
             //sign dialogue
             if(this.nearSign == true){
                 this.dialogBoxMove('sign');
@@ -315,16 +315,16 @@ class Tutorial extends Phaser.Scene{
                 this.dialogBoxMove('fuit');
                 this.typeText(); 
                 this.learnStretch = true; 
-                this.learnDig = true; 
             }
             
             // 2nd snek dialogue -- maybe we can add an animation to make the snek disappearance less awks 
-            if (this.fuitHave == true ){
+            if (this.fuitHave == true && this.isBlocking == true ){
                 this.dialogBoxMove('snekBYE');
                 this.typeText();
                 this.valueChange = this.time.delayedCall(3000, () => { 
                     this.snek.destroy();
                 }, null, this); 
+                this.isBlocking = false;
             }
             if(this.isTalking == true && this.nearSign == false && !this.dialogTyping){ //I literally don't know what's going on here but it makes everything else work ;w;
                 this.typeText();
@@ -392,7 +392,7 @@ class Tutorial extends Phaser.Scene{
             }else if(this.distorted == true){
                 mole.y -= 50;
             }
-            this.valueChange = this.time.delayedCall(100, () => { //change value to however long dig animation is
+            this.valueChange = this.time.delayedCall(1000, () => { //change value to however long dig animation is
                 if(this.isDigging == true){
                     this.isDigging = false;
                 }
@@ -432,15 +432,13 @@ class Tutorial extends Phaser.Scene{
         this.whoops = this.time.delayedCall(1000, () => {
             this.dialogBoxMove('fuitwhoops');
             this.typeText(); 
+            this.learnDig = true; 
     }, null, this);
     }
 
     snekBlock(){
         if(this.isBlocking == false){
             this.isBlocking = true;
-        }
-        if(this.fuitHave == true){  
-            this.isBlocking = false;
         }
     }
 
@@ -527,6 +525,7 @@ class Tutorial extends Phaser.Scene{
         if(this.dialogConvo >= this.dialog.length) {
             // here I'm simply "exiting" the last speaker and removing the dialog box,
             // but you could build other logic to change game states here
+            this.dialogTyping = false;
             console.log('End of Conversations');
 
             // make text box invisible
