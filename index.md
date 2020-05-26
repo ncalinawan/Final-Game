@@ -7,6 +7,7 @@
 </head>
 <body>
     <script src="./lib/phaser.js"></script>
+    <script src="./src/scenes/Load.js"></script>
     <script src="./src/scenes/Title.js"></script>
     <script src="./src/scenes/Tutorial.js"></script>
     <script src="./src/scenes/LevelOne.js"></script>

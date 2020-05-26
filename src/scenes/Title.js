@@ -30,7 +30,10 @@ class Title extends Phaser.Scene{
 
     update(){
         if (Phaser.Input.Keyboard.JustDown(keyG)){
-            this.scene.start("tutorialScene");
+            this.cameras.main.fade(2000);
+            this.sceneChange = this.time.delayedCall(2000, () => {
+                this.scene.start("tutorialScene");
+            }, null, this);
         }
     }
     

@@ -64,11 +64,6 @@
 			"speaker" : "froggie",
 			"dialog" : "Uh-oh, looks like we'll have to get it out of the dirt mound somehow...",
 			"newSpeaker" : "true"
-		},
-		{
-			"speaker" : "mole",
-			"dialog" : "yo yo check it out yo if you hit D, I might dig yoo",
-			"newSpeaker" : "true"
 		}
 	]
 ]

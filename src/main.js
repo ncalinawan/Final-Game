@@ -1,3 +1,4 @@
+
 let config = {
     type: Phaser.CANVAS,
     width: 1200,        //recommend having it at 2400 so we can see the entire stage
@@ -12,11 +13,11 @@ let config = {
             height: 575
         }
     },
-    scene: [Title, Tutorial, LevelOne]
+    scene: [Load, Title, Tutorial, LevelOne]  
 }
 
 let game = new Phaser.Game(config);
 
 let cursors;
-let keyA, keyS, keyD, keyF, keyG;
+let keyA, keyS, keyD, keyF, keyG, keyR
 let frog, mole, cat;

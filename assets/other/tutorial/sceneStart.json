@@ -31,6 +31,11 @@
             "newSpeaker" : "true"
         },
         {
+            "speaker" : "mole",
+            "dialog" : "ay yo stay in school kids",
+            "newSpeaker" : "true"
+        },
+        {
             "speaker" : "froggie",
             "dialog" : "Anyways, let’s see… (Press A to interact with stuff!)",
             "newSpeaker" : "true"
