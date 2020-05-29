@@ -274,18 +274,18 @@ class Tutorial extends Phaser.Scene{
         }
 
         //Scene Start dialogue
-        /*if (frog.x >= 855 && frog.x <= 895 && this.start == true){
+        if (frog.x >= 855 && frog.x <= 895 && this.start == true){
             this.dialogBoxMove('sceneStart');
             this.typeText(); 
             this.start = false;
-        }*/
+        }
 
         //distortion dialogue
-       /* if (frog.x == 2468 && this.firstDistort == true){
+        if (frog.x == 2468 && this.firstDistort == true){
             this.dialogBoxMove('distortion');                    
             this.typeText(); 
             this.firstDistort = false;
-        }*/
+        }
         
         if(Phaser.Input.Keyboard.JustDown(keyA) && !this.dialogTyping) {
             //sign dialogue
