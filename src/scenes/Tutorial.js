@@ -104,7 +104,7 @@ class Tutorial extends Phaser.Scene{
         this.anims.create({
             key: 'frogwalk',
             frames: this.anims.generateFrameNames('froggie',{
-                prefix: 'frog_',
+                prefix: 'walk_',
                 start: 1,
                 end: 2
              }),
@@ -126,8 +126,8 @@ class Tutorial extends Phaser.Scene{
 
         this.anims.create({
             key: 'moledig',
-            frames: this.anims.generateFrameNames('moleDig',{
-                prefix: 'mole_dig',
+            frames: this.anims.generateFrameNames('mole',{
+                prefix: 'dig_',
                 start: 1,
                 end: 4
              }),
@@ -149,7 +149,7 @@ class Tutorial extends Phaser.Scene{
         
         this.physics.world.gravity.y = 1000;
         this.velocity = 300;
-        frog = this.physics.add.sprite(340, 500, 'froggie', 'frog_1').setScale(0.3);
+        frog = this.physics.add.sprite(340, 500, 'froggie', 'walk_1').setScale(0.3);
         frog.setCollideWorldBounds(true);
         this.distorted = false;
         this.start = true;
@@ -448,7 +448,7 @@ class Tutorial extends Phaser.Scene{
         if(this.distorted == true){
             if(sprite == frog){
                 frog.destroy();
-                frog = this.physics.add.sprite(sprite.x + 110, sprite.y + 270, 'froggie', 'frog_1').setScale(0.3);
+                frog = this.physics.add.sprite(sprite.x + 110, sprite.y + 270, 'froggie', 'walk_1').setScale(0.3);
                 frog.setCollideWorldBounds(true);
                 this.cameras.main.startFollow(frog);
             }

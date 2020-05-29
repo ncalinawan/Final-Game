@@ -73,9 +73,8 @@ class Load extends Phaser.Scene{
         });
          
         //main characters
-        this.load.atlas('froggie', './assets/chars/frog/frog_walking.png', './assets/chars/frog/frog_walking.json');
+        this.load.atlas('froggie', './assets/chars/frog/frog.png', './assets/chars/frog/frog.json');
         this.load.atlas('mole', './assets/chars/mole/mole.png', './assets/chars/mole/mole.json');
-        this.load.atlas('moleDig', './assets/chars/mole/mole_digging.png', './assets/chars/mole/mole_digging.json');
         this.load.atlas('stretchCat', './assets/chars/cat/cat_stretching.png', './assets/chars/cat/cat_walking.json');
         this.load.atlas('cat', './assets/chars/cat/stretchy_cat.png', './assets/chars/cat/cat_walking.json');
         this.load.image('shittyFrog', './assets/chars/frog/shitty_frog.png');
