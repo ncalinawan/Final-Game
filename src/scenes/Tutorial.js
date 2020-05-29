@@ -32,6 +32,7 @@ class Tutorial extends Phaser.Scene{
         this.cameras.main.fadeIn(2000);
         cursors = this.input.keyboard.createCursorKeys();
         this.add.image(0,0,'sky').setOrigin(0,0);
+        this.learnStretch = true;
 
         // -------------------------------------------- animations ---------------------------------------------------------------------
 
@@ -145,6 +146,16 @@ class Tutorial extends Phaser.Scene{
              }),
              frameRate: 5,
              repeat: -1
+        });
+
+        this.anims.create({
+            key: 'shittystretch',
+            frames: this.anims.generateFrameNames('shittyCat',{
+                prefix: 'stretch_',
+                start: 1,
+                end: 5
+             }),
+             frameRate: 3,
         });
         
         this.physics.world.gravity.y = 1000;
@@ -263,18 +274,18 @@ class Tutorial extends Phaser.Scene{
         }
 
         //Scene Start dialogue
-        if (frog.x >= 855 && frog.x <= 895 && this.start == true){
+        /*if (frog.x >= 855 && frog.x <= 895 && this.start == true){
             this.dialogBoxMove('sceneStart');
             this.typeText(); 
             this.start = false;
-        }
+        }*/
 
         //distortion dialogue
-        if (frog.x == 2468 && this.firstDistort == true){
+       /* if (frog.x == 2468 && this.firstDistort == true){
             this.dialogBoxMove('distortion');                    
             this.typeText(); 
             this.firstDistort = false;
-        }
+        }*/
         
         if(Phaser.Input.Keyboard.JustDown(keyA) && !this.dialogTyping) {
             //sign dialogue
@@ -381,12 +392,11 @@ class Tutorial extends Phaser.Scene{
 
     catStretch(){
         if(this.isStretching == false){
-            cat.y -= 400
             this.isStretching = true;
             if(this.distorted == false){
                 cat.anims.play('catStretch', true);
             }else if (this.distorted == true){
-                cat.y -= 50;
+                cat.anims.play('shittystretch', true);
             }
             this.valueChange = this.time.delayedCall(1000, () => { //change value to however long stretch animation is
                 if(this.isStretching == true){
@@ -431,7 +441,7 @@ class Tutorial extends Phaser.Scene{
             }
             if(sprite == cat){
                 cat.destroy();
-                cat = this.physics.add.sprite(sprite.x + 250, sprite.y + 250, 'shittyCat').setScale(0.3);
+                cat = this.physics.add.sprite(sprite.x + 210, sprite.y + 210, 'shittyCat', 'stretch_1').setScale(0.3);
                 cat.setCollideWorldBounds(true);
                 
             }
