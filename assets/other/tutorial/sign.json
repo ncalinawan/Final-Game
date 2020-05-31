@@ -1,69 +1,34 @@
 [
-	[ 
-		{
-			"speaker" : "cat",
-			"dialog" : "Oh my dog what the [$$$ MONITIZATION $$$] is this place??? WHY ARE WE DISTORTED?????????",
-			"newSpeaker" : "true"
-		},
-		{
-			"speaker" : "cat",
-			"dialog" : "But uhhhh nevermind about that (and ourselves I guess). Can you check the sign since you're like the only who understands it?",
-			"newSpeaker" : "true"
-		},
-		{
-			"speaker" : "froggie",
-			"dialog" : "Alrighty, let's see what's here... (Press A to interact with things like this sign!)",
-			"newSpeaker" : "true"
-		},
-		{
-			"speaker" : "sign",
-			"dialog" : "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA --- (Ahem) ✧ Congrats, you learned how to interact with stuff. ",
-			"newSpeaker" : "true"
-		},
-		{
-			"speaker" : "sign",
-			"dialog" : "Also, you can only read the sign once because idk how to implement it LOL.",
-			"newSpeaker" : "true"
-		},
-		{
-			"speaker" : "sign",
-			"dialog" : "Most of our other dialogue is on the sign, too, because we separated it all out yet...RIP.",
-			"newSpeaker" : "true"
-		},
-		{
-			"speaker" : "snek",
-			"dialog" : "GIVE FUIT!!! No entry until FUIT has been RECEIVED!!!",
-			"newSpeaker" : "true"
-		},
-		{
-			"speaker" : "cat",
-			"dialog" : "i didn't sign up for this in the first place",
-			"newSpeaker" : "true"
-		},
-		{
-			"speaker" : "cat",
-			"dialog" : "Oh well, we gotta find the FUIT somewhere for the weird-lookin' snek to magically disappear.",
-			"newSpeaker" : "true"
-		},
-		{
-			"speaker" : "cat",
-			"dialog" : "Hey wait, that looks like a tree over there! AND I SEE FUIT!",
-			"newSpeaker" : "true"
-		},
-		{
-			"speaker" : "cat",
-			"dialog" : "If you press S, I can grab the FUIT!",
-			"newSpeaker" : "true"
-		},
-		{
-			"speaker" : "cat",
-			"dialog" : "OH NO I DROPPED IT!",
-			"newSpeaker" : "true"
-		},
-		{
-			"speaker" : "froggie",
-			"dialog" : "Uh-oh, looks like we'll have to get it out of the dirt mound somehow...",
-			"newSpeaker" : "true"
-		}
-	]
+    [
+        {
+            "speaker" : "sign",
+            "dialog" : "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA --- (Ahem) Congrats, you learned how to interact with stuff.",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "sign",
+            "dialog" : "Also you can like talk to strange-looking npc's.",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "sign",
+            "dialog" : "Don't worry, they won't hurt you. c:",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "sign",
+            "dialog" : "Anyway, have fun in this strange world, visitors! (hopefully) -Jill Board",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "cat",
+            "dialog" : "wh",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "cat",
+            "dialog" : "what does it mean by hopefully",
+            "newSpeaker" : "true"
+        }
+    ]
 ]
