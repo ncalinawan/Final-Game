@@ -174,6 +174,9 @@ class Tutorial extends Phaser.Scene{
         cat = this.physics.add.sprite(190, 500, 'cat', 'walk_1').setScale(0.33);
         cat.setCollideWorldBounds(true);
         this.isStretching = false;
+        
+        //inventory (just to see what it looks like first before moving items there)
+        this.inventorySpace = this.add.image(925, 5, 'inventory').setScale(0.38).setOrigin(0, 0);
        
 
         //camera follow froggie :)
