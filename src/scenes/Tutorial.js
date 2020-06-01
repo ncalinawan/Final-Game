@@ -53,14 +53,14 @@ class Tutorial extends Phaser.Scene{
         this.anims.create({
             key: 'turtle',
             frames: this.anims.generateFrameNames('turtle',{
-                prefix: 'rock_',
+                prefix: 'turtle_',
                 start: 1,
                 end: 19
              }),
              frameRate: 5,
              repeat: -1
         });
-        this.add.sprite(0,0,'turtle', 'rock_1').play('turtle').setOrigin(0,0);
+        this.add.sprite(0,0,'turtle', 'turtle_1').play('turtle').setOrigin(0,0);
         
 
         //add images in the midground to build depth 
@@ -88,7 +88,7 @@ class Tutorial extends Phaser.Scene{
         this.dialogbox.visible = false;
         this.isTalking = false;
 
-        //grass animation [ foreground ]
+       //grass animation [ foreground ]
         this.anims.create({
             key: 'grass',
             frames: this.anims.generateFrameNames('grass',{
@@ -104,15 +104,14 @@ class Tutorial extends Phaser.Scene{
         //froggie :D
         this.anims.create({
             key: 'frogwalk',
-            frames: this.anims.generateFrameNames('froggie',{
-                prefix: 'walk_',
+            frames: this.anims.generateFrameNames('frog',{
+                prefix: 'frog_walk',
                 start: 1,
                 end: 2
              }),
              frameRate: 5,
              repeat: -1
         });
-
         //mole fren
         this.anims.create({
             key: 'molewalk',
@@ -160,7 +159,7 @@ class Tutorial extends Phaser.Scene{
         
         this.physics.world.gravity.y = 1000;
         this.velocity = 300;
-        frog = this.physics.add.sprite(340, 500, 'froggie', 'walk_1').setScale(0.3);
+        frog = this.physics.add.sprite(340, 500, 'frog', 'frog_walk1').setScale(0.3);
         frog.setCollideWorldBounds(true);
         this.distorted = false;
         this.start = true;
@@ -438,7 +437,7 @@ class Tutorial extends Phaser.Scene{
         if(this.distorted == false){
             if(sprite == frog){
                 frog.destroy();
-                frog = this.physics.add.sprite(sprite.x + 110, sprite.y + 155, 'shittyFrog').setScale(0.5);
+                frog = this.physics.add.sprite(sprite.x + 110, sprite.y + 155, 'frog', 'shitty_frog').setScale(0.5);
                 frog.setCollideWorldBounds(true);
                 this.cameras.main.startFollow(frog);
             }
