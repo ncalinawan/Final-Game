@@ -88,6 +88,7 @@ class Load extends Phaser.Scene{
         this.load.image('land','./assets/bgs/land.png');
         this.load.image('sky','./assets/bgs/sky.png');
         this.load.image('snek', './assets/npcs/snek.png');
+        this.load.image('inventory', './assets/other/backpack_inventory.png');
        //visual dialogue assets
         this.load.image('dialoguebox', './assets/other/textbox.png');
         this.load.bitmapFont('gem', './assets/font/gem.png', './assets/font/gem.xml');
