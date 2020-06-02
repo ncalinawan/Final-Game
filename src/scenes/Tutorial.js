@@ -34,7 +34,7 @@ class Tutorial extends Phaser.Scene{
         this.add.image(0,0,'sky').setOrigin(0,0);
         this.learnStretch = true;
 
-        // -------------------------------------------- animations ---------------------------------------------------------------------
+        // ------------------------------------------------------------------ animations ---------------------------------------------------------------------
 
         //stars animation
         this.anims.create({
@@ -47,8 +47,7 @@ class Tutorial extends Phaser.Scene{
              frameRate: 5,
              repeat: -1
         });
-        this.add.sprite(0,0,'stars', 'star_1').play('star').setOrigin(0,0);
-
+        
         //turtle / rock / torterra ripoff animation
         this.anims.create({
             key: 'turtle',
@@ -60,35 +59,8 @@ class Tutorial extends Phaser.Scene{
              frameRate: 5,
              repeat: -1
         });
-        this.add.sprite(0,0,'turtle', 'turtle_1').play('turtle').setOrigin(0,0);
-        
 
-        //add images in the midground to build depth 
-        this.add.image(0,0, 'land').setOrigin(0,0);
-
-        this.tree = this.add.sprite(1950, 0, 'stuff', 'tree').setScale(1).setOrigin(0,0);
-        this.door = this.add.sprite(3250,290,'stuff', 'door').setScale(0.8).setOrigin(0,0);             //scale to 80% of size
-        this.dirt = this.add.sprite(2550,500,'stuff', 'dirtmound').setScale(1.6).setOrigin(0,0);          //scale to 2x the original size
-        this.fuit = this.add.sprite(2580,50,'stuff', 'fuit').setScale(0.4).setOrigin(0,0);             //scale to of size
-        this.fuitGrounded = false;
-
-        this.snek = this.physics.add.sprite(3070,430,'snek').setScale(0.4).setOrigin(0,0); 
-        this.snek.setCollideWorldBounds(true);
-        this.snek.setImmovable(true);
-        this.isBlocking = false;
-
-        //key hint (interaction)
-        this.sign = this.add.sprite(1280,400,'stuff', 'sign').setScale(0.4).setOrigin(0,0); 
-        this.keyHint = this.add.sprite(this.sign.x + 20, 310,'stuff', 'keyboard_button').setScale(0.2).setOrigin(0,0);
-        this.nearSign = false;
-        
-        this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialoguebox').setOrigin(0);
-        this.dialogText = this.add.bitmapText(this.TEXT_X, this.TEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
-        this.nextText = this.add.bitmapText(this.NEXT_X, this.NEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
-        this.dialogbox.visible = false;
-        this.isTalking = false;
-
-       //grass animation [ foreground ]
+        //grass animation [ foreground ]
         this.anims.create({
             key: 'grass',
             frames: this.anims.generateFrameNames('grass',{
@@ -99,7 +71,7 @@ class Tutorial extends Phaser.Scene{
              frameRate: 5,
              repeat: -1
         });
-        this.add.sprite(0,0,'grass', 'grass_1').play('grass').setOrigin(0,0);
+        
         
         //froggie :D
         this.anims.create({
@@ -112,13 +84,14 @@ class Tutorial extends Phaser.Scene{
              frameRate: 5,
              repeat: -1
         });
+
         //mole fren
         this.anims.create({
             key: 'molewalk',
             frames: this.anims.generateFrameNames('mole',{
-                prefix: 'walk_',
+                prefix: 'mole_walk',
                 start: 1,
-                end: 3
+                end: 2
              }),
              frameRate: 5,
              repeat: -1
@@ -139,38 +112,84 @@ class Tutorial extends Phaser.Scene{
         this.anims.create({
             key: 'catwalk',
             frames: this.anims.generateFrameNames('cat',{
-                prefix: 'walk_',
+                prefix: 'cat_walk',
                 start: 1,
-                end: 3
+                end: 9
              }),
-             frameRate: 5,
-             repeat: -1
+             frameRate: 8,
+             repeat: 0
+        });
+        
+        this.anims.create({
+            key: 'catStretch',
+            frames: this.anims.generateFrameNames('cat',{
+                prefix: 'stretch_',
+                start: 0,
+                end: 24
+             }),
+             frameRate: 8,
+             repeat: 0
         });
 
         this.anims.create({
             key: 'shittystretch',
-            frames: this.anims.generateFrameNames('shittyCat',{
-                prefix: 'stretch_',
+            frames: this.anims.generateFrameNames('cat',{
+                prefix: 'shitty_stretch',
                 start: 1,
-                end: 5
+                end: 9 
              }),
-             frameRate: 3,
+             frameRate: 8,
+             repeat: 0
         });
+
+        //------------------------------------------------------------------ background setup --------------------------------------------------------------------------------
         
+        //background
+        this.add.sprite(0,0,'stars', 'star_1').play('star').setOrigin(0,0);
+        this.add.sprite(0,0,'turtle', 'turtle_1').play('turtle').setOrigin(0,0);
+        //add images in the midground to build depth 
+        this.add.image(0,0, 'land').setOrigin(0,0);
+        this.add.sprite(0,0,'grass', 'grass_1').play('grass').setOrigin(0,0); 
+        this.tree = this.add.sprite(1950, 0, 'stuff', 'tree').setScale(1).setOrigin(0,0);
+        this.door = this.add.sprite(3250,290,'stuff', 'door').setScale(0.8).setOrigin(0,0);             
+        this.dirt = this.add.sprite(2550,500,'stuff', 'dirtmound').setScale(1.6).setOrigin(0,0);         
+        this.fuit = this.add.sprite(2580,50,'stuff', 'fuit').setScale(0.4).setOrigin(0,0);            
+        this.fuitGrounded = false;
+        this.snek = this.physics.add.sprite(3070,430,'snek').setScale(0.4).setOrigin(0,0); 
+        this.snek.setCollideWorldBounds(true);
+        this.snek.setImmovable(true);
+        this.isBlocking = false;
+        
+        //key hint (interaction)
+        this.sign = this.add.sprite(1280,400,'stuff', 'sign').setScale(0.4).setOrigin(0,0); 
+        this.keyHint = this.add.sprite(this.sign.x + 20, 310,'stuff', 'keyboard_button').setScale(0.2).setOrigin(0,0);
+        this.nearSign = false;
+        
+        //dialogue assets
+        this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialoguebox').setOrigin(0);
+        this.dialogText = this.add.bitmapText(this.TEXT_X, this.TEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
+        this.nextText = this.add.bitmapText(this.NEXT_X, this.NEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
+        this.dialogbox.visible = false;
+        this.isTalking = false;
+
+        //-------------------------------------------------------------------- character sprites ----------------------------------------------------------------------------------
         this.physics.world.gravity.y = 1000;
         this.velocity = 300;
+        
+        //froggie
         frog = this.physics.add.sprite(340, 500, 'frog', 'frog_walk1').setScale(0.3);
         frog.setCollideWorldBounds(true);
         this.distorted = false;
         this.start = true;
         this.firstDistort = true;
  
-
-        mole = this.physics.add.sprite(40, 500, 'mole', 'walk_1').setScale(0.38);
+        //mole
+        mole = this.physics.add.sprite(40, 500, 'mole', 'mole_walk1').setScale(0.38);
         mole.setCollideWorldBounds(true);
         this.isDigging = false;
 
-        cat = this.physics.add.sprite(190, 500, 'cat', 'walk_1').setScale(0.33);
+        //cat
+        cat = this.physics.add.sprite(192, 500, 'cat', 'cat_walk1').setScale(0.33);
         cat.setCollideWorldBounds(true);
         this.isStretching = false;
         
@@ -192,7 +211,6 @@ class Tutorial extends Phaser.Scene{
     }
 
     update(){
-       // console.log(mole.x);
         
         //--------------------------------------------- movement ------------------------------------------
         if(this.distorted == false){
@@ -292,8 +310,8 @@ class Tutorial extends Phaser.Scene{
         if(Phaser.Input.Keyboard.JustDown(keyA) && !this.dialogTyping) {
             //sign dialogue
             if(this.nearSign == true){
-                this.dialogBoxMove('sign');
-                this.typeText();
+                //this.dialogBoxMove('sign');
+                //this.typeText();
                 this.learnDig = false;
                 this.learnStretch = false;
             }
@@ -302,8 +320,8 @@ class Tutorial extends Phaser.Scene{
             }
             //1st snek dialogue 
             if(frog.x == 3011.5 && this.learnStretch == false && this.learnDig == false){
-                this.dialogBoxMove('fuit');
-                this.typeText(); 
+                //this.dialogBoxMove('fuit');
+                //this.typeText(); 
                 this.learnStretch = true; 
             }
             
@@ -408,7 +426,7 @@ class Tutorial extends Phaser.Scene{
         }
     }
 
-    fuitDrop(){
+    fuitDrop(){ // if we can make the fruit drop after the cat reaches it, that'd be great
         this.drop = this.time.addEvent({
             delay: 1,
             callback: function(){
@@ -420,7 +438,7 @@ class Tutorial extends Phaser.Scene{
             loop: true,
         })
         //play fruit drop dialogue
-        this.whoops = this.time.delayedCall(1000, () => {
+        this.whoops = this.time.delayedCall(1300, () => {
             this.dialogBoxMove('fuitwhoops');
             this.typeText(); 
             this.learnDig = true; 
@@ -437,19 +455,19 @@ class Tutorial extends Phaser.Scene{
         if(this.distorted == false){
             if(sprite == frog){
                 frog.destroy();
-                frog = this.physics.add.sprite(sprite.x + 110, sprite.y + 155, 'frog', 'shitty_frog').setScale(0.5);
+                frog = this.physics.add.sprite(sprite.x + 115, sprite.y + 165, 'frog', 'shitty_frog').setScale(0.5);
                 frog.setCollideWorldBounds(true);
                 this.cameras.main.startFollow(frog);
             }
             if(sprite == cat){
                 cat.destroy();
-                cat = this.physics.add.sprite(sprite.x + 210, sprite.y + 210, 'shittyCat', 'stretch_1').setScale(0.3);
+                cat = this.physics.add.sprite(sprite.x + 190, sprite.y, 'cat', 'shitty_stretch1').setScale(0.4);
                 cat.setCollideWorldBounds(true);
                 
             }
             if(sprite == mole){
                 mole.destroy();
-                mole = this.physics.add.sprite(sprite.x+ 100, sprite.y + 120, 'shittyMole').setScale(0.5);
+                mole = this.physics.add.sprite(sprite.x + 90, sprite.y + 120, 'mole', 'shitty_mole').setScale(0.5);
                 mole.setCollideWorldBounds(true);
             
             }
@@ -460,19 +478,19 @@ class Tutorial extends Phaser.Scene{
         if(this.distorted == true){
             if(sprite == frog){
                 frog.destroy();
-                frog = this.physics.add.sprite(sprite.x + 110, sprite.y + 270, 'froggie', 'walk_1').setScale(0.3);
+                frog = this.physics.add.sprite(sprite.x + 110, sprite.y + 270, 'frog', 'frog_walk1').setScale(0.3);
                 frog.setCollideWorldBounds(true);
                 this.cameras.main.startFollow(frog);
             }
             if(sprite == cat){
                 cat.destroy();
-                cat = this.physics.add.sprite(sprite.x + 140, sprite.y + 225, 'cat', 'walk_1').setScale(0.33);
+                cat = this.physics.add.sprite(sprite.x + 140, sprite.y, 'cat', 'cat_walk1').setScale(0.33);
                 cat.setCollideWorldBounds(true);
                 
             }
             if(sprite == mole){
                 mole.destroy();
-                mole = this.physics.add.sprite(sprite.x+ 95, sprite.y + 170, 'mole', 'walk_1').setScale(0.38);
+                mole = this.physics.add.sprite(sprite.x+ 95, sprite.y + 170, 'mole', 'mole_walk1').setScale(0.38);
                 mole.setCollideWorldBounds(true);
     
             }
