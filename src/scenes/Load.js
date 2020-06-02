@@ -3,7 +3,8 @@ class Load extends Phaser.Scene{
         super("Loading");
     }
     preload() {
-        this.load.image('logo', './assets/title/loading_screen.png');
+        this.load.image('logo', './assets/title/loading_screen.png'); //make loading screen
+        this.logo = this.add.image(0, 0, 'preload').setOrigin(0.0);
 
         let progressBar = this.add.graphics();
         let progressBox = this.add.graphics();
@@ -69,7 +70,7 @@ class Load extends Phaser.Scene{
             //console.log(value);
             progressBar.clear();
             progressBar.fillStyle(0xffffff, 1);
-            progressBar.fillRect(449, 290, 300 * value, 30);
+            progressBar.fillRect(445, 290, 300 * value, 30);
         });
          
         //main characters
@@ -106,8 +107,6 @@ class Load extends Phaser.Scene{
     }
      
     create() {
-        this.logo = this.add.image(0, 0, 'logo').setOrigin(0.0);
-
         this.sceneChange = this.time.delayedCall(2000, () => {
             this.scene.start("titleScene");
         }, null, this);

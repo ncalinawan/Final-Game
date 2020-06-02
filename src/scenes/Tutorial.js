@@ -32,8 +32,7 @@ class Tutorial extends Phaser.Scene{
         this.cameras.main.fadeIn(2000);
         cursors = this.input.keyboard.createCursorKeys();
         this.add.image(0,0,'sky').setOrigin(0,0);
-        this.learnStretch = true;
-
+      
         // ------------------------------------------------------------------ animations ---------------------------------------------------------------------
 
         //stars animation
@@ -213,9 +212,10 @@ class Tutorial extends Phaser.Scene{
     update(){
         
         //--------------------------------------------- movement ------------------------------------------
+        console.log(cat.y)
         if(this.distorted == false){
             if(cursors.left.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
-                if(mole.x == 50.35){
+                if(mole.x <= 52){
                     frog.body.velocity.x = 0;
                     mole.body.velocity.x = 0;
                     cat.body.velocity.x = 0;
@@ -248,9 +248,9 @@ class Tutorial extends Phaser.Scene{
             }else{
                 frog.body.velocity.x = 0;
                 mole.body.velocity.x = 0;
-                cat.body.velocity.x = 0;
-
-                if(this.isDigging == false){
+                cat.body.velocity.x = 0; 
+                
+                if(this.isStretching == false && this.isDigging == false){
                     frog.anims.play('frogwalk', false);
                     mole.anims.play('molewalk', false);
                     cat.anims.play('catwalk', false);
@@ -301,7 +301,7 @@ class Tutorial extends Phaser.Scene{
         }
 
         //distortion dialogue
-        if (frog.x == 2468 && this.firstDistort == true){
+        if (frog.x == 2338 && this.firstDistort == true){
             this.dialogBoxMove('distortion');                    
             this.typeText(); 
             this.firstDistort = false;
@@ -341,11 +341,11 @@ class Tutorial extends Phaser.Scene{
 
         // ---------------------------------------------- digging / stretching ------------------------------------------------------------
         
-        if(Phaser.Input.Keyboard.JustDown(keyD) && this.learnDig == true && !this.isTalking){
+        if(Phaser.Input.Keyboard.JustDown(keyD) && this.learnDig == true && !this.isTalking && this.isStretching == false){
             this.moleDive();
         }
 
-        if(Phaser.Input.Keyboard.JustDown(keyS) && this.learnStretch == true && !this.isTalking){
+        if(Phaser.Input.Keyboard.JustDown(keyS) && this.learnStretch == true && !this.isTalking && this.isDigging == false){
             this.catStretch();
         }
         
@@ -415,15 +415,21 @@ class Tutorial extends Phaser.Scene{
             this.isStretching = true;
             if(this.distorted == false){
                 cat.anims.play('catStretch', true);
+                this.valueChange = this.time.delayedCall(2000, () => { //change value to however long stretch animation is
+                    if(this.isStretching == true){
+                        this.isStretching = false;
+                    }
+                }, null, this);
             }else if (this.distorted == true){
                 cat.anims.play('shittystretch', true);
+                this.valueChange = this.time.delayedCall(1000, () => { //change value to however long stretch animation is
+                    if(this.isStretching == true){
+                        this.isStretching = false;
+                    }
+                }, null, this);
             }
-            this.valueChange = this.time.delayedCall(1000, () => { //change value to however long stretch animation is
-                if(this.isStretching == true){
-                    this.isStretching = false;
-                }
-            }, null, this);
-        }
+            }
+            
     }
 
     fuitDrop(){ // if we can make the fruit drop after the cat reaches it, that'd be great
@@ -455,19 +461,19 @@ class Tutorial extends Phaser.Scene{
         if(this.distorted == false){
             if(sprite == frog){
                 frog.destroy();
-                frog = this.physics.add.sprite(sprite.x + 115, sprite.y + 165, 'frog', 'shitty_frog').setScale(0.5);
+                frog = this.physics.add.sprite(sprite.x + 110, sprite.y + 155, 'frog', 'shitty_frog').setScale(0.5);
                 frog.setCollideWorldBounds(true);
                 this.cameras.main.startFollow(frog);
             }
             if(sprite == cat){
                 cat.destroy();
-                cat = this.physics.add.sprite(sprite.x + 190, sprite.y, 'cat', 'shitty_stretch1').setScale(0.4);
+                cat = this.physics.add.sprite(sprite.x + 190, sprite.y + 622, 'cat', 'shitty_stretch1').setScale(0.4);
                 cat.setCollideWorldBounds(true);
                 
             }
             if(sprite == mole){
                 mole.destroy();
-                mole = this.physics.add.sprite(sprite.x + 90, sprite.y + 120, 'mole', 'shitty_mole').setScale(0.5);
+                mole = this.physics.add.sprite(sprite.x + 100, sprite.y + 120, 'mole', 'shitty_mole').setScale(0.5);
                 mole.setCollideWorldBounds(true);
             
             }
@@ -484,7 +490,7 @@ class Tutorial extends Phaser.Scene{
             }
             if(sprite == cat){
                 cat.destroy();
-                cat = this.physics.add.sprite(sprite.x + 140, sprite.y, 'cat', 'cat_walk1').setScale(0.33);
+                cat = this.physics.add.sprite(sprite.x + 140, sprite.y + 716, 'cat', 'cat_walk1').setScale(0.33);
                 cat.setCollideWorldBounds(true);
                 
             }
