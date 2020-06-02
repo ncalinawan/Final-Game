@@ -73,15 +73,11 @@ class Load extends Phaser.Scene{
         });
          
         //main characters
-        this.load.atlas('frog', './assets/chars/frog/frog.png', './assets/chars/frog/frog.json');   //all frog assets here and works :D
-        
+        this.load.atlas('cat', './assets/chars/cat/cat.png', './assets/chars/cat/cat.json');
+        this.load.atlas('frog', './assets/chars/frog/frog.png', './assets/chars/frog/frog.json');
         this.load.atlas('mole', './assets/chars/mole/mole.png', './assets/chars/mole/mole.json');
-        this.load.atlas('stretchCat', './assets/chars/cat/cat_stretching.png', './assets/chars/cat/cat_walking.json');
-        this.load.atlas('cat', './assets/chars/cat/stretchy_cat.png', './assets/chars/cat/cat_walking.json');
-        this.load.atlas('shittyCat', './assets/chars/cat/shitty_cat.png', './assets/chars/cat/shitty_cat.json')
-        this.load.image('shittyMole', './assets/chars/mole/shitty_mole.png')
-        
-        //background assets
+
+        //background assets [ tutorial ]
         this.load.atlas('turtle', './assets/bgs/turtle.png', './assets/bgs/turtle.json');
         this.load.atlas('stuff', './assets/other/interaction.png', './assets/other/interaction.json');
         this.load.atlas('grass', './assets/bgs/grass.png', './assets/bgs/grass.json');
@@ -90,6 +86,10 @@ class Load extends Phaser.Scene{
         this.load.image('sky','./assets/bgs/sky.png');
         this.load.image('snek', './assets/npcs/snek.png');
         this.load.image('inventory', './assets/other/backpack_inventory.png');
+
+        //background assets [ stage 2 ]
+        this.load.image('base', './assets/bgs/bg_base.png');
+        this.load.atlas('beach_stuff', './assets/bgs/beach_assets.png', './assets/bgs/beach_assets.json');
        
         //visual dialogue assets
         this.load.image('dialoguebox', './assets/other/textbox.png');
