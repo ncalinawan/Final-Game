@@ -310,8 +310,8 @@ class Tutorial extends Phaser.Scene{
         if(Phaser.Input.Keyboard.JustDown(keyA) && !this.dialogTyping) {
             //sign dialogue
             if(this.nearSign == true){
-                //this.dialogBoxMove('sign');
-                //this.typeText();
+                this.dialogBoxMove('sign');
+                this.typeText();
                 this.learnDig = false;
                 this.learnStretch = false;
             }
@@ -320,8 +320,8 @@ class Tutorial extends Phaser.Scene{
             }
             //1st snek dialogue 
             if(frog.x == 3011.5 && this.learnStretch == false && this.learnDig == false){
-                //this.dialogBoxMove('fuit');
-                //this.typeText(); 
+                this.dialogBoxMove('fuit');
+                this.typeText(); 
                 this.learnStretch = true; 
             }
             
