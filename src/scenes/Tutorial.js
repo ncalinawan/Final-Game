@@ -1,7 +1,6 @@
 class Tutorial extends Phaser.Scene{
     constructor(){
         super("tutorialScene");
-
         
         // dialog constants
         this.DBOX_Y = 25;			    // dialog box y-position
@@ -25,7 +24,6 @@ class Tutorial extends Phaser.Scene{
         this.dialogText = null;			// the actual dialog text
         this.nextText = null;			// player prompt text to continue typing
 
-     
     }
 
     create(){
@@ -212,7 +210,6 @@ class Tutorial extends Phaser.Scene{
     update(){
         
         //--------------------------------------------- movement ------------------------------------------
-        console.log(cat.y)
         if(this.distorted == false){
             if(cursors.left.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
                 if(mole.x <= 52){
@@ -428,7 +425,7 @@ class Tutorial extends Phaser.Scene{
                     }
                 }, null, this);
             }
-            }
+        }
             
     }
 
@@ -501,7 +498,6 @@ class Tutorial extends Phaser.Scene{
     
             }
         }
-
     }
 
     dialogBoxMove(text){
