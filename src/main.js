@@ -1,4 +1,7 @@
-
+/*
+Created by Turnip Stonks: Mai Ngyuen, Kiara Yupangco, and Noel Calinawan
+Game Title: The MS Paint Adventures of Frog (and friends)
+*/
 let config = {
     type: Phaser.CANVAS,
     width: 1200,        //recommend having it at 2400 so we can see the entire stage
