@@ -87,6 +87,6 @@ class LevelOne extends Phaser.Scene{
         
     }
     
-    update() {
-    }
+    //update() {
+   // }
 }
