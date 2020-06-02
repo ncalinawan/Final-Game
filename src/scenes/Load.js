@@ -98,7 +98,6 @@ class Load extends Phaser.Scene{
         //dialogue preload
         this.load.json('sign', './assets/other/tutorial/sign.json');
         this.load.json('snekBYE', './assets/other/tutorial/snek.json');
-        this.load.json('dialogue', './assets/other/tutorial/dialogue.json');
         this.load.json('sceneStart', './assets/other/tutorial/sceneStart.json');
         this.load.json('distortion', './assets/other/tutorial/distortion.json');
         this.load.json('fuit', './assets/other/tutorial/fuit.json');
