@@ -124,7 +124,7 @@ class Tutorial extends Phaser.Scene{
                 start: 0,
                 end: 24
              }),
-             frameRate: 8,
+             frameRate: 12,
              repeat: 0
         });
 
@@ -176,6 +176,7 @@ class Tutorial extends Phaser.Scene{
         //froggie
         frog = this.physics.add.sprite(340, 500, 'frog', 'frog_walk1').setScale(0.3);
         frog.setCollideWorldBounds(true);
+        this.movement = true;
         this.distorted = false;
         this.start = true;
         this.firstDistort = true;
@@ -281,6 +282,13 @@ class Tutorial extends Phaser.Scene{
         }
         
         //-----------------------------------------------------------------------------------------------------------------------------------
+        //How to move
+        if(frog.x >= 340 && this.movement == true){
+            this.dialogBoxMove('introduction');
+            this.typeText();
+            this.movement = false;
+        }
+        
         //Keyhint appearing / disappearing
         if(frog.x >= this.sign.x && frog.x <= 1420){
            this.keyHint.alpha = 1;
@@ -354,8 +362,6 @@ class Tutorial extends Phaser.Scene{
         }
 
         //-------------------------------------------------------- Mechanics --------------------------------------------------------------
-        
-       
 
         if(this.isDigging == true && mole.x >= 2565 && mole.x <= 2665 && this.fuitGrounded == true){
             this.fuit.destroy();
@@ -501,16 +507,26 @@ class Tutorial extends Phaser.Scene{
     }
 
     dialogBoxMove(text){
+        
         this.dialogbox.visible = true;
         this.dialogConvo = 0;
         this.dialog = this.cache.json.get(text);
         this.dialogbox.destroy();
         this.dialogText.destroy();
-        this.DBOX_X = frog.x - 500;			    // dialog box x-position
-        
-        this.TEXT_X = frog.x - 450;			// text w/in dialog box x-position
 
-        this.NEXT_X = frog.x + 450;			// next text prompt x-position
+        this.DBOX_X = frog.x - 250;			    // dialog box x-position
+        
+        this.TEXT_X = frog.x - 200;			// text w/in dialog box x-position
+
+        this.NEXT_X = frog.x + 700;			// next text prompt x-position
+
+        if(this.movement == false){
+            this.DBOX_X = frog.x - 500;			    // dialog box x-position
+        
+            this.TEXT_X = frog.x - 450;			// text w/in dialog box x-position
+    
+            this.NEXT_X = frog.x + 450;			// next text prompt x-position
+        }
         this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialoguebox').setOrigin(0);
         this.dialogText = this.add.bitmapText(this.TEXT_X, this.TEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
     }
@@ -586,7 +602,3 @@ class Tutorial extends Phaser.Scene{
     }
     
 }
-
-       
-          
-
