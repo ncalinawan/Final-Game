@@ -72,37 +72,57 @@ class Load extends Phaser.Scene{
             progressBar.fillStyle(0xffffff, 1);
             progressBar.fillRect(445, 290, 300 * value, 30);
         });
-         
+//------------------ OVERALL ------------------
         //main characters
         this.load.atlas('cat', './assets/chars/cat/cat.png', './assets/chars/cat/cat.json');
         this.load.atlas('frog', './assets/chars/frog/frog.png', './assets/chars/frog/frog.json');
         this.load.atlas('mole', './assets/chars/mole/mole.png', './assets/chars/mole/mole.json');
-
-        //background assets [ tutorial ]
-        this.load.atlas('turtle', './assets/bgs/turtle.png', './assets/bgs/turtle.json');
-        this.load.atlas('stuff', './assets/other/interaction.png', './assets/other/interaction.json');
-        this.load.atlas('grass', './assets/bgs/grass.png', './assets/bgs/grass.json');
-        this.load.atlas('stars', './assets/bgs/stars.png', './assets/bgs/stars.json');
-        this.load.image('land','./assets/bgs/land.png');
-        this.load.image('sky','./assets/bgs/sky.png');
-        this.load.image('snek', './assets/npcs/snek.png');
+        
+        //assets
         this.load.image('inventory', './assets/other/backpack_inventory.png');
 
-        //background assets [ stage 2 ]
-        this.load.image('base', './assets/bgs/bg_base.png');
-        this.load.atlas('beach_stuff', './assets/bgs/beach_assets.png', './assets/bgs/beach_assets.json');
-       
         //visual dialogue assets
         this.load.image('dialoguebox', './assets/other/textbox.png');
         this.load.bitmapFont('gem', './assets/font/gem.png', './assets/font/gem.xml');
 
+//------------------ TUTORIAL ------------------
+        //background assets [ tutorial ]
+        this.load.atlas('turtle', './assets/bgs/turtle.png', './assets/bgs/turtle.json');
+        this.load.atlas('grass', './assets/bgs/grass.png', './assets/bgs/grass.json');
+        this.load.atlas('stars', './assets/bgs/stars.png', './assets/bgs/stars.json');
+        this.load.image('land','./assets/bgs/land.png');
+        this.load.image('sky','./assets/bgs/sky.png');
+        
+        //npcs & assets
+        this.load.image('snek', './assets/npcs/snek.png');
+        this.load.atlas('stuff', './assets/other/interaction.png', './assets/other/interaction.json');
+        
+        
         //dialogue preload
+        this.load.json('introduction', './assets/other/tutorial/intro.json');
         this.load.json('sign', './assets/other/tutorial/sign.json');
         this.load.json('snekBYE', './assets/other/tutorial/snek.json');
         this.load.json('sceneStart', './assets/other/tutorial/sceneStart.json');
         this.load.json('distortion', './assets/other/tutorial/distortion.json');
         this.load.json('fuit', './assets/other/tutorial/fuit.json');
         this.load.json('fuitwhoops', './assets/other/tutorial/fuitwhoops.json');
+
+//------------------ BEACH STAGE ------------------
+        //background assets [ stage 1 ]
+        this.load.atlas('tutorialBeach', './assets/transition/sceneTransition.png', './assets/transition/tutorial_to_beach.json');
+        this.load.image('base', './assets/bgs/bg_base.png');
+        
+        //npcs & assets
+        this.load.atlas('beach_stuff', './assets/bgs/beach_assets.png', './assets/bgs/beach_assets.json');
+        this.load.image('fesh', './assets/npcs/sad_fesh.png');
+        this.load.image('crub', './assets/npcs/crub.png');
+        this.load.image('partyCrub', './assets/npcs/party_crub.png');
+       
+        //dialogue preload
+        this.load.json('beachBeginning', './assets/other/stageOne/stageOneStart.json');
+        this.load.json('questStart', './assets/other/stageOne/crubStart.json');
+        this.load.json('questDone', './assets/other/stageOne/crubEnd.json');
+
         
     }
      
