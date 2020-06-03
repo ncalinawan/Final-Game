@@ -1,0 +1,24 @@
+[
+    [
+        {
+            "speaker" : "some voice from above",
+            "dialog" : "*psssssst*",
+            "newSpeaker" : "true"
+        }, 
+        {
+            "speaker" : "some voice from above",
+            "dialog" : "You can move by using the [<-] & [->] keys!",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "some voice from above",
+            "dialog" : "Okay, have fun playing the game!",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "mole",
+            "dialog" : "y'all hear somethin'?",
+            "newSpeaker" : "true"
+        }
+    ]
+]
