@@ -133,6 +133,54 @@ class LevelOne extends Phaser.Scene{
              frameRate: 8,
              repeat: 0
         });
+        
+                // bucket spilling 
+        this.anims.create({
+            key: 'bathwater',
+            frames: this.anims.generateFrameNames('beach_stuff',{
+                prefix: 'spilled_bucket',
+                start: 1,
+                end: 3 
+             }),
+             frameRate: 5,
+             repeat: -1
+        });
+
+        // character poof 
+        this.anims.create({
+            key: 'poof',
+            frames: this.anims.generateFrameNames('beach_stuff',{
+                prefix: 'poof_',
+                start: 1,
+                end: 3 
+             }),
+             frameRate: 5,
+             repeat: 0
+        });
+
+        // indicator 
+        this.anims.create({
+            key: 'indicator',
+            frames: this.anims.generateFrameNames('beach_stuff',{
+                prefix: 'indicator_',
+                start: 1,
+                end: 2 
+             }),
+             frameRate: 5,
+             repeat: -1
+        });
+
+        //character poof
+        this.anims.create({
+            key: 'poof',
+            frames: this.anims.generateFrameNames('beach_stuff',{
+                prefix: 'poof_',
+                start: 1,
+                end: 3 
+             }),
+             frameRate: 5,
+             repeat: -1
+        });
 
         // ------------------------------------------------------------------- background setup ---------------------------------------------------------------------------------------
 
