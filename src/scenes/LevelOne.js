@@ -207,7 +207,6 @@ class LevelOne extends Phaser.Scene{
         this.add.sprite(3260, 130, 'beach_stuff', 'coconut').setScale(.5);
         this.add.sprite(900, 500, 'beach_stuff', 'shells1');
         this.add.sprite(700,550, 'beach_stuff', 'shells2');
-        this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
         this.add.sprite(2500,525, 'beach_stuff', 'shells').setScale(0.5);
         
         //foreground
@@ -229,6 +228,11 @@ class LevelOne extends Phaser.Scene{
         cat = this.physics.add.sprite(190, 450, 'cat', 'cat_walk1').setScale(0.33);
         cat.setCollideWorldBounds(true);
         this.isStretching = false;
+        
+        //foreground
+        this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
+        this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
+
        
         //camera follow froggie :)
         this.cameras.main.setBounds(0, 0, 3600, 600);
@@ -331,8 +335,27 @@ class LevelOne extends Phaser.Scene{
         if(Phaser.Input.Keyboard.JustDown(keyS) && !this.isTalking && this.isDigging == false){
             this.catStretch();
         }
+        
+//---------------------------------------------------------- INTERACTIONS ----------------------------------------------------------------------------------------
+
+        //shake trees, drop coconut!!!
+        if(this.isStretching == true && cat.x >= 3230 && cat.x <= 3280){
+            if(this.coconutDrop == false){
+                 this.time.delayedCall(1100, () => {
+                    this.fuitDrop();
+                    this.coconutDrop = true;
+            }, null, this); 
+            }
+        }
+
+        //dig up shells! [ in progress ]
+        /*if(this.isDigging == true && mole.x >= 2565 && mole.x <= 2665 && this.fuitGrounded == true){
+            this.fuit.destroy();
+            this.fuitHave = true;
+        }*/
     }
 
+//----------------------------------------------------------MECHANICS --------------------------------------------
     moleDive(){
         if(this.isDigging == false){    
             this.isDigging = true;
@@ -369,6 +392,24 @@ class LevelOne extends Phaser.Scene{
                 }, null, this);
             }
         }    
+    }
+    
+    fuitDrop(){ 
+        this.drop = this.time.addEvent({
+            delay: 1000,
+            callback: function(){
+                if(this.coconut.y <= 500){
+                    this.coconut.y += 10
+                }
+            },
+            callbackScope: this,
+            loop: true,
+        })
+        //play coconut drop dialogue
+        /*this.whoops = this.time.delayedCall(1300, () => {
+            this.dialogBoxMove('shake_coconuts');
+            this.typeText(); 
+    }, null, this); */
     }
 
     distort(sprite){
