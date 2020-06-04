@@ -109,6 +109,7 @@ class Load extends Phaser.Scene{
 
 //------------------ BEACH STAGE ------------------
         //background assets [ stage 1 ]
+        this.load.atlas('ocean_waves', './assets/bgs/beach_waves.png', './assets/bgs/beach_waves.json');
         this.load.atlas('tutorialBeach', './assets/transition/sceneTransition.png', './assets/transition/tutorial_to_beach.json');
         this.load.image('base', './assets/bgs/bg_base.png');
         
