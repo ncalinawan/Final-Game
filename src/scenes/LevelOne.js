@@ -195,7 +195,8 @@ class LevelOne extends Phaser.Scene{
         // ------------------------------------------------------------------- background setup ---------------------------------------------------------------------------------------
 
         //background base
-        this.add.image(0,0, 'base').setOrigin(0,0);
+        //this.add.image(0,0, 'base').setOrigin(0,0);
+        this.add.sprite(0, 0, 'ocean_waves', 'beach_1').setOrigin(0, 0).play('waves');
 
         //midground
         this.add.sprite(3300,280, 'beach_stuff', 'palm_tree').setScale(0.7);
