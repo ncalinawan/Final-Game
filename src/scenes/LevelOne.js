@@ -31,7 +31,6 @@ class LevelOne extends Phaser.Scene{
         this.load.image('clowning', './assets/other/clowning.png');
         this.load.image('base', './assets/bgs/bg_base.png');
         this.load.atlas('beach_stuff', './assets/bgs/beach_assets.png', './assets/bgs/beach_assets.json');
-
         //temporarily copy + pasting this here
         this.load.atlas('froggie', './assets/chars/frog/frog.png', './assets/chars/frog/frog.json');
         this.load.atlas('mole', './assets/chars/mole/mole.png', './assets/chars/mole/mole.json');
@@ -55,6 +54,17 @@ class LevelOne extends Phaser.Scene{
         this.isTalking = false;
 
     //-----------------------------------------------------------------------------------animations -------------------------------------------------------------------
+        this.anims.create({
+            key: 'waves',
+            frames:this.anims.generateFrameNames('ocean_waves',{
+                prefix: 'beach_',
+                start: 1,
+                end: 19
+            }),
+            frameRate: 8,
+            repeat: -1
+        });
+    
         this.anims.create({
             key: 'crab',
             frames: this.anims.generateFrameNames('beach_stuff',{
@@ -119,7 +129,7 @@ class LevelOne extends Phaser.Scene{
                 start: 0,
                 end: 24
              }),
-             frameRate: 8,
+             frameRate: 12,
              repeat: 0
         });
 
@@ -134,7 +144,7 @@ class LevelOne extends Phaser.Scene{
              repeat: 0
         });
         
-                // bucket spilling 
+        // bucket spilling 
         this.anims.create({
             key: 'bathwater',
             frames: this.anims.generateFrameNames('beach_stuff',{
@@ -143,7 +153,7 @@ class LevelOne extends Phaser.Scene{
                 end: 3 
              }),
              frameRate: 5,
-             repeat: -1
+             repeat: 1
         });
 
         // character poof 
@@ -191,8 +201,9 @@ class LevelOne extends Phaser.Scene{
         this.add.sprite(3300,280, 'beach_stuff', 'palm_tree').setScale(0.7);
         this.add.sprite(2800,325, 'beach_stuff', 'palm_tree').setScale(0.5);
         this.add.sprite(0,0, 'beach_stuff', 'tree2').setOrigin(0,0);
-        this.add.sprite(1500,500,'beach_stuff', 'crab1').setScale(0.3).play('crab');
         this.add.sprite(1300,490,'beach_stuff', 'crab1').setScale(0.3).play('crab');
+        this.add.sprite(1500,500,'crub').setScale(0.5);
+        this.add.sprite(3260, 130, 'beach_stuff', 'coconut').setScale(.5);
         this.add.sprite(900, 500, 'beach_stuff', 'shells1');
         this.add.sprite(700,550, 'beach_stuff', 'shells2');
         this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
@@ -489,6 +500,4 @@ class LevelOne extends Phaser.Scene{
             this.dialogLastSpeaker = this.dialogSpeaker;
         }
     }
-    
-
 }
