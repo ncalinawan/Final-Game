@@ -59,7 +59,7 @@ class Hell extends Phaser.Scene{
 
         //add cat sprite
         this.physics.world.gravity.y = 1000;
-        this.velocity = 1200;
+        this.velocity = 300;
 
         cat = this.physics.add.sprite(190, 450, 'cat', 'shitty_stretch1').setScale(0.33);
         cat.setCollideWorldBounds(true);
