@@ -115,6 +115,7 @@ class Load extends Phaser.Scene{
         
         //npcs & assets
         this.load.atlas('beach_stuff', './assets/bgs/beach_assets.png', './assets/bgs/beach_assets.json');
+        this.load.atlas('bucket', './assets/bgs/spilled_bucket.png', './assets/bgs/spilled_bucket.json');
         this.load.image('fesh', './assets/npcs/sad_fesh.png');
         this.load.image('crub', './assets/npcs/crub.png');
         this.load.image('partyCrub', './assets/npcs/party_crub.png');
