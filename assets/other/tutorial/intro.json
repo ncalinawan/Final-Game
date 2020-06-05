@@ -1,17 +1,17 @@
 [
     [
         {
-            "speaker" : "some voice from above",
+            "speaker" : "???",
             "dialog" : "*psssssst*",
             "newSpeaker" : "true"
         }, 
         {
-            "speaker" : "some voice from above",
+            "speaker" : "???",
             "dialog" : "You can move by using the [<-] & [->] keys!",
             "newSpeaker" : "true"
         },
         {
-            "speaker" : "some voice from above",
+            "speaker" : "???",
             "dialog" : "Okay, have fun playing the game!",
             "newSpeaker" : "true"
         },
