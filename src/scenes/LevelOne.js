@@ -60,6 +60,7 @@ class LevelOne extends Phaser.Scene{
              repeat: -1
         });
 
+        //froggie :3
         this.anims.create({
             key: 'frogwalk',
             frames: this.anims.generateFrameNames('frog',{
@@ -131,10 +132,10 @@ class LevelOne extends Phaser.Scene{
         // bucket spilling 
         this.anims.create({
             key: 'bathwater',
-            frames: this.anims.generateFrameNames('beach_stuff',{
+            frames: this.anims.generateFrameNames('bucket',{
                 prefix: 'spilled_bucket',
                 start: 1,
-                end: 4 
+                end: 7 
              }),
              frameRate: 5,
              repeat: 0
@@ -193,7 +194,7 @@ class LevelOne extends Phaser.Scene{
         this.coconut = this.add.sprite(3260, 130, 'beach_stuff', 'coconut').setScale(.5);
         this.coconutDrop = false;
 
-        this.bathwater = this.add.sprite(200, 200, 'beach_stuff', 'spilled_bucket1' );
+        this.bathwater = this.add.sprite(200, 200, 'bucket', 'spilled_bucket1');
         this.add.sprite(900, 500, 'beach_stuff', 'shells1');
         this.add.sprite(700,550, 'beach_stuff', 'shells2');
         this.add.sprite(2500,525, 'beach_stuff', 'shells').setScale(0.5);
@@ -475,11 +476,10 @@ class LevelOne extends Phaser.Scene{
                 mole.destroy();
                 mole = this.physics.add.sprite(sprite.x, sprite.y, 'mole', 'shitty_mole').setScale(0.5);
                 mole.setCollideWorldBounds(true);
-            
             }
-            //foreground
-            this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
-            this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
+        //foreground
+        this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
+        this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
         }
     }
 
@@ -501,10 +501,11 @@ class LevelOne extends Phaser.Scene{
                 mole.destroy();
                 mole = this.physics.add.sprite(sprite.x+ 95, sprite.y + 170, 'mole', 'mole_walk1').setScale(0.38);
                 mole.setCollideWorldBounds(true);
+    
             }
-            //foreground
-            this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
-            this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
+        //foreground
+        this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
+        this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
         }
     }
 
