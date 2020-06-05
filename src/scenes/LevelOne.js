@@ -134,10 +134,10 @@ class LevelOne extends Phaser.Scene{
             frames: this.anims.generateFrameNames('beach_stuff',{
                 prefix: 'spilled_bucket',
                 start: 1,
-                end: 3 
+                end: 4 
              }),
              frameRate: 5,
-             repeat: 1
+             repeat: 0
         });
 
         // character poof 
@@ -188,6 +188,7 @@ class LevelOne extends Phaser.Scene{
         this.add.sprite(0,0, 'beach_stuff', 'tree2').setOrigin(0,0);
         this.add.sprite(1300,490,'beach_stuff', 'crab1').setScale(0.3).play('crab');
         this.add.sprite(1500,500,'crub').setScale(0.5);
+        this.add.sprite(600, 500, 'fesh').setScale(0.3);
         
         this.coconut = this.add.sprite(3260, 130, 'beach_stuff', 'coconut').setScale(.5);
         this.coconutDrop = false;
@@ -203,7 +204,7 @@ class LevelOne extends Phaser.Scene{
         //characters -- if someone move them a little bit up that'd be great
         this.physics.world.gravity.y = 1000;
         this.velocity = 300;
-        frog = this.physics.add.sprite(340, 450, 'frog', 'frog_walk1').setScale(0.3);
+        frog = this.physics.add.sprite(305, 450, 'frog', 'frog_walk1').setScale(0.3);
         frog.setCollideWorldBounds(true);
         this.distorted = false;
         this.start = true;
@@ -372,16 +373,28 @@ class LevelOne extends Phaser.Scene{
             }
         }
 
+        if(frog.x == 305){
+            this.distort(frog);
+            this.distort(mole);
+            this.distort(cat);
+            this.distorted = true;
+        }
 
+        if(frog.x >= 400){
+            this.fix(frog);
+            this.fix(mole);
+            this.fix(cat);
+            this.distorted = false;
+        }
 
 //---------------------------------------------------------- INTERACTIONS ----------------------------------------------------------------------------------------
         
-        if(frog.x >= 340 && this.movement == true){
+        if(frog.x >= 400 && this.movement == true){
             this.bathwater.anims.play('bathwater', true);
             
         }
 
-        if(frog.x >= 380 && this.movement == true){
+        if(frog.x >= 400 && this.movement == true){
             this.dialogBoxMove('beachBeginning');
             this.typeText();
             this.movement = false;
@@ -409,7 +422,6 @@ class LevelOne extends Phaser.Scene{
             }, null, this);
         }
     }
-
     
     catStretch(){
         if(this.isStretching == false){
@@ -432,7 +444,7 @@ class LevelOne extends Phaser.Scene{
         }    
     }
     
-    fuitDrop(){ 
+    fuitDrop(sprite){ 
         this.drop = this.time.addEvent({
             delay: 7,
             callback: function(){
@@ -449,19 +461,19 @@ class LevelOne extends Phaser.Scene{
         if(this.distorted == false){
             if(sprite == frog){
                 frog.destroy();
-                frog = this.physics.add.sprite(sprite.x + 110, sprite.y + 155, 'frog', 'shitty_frog').setScale(0.5);
+                frog = this.physics.add.sprite(sprite.x, sprite.y, 'frog', 'shitty_frog').setScale(0.5);
                 frog.setCollideWorldBounds(true);
                 this.cameras.main.startFollow(frog);
             }
             if(sprite == cat){
                 cat.destroy();
-                cat = this.physics.add.sprite(sprite.x + 190, sprite.y + 622, 'cat', 'shitty_stretch1').setScale(0.4);
+                cat = this.physics.add.sprite(sprite.x, sprite.y, 'cat', 'shitty_stretch1').setScale(0.4);
                 cat.setCollideWorldBounds(true);
                 
             }
             if(sprite == mole){
                 mole.destroy();
-                mole = this.physics.add.sprite(sprite.x + 100, sprite.y + 120, 'mole', 'shitty_mole').setScale(0.5);
+                mole = this.physics.add.sprite(sprite.x, sprite.y, 'mole', 'shitty_mole').setScale(0.5);
                 mole.setCollideWorldBounds(true);
             
             }
@@ -498,9 +510,9 @@ class LevelOne extends Phaser.Scene{
         this.dialogbox.destroy();
         this.dialogText.destroy();
 
-        this.DBOX_X = frog.x - 250;			    // dialog box x-position
-        this.TEXT_X = frog.x - 200;			// text w/in dialog box x-positio
-        this.NEXT_X = frog.x + 700;			// next text prompt x-position
+        this.DBOX_X = frog.x - 410;			    // dialog box x-position
+        this.TEXT_X = frog.x - 360;			// text w/in dialog box x-positio
+        this.NEXT_X = frog.x + 545;			// next text prompt x-position
 
         if(this.movement == false && frog.x <= 2995){
         this.DBOX_X = frog.x - 500;			    // dialog box x-position
