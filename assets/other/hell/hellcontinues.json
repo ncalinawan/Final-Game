@@ -1,0 +1,15 @@
+[
+    [
+        {
+            "speaker" : "cat",
+            "dialog" : "DUDE IS THAT AN ANCHOVY??? DUDE THIS PLACE IS WHACK!! Gosh, what I’d do for some fish right now....",
+            "newSpeaker" : "true"
+        },
+  {
+            "speaker" : "cat",
+            "dialog" : "At least these mushrooms are pretty. I like them.",
+            "newSpeaker" : "true"
+        }
+
+    ]
+]
