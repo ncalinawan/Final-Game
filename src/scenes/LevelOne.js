@@ -177,8 +177,7 @@ class LevelOne extends Phaser.Scene{
              repeat: -1
         });
 
-        // ------------------------------------------------------------------- background setup ---------------------------------------------------------------------------------------
-
+   // ------------------------------------------------------------------- background setup ---------------------------------------------------------------------------------------
         //background base
         //this.add.image(0,0, 'base').setOrigin(0,0);
         this.add.sprite(0, 0, 'ocean_waves', 'beach_1').setOrigin(0, 0).play('waves');
@@ -189,12 +188,11 @@ class LevelOne extends Phaser.Scene{
         this.add.sprite(0,0, 'beach_stuff', 'tree2').setOrigin(0,0);
         this.add.sprite(1300,490,'beach_stuff', 'crab1').setScale(0.3).play('crab');
         this.add.sprite(1500,500,'crub').setScale(0.5);
-        this.add.sprite(600, 500, 'fesh').setScale(0.3);
         
         this.coconut = this.add.sprite(3260, 130, 'beach_stuff', 'coconut').setScale(.5);
         this.coconutDrop = false;
 
-        this.bathwater = this.add.sprite(250, 400, 'bucket', 'spilled_bucket1');
+        this.bathwater = this.add.sprite(200, 200, 'beach_stuff', 'spilled_bucket1' );
         this.add.sprite(900, 500, 'beach_stuff', 'shells1');
         this.add.sprite(700,550, 'beach_stuff', 'shells2');
         this.add.sprite(2500,525, 'beach_stuff', 'shells').setScale(0.5);
@@ -202,7 +200,7 @@ class LevelOne extends Phaser.Scene{
         //foreground
         this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
 
-        //characters
+        //characters -- if someone move them a little bit up that'd be great
         this.physics.world.gravity.y = 1000;
         this.velocity = 300;
         frog = this.physics.add.sprite(340, 450, 'frog', 'frog_walk1').setScale(0.3);
@@ -222,8 +220,8 @@ class LevelOne extends Phaser.Scene{
         this.isStretching = false;
         
         //foreground
-        this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
-        this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
+        this.tree1 = this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
+        this.sand_castle = this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
 
        
         //camera follow froggie :)
