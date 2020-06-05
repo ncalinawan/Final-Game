@@ -341,12 +341,12 @@ class LevelOne extends Phaser.Scene{
                     this.typeText();
                    
                     this.time.delayedCall(1300, () => {
-                        this.typeText(); 
+                        //this.typeText(); 
                         this.catStretch();
                     }, null, this); 
 
                     this.time.delayedCall(1900, () => {
-                        this.typeText(); 
+                        //this.typeText(); 
                     }, null, this); 
 
                     this.time.delayedCall(2550, () => {
@@ -359,8 +359,14 @@ class LevelOne extends Phaser.Scene{
                     this.time.delayedCall(2550, () => {
                         this.cameras.main.fade(500);
                     }, null, this);
-
-                    this.time.delayedCall(3550, () => {
+                    
+                    this.time.delayedCall(3000, () => {
+                        this.scene.start('Hell');
+                        this.scene.sleep('First'); //this is to """pause"""" this scene with its context.... ? ?  ? ?
+                    }, null, this);
+                    
+                    //we'll put this back in again somehow
+                    /*this.time.delayedCall(3550, () => {
                         this.cameras.main.fadeIn(1000);
                     }, null, this);
 
@@ -368,6 +374,7 @@ class LevelOne extends Phaser.Scene{
                         this.dialogBoxMove('bonked')
                         this.typeText();
                     }, null, this);
+                    */
                 }
             }else{
                 this.catStretch();
