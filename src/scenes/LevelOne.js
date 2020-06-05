@@ -202,15 +202,16 @@ class LevelOne extends Phaser.Scene{
         //foreground
         this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
 
-        //characters -- if someone move them a little bit up that'd be great
+        //characters
         this.physics.world.gravity.y = 1000;
         this.velocity = 300;
-        frog = this.physics.add.sprite(305, 450, 'frog', 'frog_walk1').setScale(0.3);
+        frog = this.physics.add.sprite(340, 450, 'frog', 'frog_walk1').setScale(0.3);
         frog.setCollideWorldBounds(true);
         this.distorted = false;
         this.start = true;
         this.firstDistort = true;
         this.movement = true;
+        this.shifted = false;
  
         mole = this.physics.add.sprite(40, 450, 'mole', 'mole_walk1').setScale(0.38);
         mole.setCollideWorldBounds(true);
@@ -240,7 +241,7 @@ class LevelOne extends Phaser.Scene{
     }
     
     update() {
-        console.log(frog.x);
+        
         if(this.distorted == false){
             if(cursors.left.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
                 if(mole.x <= 52){
@@ -321,7 +322,18 @@ class LevelOne extends Phaser.Scene{
             }
         
         }
-    
+        
+        //play the dialogue that comes after you clear hell 
+        if (tester == true && this.distorted == false && frog.x >= 340 && frog.x <= 360 && this.shifted == false){
+            this.moveSprite(frog);
+            this.moveSprite(cat);
+            this.moveSprite(mole);
+            this.shifted = true; 
+            this.coconutDrop = false; 
+            this.dialogBoxMove('bonked')
+            this.typeText();
+        }
+        
         if(Phaser.Input.Keyboard.JustDown(keyA) && !this.dialogTyping) {
             //insert text stuff here
 
@@ -333,9 +345,8 @@ class LevelOne extends Phaser.Scene{
         if(Phaser.Input.Keyboard.JustDown(keyD) && !this.isTalking && this.isStretching == false){
             this.moleDive();
         }
-
         if(Phaser.Input.Keyboard.JustDown(keyS) && !this.isTalking && this.isDigging == false){
-            if(cat.x >= 3230 && cat.x <= 3280){
+            if(cat.x >= 3230 && cat.x <= 3280 && tester == false){
                 if(this.coconutDrop == false){
                     this.dialogBoxMove('shake');
                     this.typeText();
@@ -361,20 +372,9 @@ class LevelOne extends Phaser.Scene{
                     }, null, this);
                     
                     this.time.delayedCall(3000, () => {
-                        this.scene.start('Hell');
-                        this.scene.sleep('First'); //this is to """pause"""" this scene with its context.... ? ?  ? ?
+                        this.scene.switch('Hell');
                     }, null, this);
                     
-                    //we'll put this back in again somehow
-                    /*this.time.delayedCall(3550, () => {
-                        this.cameras.main.fadeIn(1000);
-                    }, null, this);
-
-                    this.time.delayedCall(4550, () => {
-                        this.dialogBoxMove('bonked')
-                        this.typeText();
-                    }, null, this);
-                    */
                 }
             }else{
                 this.catStretch();
@@ -465,7 +465,36 @@ class LevelOne extends Phaser.Scene{
             loop: true,
         })
     }
+    
+    //replace old sprites -- this is extremely whack, but somehow it works...
+    moveSprite (sprite) {
+        //destroy old sprites
+        this.coconut.destroy();
+        this.tree1.destroy(); 
+        this.sand_castle.destroy(); 
+        frog.destroy();
+        cat.destroy();
+        mole.destroy();
+        this.coconut = this.add.sprite(3260, 550, 'beach_stuff', 'broken_coconut').setScale(.5);
+        
+        //if we spawn them like this, then it preserves the order / foreground
+        //frog.destroy();
+        frog = this.physics.add.sprite(3404, sprite.y + 155, 'frog', 'frog_walk1').setScale(0.3);
+        frog.setCollideWorldBounds(true);
+        this.cameras.main.startFollow(frog);
 
+        cat = this.physics.add.sprite(3235, sprite.y + 622, 'cat', 'cat_walk1').setScale(0.33);
+        cat.setCollideWorldBounds(true);
+
+        mole = this.physics.add.sprite(3100, sprite.y + 120, 'mole', 'mole_walk1').setScale(0.38);
+        mole.setCollideWorldBounds(true);
+
+        //respawn them so they can be back in the foreground
+        this.tree1 = this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
+        this.sand_castle = this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
+        
+
+    }
     distort(sprite){
         if(this.distorted == false){
             if(sprite == frog){
@@ -527,7 +556,15 @@ class LevelOne extends Phaser.Scene{
         this.DBOX_X = frog.x - 410;			    // dialog box x-position
         this.TEXT_X = frog.x - 360;			// text w/in dialog box x-positio
         this.NEXT_X = frog.x + 545;			// next text prompt x-position
-
+        
+        
+        //could be redundant code; not sure about it
+        if (tester == true){
+            this.DBOX_X = 2500;			    
+            this.TEXT_X = 2550;		
+            this.NEXT_X = 3450;
+        }
+        
         if(this.movement == false && frog.x <= 2995){
         this.DBOX_X = frog.x - 500;			    // dialog box x-position
         this.TEXT_X = frog.x - 450;			// text w/in dialog box x-position
