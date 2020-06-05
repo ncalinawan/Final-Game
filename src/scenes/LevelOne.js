@@ -135,7 +135,7 @@ class LevelOne extends Phaser.Scene{
             frames: this.anims.generateFrameNames('bucket',{
                 prefix: 'spilled_bucket',
                 start: 1,
-                end: 7 
+                end: 9 
              }),
              frameRate: 5,
              repeat: 0
@@ -194,7 +194,7 @@ class LevelOne extends Phaser.Scene{
         this.coconut = this.add.sprite(3260, 130, 'beach_stuff', 'coconut').setScale(.5);
         this.coconutDrop = false;
 
-        this.bathwater = this.add.sprite(200, 200, 'bucket', 'spilled_bucket1');
+        this.bathwater = this.add.sprite(250, 400, 'bucket', 'spilled_bucket1');
         this.add.sprite(900, 500, 'beach_stuff', 'shells1');
         this.add.sprite(700,550, 'beach_stuff', 'shells2');
         this.add.sprite(2500,525, 'beach_stuff', 'shells').setScale(0.5);
@@ -400,6 +400,7 @@ class LevelOne extends Phaser.Scene{
             this.typeText();
             this.movement = false;
         }
+        
         //dig up shells! [ in progress ]
         /*if(this.isDigging == true && mole.x >= 2565 && mole.x <= 2665 && this.fuitGrounded == true){
             this.fuit.destroy();
