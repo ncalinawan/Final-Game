@@ -1,0 +1,39 @@
+[
+    [
+        {
+            "speaker" : "crub",
+            "dialog" : "our party hats :0000",
+            "newSpeaker" : "true"
+        },
+  {
+            "speaker" : "crub",
+            "dialog" : "THANK YOU :D",
+            "newSpeaker" : "true"
+        },
+  {
+            "speaker" : "crub",
+            "dialog" : "NOW WE CAN PARTY ALL DAY EVERYDAY :DDDDDDDD",
+            "newSpeaker" : "true"
+        },
+  {
+            "speaker" : "mole",
+            "dialog" : "yoyoyoyoyoyoyoyo lets party yoooooooooooooooooooooooo",
+            "newSpeaker" : "true"
+        },
+  {
+            "speaker" : "froggie",
+            "dialog" : "We should get moving though. :o",
+            "newSpeaker" : "true"
+        },
+  {
+            "speaker" : "mole",
+            "dialog" : "awwwww",
+            "newSpeaker" : "true"
+        },
+  {
+            "speaker" : "cat",
+            "dialog" : "Well I did say I wanna go home and eat some fish. :x",
+            "newSpeaker" : "true"
+        }
+    ]
+]

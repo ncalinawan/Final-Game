@@ -231,15 +231,20 @@ class Tutorial extends Phaser.Scene{
                 mole.anims.play('molewalk', true);
                 cat.anims.play('catwalk', true);
             }else if(cursors.right.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
-                frog.setVelocityX(this.velocity)
-                frog.resetFlip();
+                if(frog.x >= 3545){
+                    frog.body.velocity.x = 0;
+                    mole.body.velocity.x = 0;
+                    cat.body.velocity.x = 0; 
+                }else{
+                    frog.setVelocityX(this.velocity)
+                    frog.resetFlip();
 
-                mole.setVelocityX(this.velocity)
-                mole.resetFlip();
+                    mole.setVelocityX(this.velocity)
+                    mole.resetFlip();
 
-                cat.setVelocityX(this.velocity)
-                cat.resetFlip();
-
+                    cat.setVelocityX(this.velocity)
+                    cat.resetFlip();
+                }
                 frog.anims.play('frogwalk', true);
                 mole.anims.play('molewalk', true);
                 cat.anims.play('catwalk', true);
@@ -265,15 +270,20 @@ class Tutorial extends Phaser.Scene{
                 cat.setVelocityX(-this.velocity)
                 cat.setFlip(true, false);
             }else if(cursors.right.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
-                frog.setVelocityX(this.velocity)
-                frog.resetFlip();
+                if(frog.x >= 3545){
+                    frog.body.velocity.x = 0;
+                    mole.body.velocity.x = 0;
+                    cat.body.velocity.x = 0; 
+                }else{
+                    frog.setVelocityX(this.velocity)
+                    frog.resetFlip();
 
-                mole.setVelocityX(this.velocity)
-                mole.resetFlip();
+                    mole.setVelocityX(this.velocity)
+                    mole.resetFlip();
 
-                cat.setVelocityX(this.velocity)
-                cat.resetFlip();
-            
+                    cat.setVelocityX(this.velocity)
+                    cat.resetFlip();
+                }
             }else{
                 frog.body.velocity.x = 0;
                 mole.body.velocity.x = 0;

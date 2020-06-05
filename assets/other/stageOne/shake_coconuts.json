@@ -1,0 +1,14 @@
+[
+    [
+        {
+            "speaker" : "froggie",
+            "dialog" : "Wait, Cat, stop! That coconut’s gonna --",
+            "newSpeaker" : "true"
+        },
+  {
+            "speaker" : "cat",
+            "dialog" : "Huh…? OH CRAP -- ",
+            "newSpeaker" : "true"
+        }
+    ]
+]

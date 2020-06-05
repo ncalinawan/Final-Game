@@ -25,22 +25,6 @@ class LevelOne extends Phaser.Scene{
         this.nextText = null;			// player prompt text to continue typing
 
     }
-    
-    //apparently load only works for the tutorial screen :/ for now, im putting this here so i can set up the scene
-    /*preload() {
-        this.load.image('clowning', './assets/other/clowning.png');
-        this.load.image('base', './assets/bgs/bg_base.png');
-        this.load.atlas('beach_stuff', './assets/bgs/beach_assets.png', './assets/bgs/beach_assets.json');
-        //temporarily copy + pasting this here
-        this.load.atlas('froggie', './assets/chars/frog/frog.png', './assets/chars/frog/frog.json');
-        this.load.atlas('mole', './assets/chars/mole/mole.png', './assets/chars/mole/mole.json');
-        this.load.atlas('stretchCat', './assets/chars/cat/cat_stretching.png', './assets/chars/cat/cat_walking.json');
-        this.load.atlas('cat', './assets/chars/cat/stretchy_cat.png', './assets/chars/cat/cat_walking.json');
-        this.load.image('shittyFrog', './assets/chars/frog/shitty_frog.png');
-        this.load.atlas('shittyCat', './assets/chars/cat/shitty_cat.png', './assets/chars/cat/shitty_cat.json')
-        this.load.image('shittyMole', './assets/chars/mole/shitty_mole.png')
-    }
-    */
 
     create(){
         this.cameras.main.fadeIn(2000);
@@ -204,7 +188,11 @@ class LevelOne extends Phaser.Scene{
         this.add.sprite(0,0, 'beach_stuff', 'tree2').setOrigin(0,0);
         this.add.sprite(1300,490,'beach_stuff', 'crab1').setScale(0.3).play('crab');
         this.add.sprite(1500,500,'crub').setScale(0.5);
-        this.add.sprite(3260, 130, 'beach_stuff', 'coconut').setScale(.5);
+        
+        this.coconut = this.add.sprite(3260, 130, 'beach_stuff', 'coconut').setScale(.5);
+        this.coconutDrop = false;
+
+        this.bathwater = this.add.sprite(200, 200, 'beach_stuff', 'spilled_bucket1' );
         this.add.sprite(900, 500, 'beach_stuff', 'shells1');
         this.add.sprite(700,550, 'beach_stuff', 'shells2');
         this.add.sprite(2500,525, 'beach_stuff', 'shells').setScale(0.5);
@@ -220,6 +208,7 @@ class LevelOne extends Phaser.Scene{
         this.distorted = false;
         this.start = true;
         this.firstDistort = true;
+        this.movement = true;
  
         mole = this.physics.add.sprite(40, 450, 'mole', 'mole_walk1').setScale(0.38);
         mole.setCollideWorldBounds(true);
@@ -249,7 +238,7 @@ class LevelOne extends Phaser.Scene{
     }
     
     update() {
-       
+        console.log(frog.x);
         if(this.distorted == false){
             if(cursors.left.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
                 if(mole.x <= 52){
@@ -270,6 +259,11 @@ class LevelOne extends Phaser.Scene{
                 mole.anims.play('molewalk', true);
                 cat.anims.play('catwalk', true);
             }else if(cursors.right.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
+                if(frog.x >= 3545){
+                    frog.body.velocity.x = 0;
+                    mole.body.velocity.x = 0;
+                    cat.body.velocity.x = 0; 
+                }else{
                 frog.setVelocityX(this.velocity)
                 frog.resetFlip();
 
@@ -278,7 +272,7 @@ class LevelOne extends Phaser.Scene{
 
                 cat.setVelocityX(this.velocity)
                 cat.resetFlip();
-
+                }
                 frog.anims.play('frogwalk', true);
                 mole.anims.play('molewalk', true);
                 cat.anims.play('catwalk', true);
@@ -304,22 +298,28 @@ class LevelOne extends Phaser.Scene{
                 cat.setVelocityX(-this.velocity)
                 cat.setFlip(true, false);
             }else if(cursors.right.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
-                frog.setVelocityX(this.velocity)
-                frog.resetFlip();
+                if(frog.x >= 3545){
+                    frog.body.velocity.x = 0;
+                    mole.body.velocity.x = 0;
+                    cat.body.velocity.x = 0; 
+                }else{
+                    frog.setVelocityX(this.velocity)
+                    frog.resetFlip();
 
-                mole.setVelocityX(this.velocity)
-                mole.resetFlip();
+                    mole.setVelocityX(this.velocity)
+                    mole.resetFlip();
 
-                cat.setVelocityX(this.velocity)
-                cat.resetFlip();
-            
+                    cat.setVelocityX(this.velocity)
+                    cat.resetFlip();
+                }
             }else{
                 frog.body.velocity.x = 0;
                 mole.body.velocity.x = 0;
                 cat.body.velocity.x = 0;
             }
+        
         }
-
+    
         if(Phaser.Input.Keyboard.JustDown(keyA) && !this.dialogTyping) {
             //insert text stuff here
 
@@ -333,28 +333,66 @@ class LevelOne extends Phaser.Scene{
         }
 
         if(Phaser.Input.Keyboard.JustDown(keyS) && !this.isTalking && this.isDigging == false){
-            this.catStretch();
-        }
-        
-//---------------------------------------------------------- INTERACTIONS ----------------------------------------------------------------------------------------
+            if(cat.x >= 3230 && cat.x <= 3280){
+                if(this.coconutDrop == false){
+                    this.dialogBoxMove('shake');
+                    this.typeText();
+                   
+                    this.time.delayedCall(1300, () => {
+                        this.typeText(); 
+                        this.catStretch();
+                    }, null, this); 
 
-        //shake trees, drop coconut!!!
-        if(this.isStretching == true && cat.x >= 3230 && cat.x <= 3280){
-            if(this.coconutDrop == false){
-                 this.time.delayedCall(1100, () => {
-                    this.fuitDrop();
-                    this.coconutDrop = true;
-            }, null, this); 
+                    this.time.delayedCall(1900, () => {
+                        this.typeText(); 
+                    }, null, this); 
+
+                    this.time.delayedCall(2550, () => {
+                    if(this.coconutDrop == false){
+                        this.fuitDrop();
+                        this.coconutDrop = true;
+                    }
+                    }, null, this);
+
+                    this.time.delayedCall(2550, () => {
+                        this.cameras.main.fade(500);
+                    }, null, this);
+
+                    this.time.delayedCall(3550, () => {
+                        this.cameras.main.fadeIn(1000);
+                    }, null, this);
+
+                    this.time.delayedCall(4550, () => {
+                        this.dialogBoxMove('bonked')
+                        this.typeText();
+                    }, null, this);
+                }
+            }else{
+                this.catStretch();
             }
         }
 
+
+
+//---------------------------------------------------------- INTERACTIONS ----------------------------------------------------------------------------------------
+        
+        if(frog.x >= 340 && this.movement == true){
+            this.bathwater.anims.play('bathwater', true);
+            
+        }
+
+        if(frog.x >= 380 && this.movement == true){
+            this.dialogBoxMove('beachBeginning');
+            this.typeText();
+            this.movement = false;
+        }
         //dig up shells! [ in progress ]
         /*if(this.isDigging == true && mole.x >= 2565 && mole.x <= 2665 && this.fuitGrounded == true){
             this.fuit.destroy();
             this.fuitHave = true;
         }*/
+    
     }
-
 //----------------------------------------------------------MECHANICS --------------------------------------------
     moleDive(){
         if(this.isDigging == false){    
@@ -396,7 +434,7 @@ class LevelOne extends Phaser.Scene{
     
     fuitDrop(){ 
         this.drop = this.time.addEvent({
-            delay: 1000,
+            delay: 7,
             callback: function(){
                 if(this.coconut.y <= 500){
                     this.coconut.y += 10
@@ -405,11 +443,6 @@ class LevelOne extends Phaser.Scene{
             callbackScope: this,
             loop: true,
         })
-        //play coconut drop dialogue
-        /*this.whoops = this.time.delayedCall(1300, () => {
-            this.dialogBoxMove('shake_coconuts');
-            this.typeText(); 
-    }, null, this); */
     }
 
     distort(sprite){
@@ -464,11 +497,20 @@ class LevelOne extends Phaser.Scene{
         this.dialog = this.cache.json.get(text);
         this.dialogbox.destroy();
         this.dialogText.destroy();
-        this.DBOX_X = frog.x - 500;			    // dialog box x-position
-        
-        this.TEXT_X = frog.x - 450;			// text w/in dialog box x-position
 
+        this.DBOX_X = frog.x - 250;			    // dialog box x-position
+        this.TEXT_X = frog.x - 200;			// text w/in dialog box x-positio
+        this.NEXT_X = frog.x + 700;			// next text prompt x-position
+
+        if(this.movement == false && frog.x <= 2995){
+        this.DBOX_X = frog.x - 500;			    // dialog box x-position
+        this.TEXT_X = frog.x - 450;			// text w/in dialog box x-position
         this.NEXT_X = frog.x + 450;			// next text prompt x-position
+        }else if (this.movement == false &&frog.x >= 3000){
+        this.DBOX_X = 2500;			    // dialog box x-position
+        this.TEXT_X = 2550;			// text w/in dialog box x-position
+        this.NEXT_X = 3450;		
+        }
         this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialoguebox').setOrigin(0);
         this.dialogText = this.add.bitmapText(this.TEXT_X, this.TEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
     }
