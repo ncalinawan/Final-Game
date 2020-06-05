@@ -2,7 +2,7 @@
     [    
         {
             "speaker" : "cat",
-            "dialog" : "Man, I don’t like this place. I’m feeling a little funny...",
+            "dialog" : "Man, I don't like this place. I'm feeling a little funny...",
             "newSpeaker" : "true"
         },
         {
@@ -12,12 +12,12 @@
         },
         {
             "speaker" : "cat",
-            "dialog" : "I can’t really describe it but I’M NOT FEELIN’ GOOD.",
+            "dialog" : "I can't really describe it but I'M NOT FEELIN' GOOD.",
             "newSpeaker" : "true"
         },
         {
             "speaker" : "cat",
-            "dialog" : "Hey look!! There’s a sign -- wanna read it to us? I’m illiterate. 3:",
+            "dialog" : "Hey look!! There's a sign -- wanna read it to us? I'm illiterate. 3:",
             "newSpeaker" : "true"
         },
         {
@@ -27,7 +27,7 @@
         },
         {
             "speaker" : "froggie",
-            "dialog" : "It’s not all Bad*** :)))",
+            "dialog" : "It's not all Bad*** :)))",
             "newSpeaker" : "true"
         },
         {
@@ -37,7 +37,7 @@
         },
         {
             "speaker" : "froggie",
-            "dialog" : "Anyways, let’s see… (Press A to interact with stuff!)",
+            "dialog" : "Anyways, let's see… (Press A to interact with stuff!)",
             "newSpeaker" : "true"
         }
     ]
