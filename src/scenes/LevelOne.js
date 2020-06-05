@@ -477,6 +477,9 @@ class LevelOne extends Phaser.Scene{
                 mole.setCollideWorldBounds(true);
             
             }
+            //foreground
+            this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
+            this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
         }
     }
 
@@ -498,8 +501,10 @@ class LevelOne extends Phaser.Scene{
                 mole.destroy();
                 mole = this.physics.add.sprite(sprite.x+ 95, sprite.y + 170, 'mole', 'mole_walk1').setScale(0.38);
                 mole.setCollideWorldBounds(true);
-    
             }
+            //foreground
+            this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
+            this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
         }
     }
 
