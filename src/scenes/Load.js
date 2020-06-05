@@ -128,6 +128,10 @@ class Load extends Phaser.Scene{
         this.load.json('shake', './assets/other/stageOne/shake_coconuts.json');
         this.load.json('gameOver', './assets/other/stageOne/game_over.json');
         this.load.json('bonked', './assets/other/stageOne/bonked.json');
+        this.load.json('welcometohell', './assets/other/hell/welcometohell.json');
+        this.load.json('timetogetout', './assets/other/hell/timetogetout.json');
+        this.load.json('stop', './assets/other/hell/stop.json');
+        this.load.json('hellcontinues', './assets/other/hell/hellcontinues.json');
 
         
     }
