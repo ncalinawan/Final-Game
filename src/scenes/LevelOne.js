@@ -194,7 +194,7 @@ class LevelOne extends Phaser.Scene{
         //this.npcBubble2 = this.add.sprite(550, 350, 'stuff', 'sign_bubble').setScale(0.3).setOrigin(0,0);
         //this.nearFeesh = false;
         
-        this.coconut = this.add.sprite(3260, 130, 'beach_stuff', 'coconut').setScale(.5);
+        this.bottle = this.add.sprite(1700,500, 'rave', 'bottle').setScale(0.2);
         this.coconutDrop = false;
         
         this.bathwater = this.add.sprite(150, 200, 'beach_stuff', 'spilled_bucket1').setOrigin(0, 0);
