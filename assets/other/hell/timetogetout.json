@@ -17,12 +17,12 @@
         },
   {
             "speaker" : "cat",
-            "dialog" : "yeah you! Wake the h*ll up already! You’re not dead, you imbecile! This game doesn’t even have HEALTH POINTS (HP)!",
+            "dialog" : "yeah you! Wake the h*ck up already! You're not dead, you imbecile! This game doesn't even have HEALTH POINTS (HP)!",
             "newSpeaker" : "true"
         },
   {
             "speaker" : "cat",
-            "dialog" : "wait a minute, you’re right! Uh...but then where is this?  ",
+            "dialog" : "wait a minute, you're right! Uh...but then where is this?  ",
             "newSpeaker" : "true"
         },
   {
@@ -37,32 +37,32 @@
         },
   {
             "speaker" : "cat",
-            "dialog" : "no u imbecile!! This isn’t the real hell because we ran out of time for thAT! This is like a demo version of hell. A free trial. A free sample. ",
+            "dialog" : "no u imbecile!! This isn't the real hell because we ran out of time for thAT! This is like a demo version of hell. A free trial. A free sample.",
             "newSpeaker" : "true"
         },
   {
             "speaker" : "cat",
-            "dialog" : "OHHHHH THAT’S WHY IT SMELLS LIKE PIZZA!!!",
+            "dialog" : "OHHHHH THAT'S WHY IT SMELLS LIKE PIZZA!!!",
             "newSpeaker" : "true"
         },
   {
             "speaker" : "???",
-            "dialog" : "ok yeah sure whatever. Anyway, my point is: you’re not dead (yet)! You still have friends who are waiting for you so WAKE UP.",
+            "dialog" : "ok yeah sure whatever. Anyway, my point is: you're not dead (yet)! You still have friends who are waiting for you so WAKE UP.",
             "newSpeaker" : "true"
         },
   {
             "speaker" : "cat",
-            "dialog" : "Haha, that makes us sound like a generic RPG with some heroic protagonists! Where’s the exit then?",
+            "dialog" : "Haha, that makes us sound like a generic RPG with some heroic protagonists! Where's the exit then?",
             "newSpeaker" : "true"
         },
   {
             "speaker" : "???",
-            "dialog" : "if u keep going through this corridor, you’ll eventually wake up. I think your friends are screaming their heads off. At least Frog is. Mole is shaking your conked body. It’s pretty funny.",
+            "dialog" : "if u keep going through this corridor, you'll eventually wake up. I think your friends are screaming their heads off. At least Frog is. Mole is shaking your conked body. It's pretty funny.",
             "newSpeaker" : "true"
         },
   {
             "speaker" : "cat",
-            "dialog" : "HE’S DOING WHAT TO ME??? IM GONNA -- ANYWAY SEE YA GOTTA GO THANKS FOR THE DIRECTIONS OUT OF HELL",
+            "dialog" : "HE'S DOING WHAT TO ME??? I'M GONNA -- ANYWAY SEE YA GOTTA GO THANKS FOR THE DIRECTIONS OUT OF HELL",
             "newSpeaker" : "true"
         }
 
