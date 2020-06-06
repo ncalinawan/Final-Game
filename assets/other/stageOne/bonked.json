@@ -2,27 +2,27 @@
     [
         {
             "speaker" : "frog",
-            "dialog" : "WHOA YOU’RE ALIVE!!!!! #$@#$*()@#$~!",
+            "dialog" : "WHOA YOU'RE ALIVE!!!!! #$@#$*()@#$~!",
             "newSpeaker" : "true"
         },
   {
             "speaker" : "mole",
-            "dialog" : "YO YO HE’S STILL BREATHING!!! WELCOME BACK HOMIE",
+            "dialog" : "YO YO HE'S STILL BREATHING!!! WELCOME BACK HOMIE",
             "newSpeaker" : "true"
         },
   {
             "speaker" : "cat",
-            "dialog" : "Huh, I’m still alive…! But it’s not like this game has a HEALTH POINTS system or COMBAT.",
+            "dialog" : "Huh, I'm still alive…! But it's not like this game has a HEALTH POINTS system or COMBAT.",
             "newSpeaker" : "true"
         },
   {
             "speaker" : "frog",
-            "dialog" : "Wha--? You’re talkin’ funny! I don’t like that.",
+            "dialog" : "Wha--? You're talkin' funny! I don't like that.",
             "newSpeaker" : "true"
         },
   {
             "speaker" : "cat",
-            "dialog" : "Haha, it’s okay, you don’t have to understand. :) There’s no EXP in this game either. :))",
+            "dialog" : "Haha, it's okay, you don't have to understand. :) There's no EXP in this game either. :))",
             "newSpeaker" : "true"
         },
   {
