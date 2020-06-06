@@ -79,7 +79,7 @@ class LevelOne extends Phaser.Scene{
             frames: this.anims.generateFrameNames('mole',{
                 prefix: 'mole_walk',
                 start: 1,
-                end: 2
+                end: 3
              }),
              frameRate: 5,
              repeat: -1
@@ -138,7 +138,7 @@ class LevelOne extends Phaser.Scene{
                 start: 1,
                 end: 9 
              }),
-             frameRate: 5,
+             frameRate: 12,
              repeat: 0
         });
 
@@ -166,18 +166,6 @@ class LevelOne extends Phaser.Scene{
              repeat: -1
         });
 
-        //character poof
-        this.anims.create({
-            key: 'poof',
-            frames: this.anims.generateFrameNames('beach_stuff',{
-                prefix: 'poof_',
-                start: 1,
-                end: 3 
-             }),
-             frameRate: 5,
-             repeat: -1
-        });
-
    // ------------------------------------------------------------------- background setup ---------------------------------------------------------------------------------------
         //background base
         //this.add.image(0,0, 'base').setOrigin(0,0);
@@ -189,11 +177,16 @@ class LevelOne extends Phaser.Scene{
         this.add.sprite(0,0, 'beach_stuff', 'tree2').setOrigin(0,0);
         this.add.sprite(1300,490,'beach_stuff', 'crab1').setScale(0.3).play('crab');
         this.add.sprite(1500,500,'crub').setScale(0.5);
+        this.npcBubble = this.add.sprite(1400, 350, 'stuff', 'sign_bubble').setScale(0.3).setOrigin(0,0);
+        this.nearCrab = false;
+        this.add.sprite(550, 500, 'fesh').setScale(0.2);
+        this.npcBubble2 = this.add.sprite(550, 350, 'stuff', 'sign_bubble').setScale(0.3).setOrigin(0,0);
+        this.nearFeesh = false;
         
         this.coconut = this.add.sprite(3260, 130, 'beach_stuff', 'coconut').setScale(.5);
         this.coconutDrop = false;
 
-        this.bathwater = this.add.sprite(200, 200, 'beach_stuff', 'spilled_bucket1' );
+        this.bathwater = this.add.sprite(150, 200, 'beach_stuff', 'spilled_bucket1').setOrigin(0, 0);
         this.add.sprite(900, 500, 'beach_stuff', 'shells1');
         this.add.sprite(700,550, 'beach_stuff', 'shells2');
         
@@ -329,7 +322,35 @@ class LevelOne extends Phaser.Scene{
             }
         
         }
-        
+
+        //Speech bubble appearing / disappearing
+        /*
+        if(frog.x >= 550 && frog.x <= 600){
+            this.npcBubble2.alpha = 1;
+            this.nearFeesh = true;
+        }else{
+            this.npcBubble2.alpha = 0;
+            this.nearFeesh = false;
+        }
+        if(Phaser.Input.Keyboard.JustDown(keyA) && !this.dialogTyping) {
+            if(frog.x >= 550 && frog.x <= 600){
+                this.dialogBoxMove('f');
+                this.typeText();
+            }
+
+            if(this.isTalking == true && !this.dialogTyping){ 
+                this.typeText();
+            }
+        }
+        */
+
+        if(frog.x <= 1635 && frog.x >= 1165){
+            this.npcBubble.alpha = 1;
+            this.nearCrab = true;
+        }else{
+            this.npcBubble.alpha = 0;
+            this.nearCrab = false;
+        }
         if(Phaser.Input.Keyboard.JustDown(keyA) && !this.dialogTyping) {
             if(frog.x <= 1635 && frog.x >= 1165 && this.questGet == false){
                 this.dialogBoxMove('questStart');
