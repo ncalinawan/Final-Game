@@ -149,8 +149,8 @@ class Tutorial extends Phaser.Scene{
         this.add.sprite(0,0,'grass', 'grass_1').play('grass').setOrigin(0,0); 
         this.tree = this.add.sprite(1950, 0, 'stuff', 'tree').setScale(1).setOrigin(0,0);
         this.door = this.add.sprite(3250,290,'stuff', 'door').setScale(0.8).setOrigin(0,0);             
-        this.dirt = this.add.sprite(2550,500,'stuff', 'dirtmound').setScale(1.6).setOrigin(0,0);         
         this.fuit = this.add.sprite(2580,50,'stuff', 'fuit').setScale(0.4).setOrigin(0,0);            
+        this.dirt = this.add.sprite(2550,500,'stuff', 'dirtmound').setScale(1.6).setOrigin(0,0);         
         this.fuitGrounded = false;
         this.snek = this.physics.add.sprite(3070,430,'snek').setScale(0.4).setOrigin(0,0); 
         this.snek.setCollideWorldBounds(true);
@@ -158,9 +158,11 @@ class Tutorial extends Phaser.Scene{
         this.isBlocking = false;
         
         //key hint (interaction)
-        this.sign = this.add.sprite(1280,400,'stuff', 'sign').setScale(0.4).setOrigin(0,0); 
+        this.sign = this.add.sprite(1280,400,'stuff', 'sign').setScale(0.4).setOrigin(0,0);
         this.keyHint = this.add.sprite(this.sign.x + 20, 310,'stuff', 'keyboard_button').setScale(0.2).setOrigin(0,0);
         this.nearSign = false;
+        this.npcBubble = this.add.sprite(this.snek.x + 60, this.snek.y - 150, 'stuff', 'sign_bubble').setScale(0.3).setOrigin(0,0);
+        this.nearSnek = false;
         
         //dialogue assets
         this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialoguebox').setOrigin(0);
@@ -291,12 +293,6 @@ class Tutorial extends Phaser.Scene{
         }
         
         //-----------------------------------------------------------------------------------------------------------------------------------
-        //How to move
-        if(frog.x >= 340 && this.movement == true){
-            this.dialogBoxMove('introduction');
-            this.typeText();
-            this.movement = false;
-        }
         
         //Keyhint appearing / disappearing
         if(frog.x >= this.sign.x && frog.x <= 1420){
@@ -305,6 +301,22 @@ class Tutorial extends Phaser.Scene{
         }else{
             this.keyHint.alpha = 0;
             this.nearSign = false;
+        }
+        
+        //Speech bubble appearing / disappearing
+        if(frog.x >= 3000 && frog.x <= 3100){
+            this.npcBubble.alpha = 1;
+            this.nearSnek = true;
+        }else{
+            this.npcBubble.alpha = 0;
+            this.nearSnek = false;
+        }
+        
+        //How to move
+        if(frog.x >= 340 && this.movement == true){
+            this.dialogBoxMove('introduction');
+            this.typeText();
+            this.movement = false;
         }
 
         //Scene Start dialogue
@@ -336,8 +348,9 @@ class Tutorial extends Phaser.Scene{
             if(frog.x == 3011.5 && this.learnStretch == false && this.learnDig == false){
                 this.dialogBoxMove('fuit');
                 this.typeText(); 
-                this.learnStretch = true; 
+                this.learnStretch = true;
             }
+
             
             // 2nd snek dialogue -- maybe we can add an animation to make the snek disappearance less awks 
             if (this.fuitHave == true && this.isBlocking == true ){
@@ -345,6 +358,7 @@ class Tutorial extends Phaser.Scene{
                 this.typeText();
                 this.valueChange = this.time.delayedCall(3000, () => { 
                     this.snek.destroy();
+                    this.npcBubble.destroy();
                 }, null, this); 
                 this.isBlocking = false;
             }
