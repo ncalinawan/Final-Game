@@ -185,13 +185,15 @@ class LevelOne extends Phaser.Scene{
         
         this.coconut = this.add.sprite(3260, 130, 'beach_stuff', 'coconut').setScale(.5);
         this.coconutDrop = false;
-
-        this.bathwater = this.add.sprite(150, 200, 'beach_stuff', 'spilled_bucket1').setOrigin(0, 0);
-        this.add.sprite(900, 500, 'beach_stuff', 'shells1');
-        this.add.sprite(700,550, 'beach_stuff', 'shells2');
         
+        this.bathwater = this.add.sprite(150, 200, 'beach_stuff', 'spilled_bucket1').setOrigin(0, 0);
+        this.shells1 = this.add.sprite(900, 500, 'beach_stuff', 'shells1');
+        this.shells2 = this.add.sprite(500,550, 'beach_stuff', 'shells2');
         this.shells = this.add.sprite(2500,525, 'beach_stuff', 'shells').setScale(0.5);
         this.shellsDug = false;
+        this.shells1Dug = false;
+        this.shells2Dug = false;    
+        this.bottle = this.add.sprite(1700,500, 'beach_stuff', 'bottle').setScale(0.5);
         
         //foreground
         this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
@@ -364,6 +366,11 @@ class LevelOne extends Phaser.Scene{
                 this.dialogBoxMove('questOngoing');
                 this.typeText();
             }
+            if(frog.x <= 1635 && frog.x >= 1165 && this.questGet == true && this.party == true){
+                this.rave.play('rave');
+                this.rave.alpha = 1;
+                console.log(this.party);
+            }
 
             if(this.isTalking == true && !this.dialogTyping){ 
                 this.typeText();
@@ -433,9 +440,18 @@ class LevelOne extends Phaser.Scene{
         
           //play the dialogue that comes after you clear hell 
           if (tester == true && frog.x >= 340 && frog.x <= 360 && this.shifted == false){
+            this.coconut.destroy();
+            this.tree1.destroy(); 
+            this.sand_castle.destroy(); 
+            this.coconut = this.add.sprite(3260, 550, 'beach_stuff', 'broken_coconut').setScale(.5);
+            
             this.moveSprite(frog);
             this.moveSprite(cat);
             this.moveSprite(mole);
+
+            this.tree1 = this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
+            this.sand_castle = this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
+
             this.shifted = true; 
             this.coconutDrop = false; 
             this.dialogBoxMove('bonked')
@@ -449,6 +465,22 @@ class LevelOne extends Phaser.Scene{
             this.dialogBoxMove('shells1');
             this.typeText();
         }
+
+        if(this.isDigging == true && mole.x >= 856 && mole.x <= 911 && this.shells1Dug == false){
+            this.shells1.destroy();
+            this.shells1Dug = true;
+            this.party = true;
+            //this.dialogBoxMove('shells1');
+            //this.typeText();
+        }
+
+        if(this.isDigging == true && mole.x >= 396 && mole.x <= 511 && this.shells2Dug == false){
+            this.shells2.destroy();
+            this.shells2Dug = true;
+            //this.dialogBoxMove('shells1');
+            //this.typeText();
+        }
+
     
     }
 //----------------------------------------------------------MECHANICS --------------------------------------------
@@ -504,32 +536,31 @@ class LevelOne extends Phaser.Scene{
     
     //replace old sprites -- this is extremely whack, but somehow it works...
     moveSprite (sprite) {
-        //destroy old sprites
-        this.coconut.destroy();
-        this.tree1.destroy(); 
-        this.sand_castle.destroy(); 
-        frog.destroy();
-        cat.destroy();
-        mole.destroy();
-        this.coconut = this.add.sprite(3260, 550, 'beach_stuff', 'broken_coconut').setScale(.5);
-        
-        //if we spawn them like this, then it preserves the order / foreground
-        //frog.destroy();
-        frog = this.physics.add.sprite(3405, sprite.y + 155, 'frog', 'frog_walk1').setScale(0.3);
-        frog.setCollideWorldBounds(true);
-        this.cameras.main.startFollow(frog);
-
-        cat = this.physics.add.sprite(3325, sprite.y + 622, 'cat', 'cat_walk1').setScale(0.33);
-        cat.setCollideWorldBounds(true);
-
-        mole = this.physics.add.sprite(3075, sprite.y + 120, 'mole', 'mole_walk1').setScale(0.38);
-        mole.setCollideWorldBounds(true);
-
-        //respawn them so they can be back in the foreground
-        this.tree1 = this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
-        this.sand_castle = this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
-        
-
+        if(sprite == frog){
+            //frog.destroy();
+            //frog = this.physics.add.sprite(sprite.x + 3000, sprite.y + 270, 'frog', 'frog_walk1').setScale(0.3);
+            frog.x = 3404;
+            //frog.y = 100;
+            console.log(frog.y);
+            frog.setScale(0.3);
+            frog.setCollideWorldBounds(true);
+            //this.cameras.main.startFollow(frog);
+        }
+        if(sprite == cat){
+            //cat.destroy();
+            //cat = this.physics.add.sprite(sprite.x+ 3000, sprite.y + 716, 'cat', 'cat_walk1').setScale(0.33);
+            cat.x = 3260;
+            cat.setScale(0.33)
+            cat.setCollideWorldBounds(true);
+                
+        }
+        if(sprite == mole){
+            //mole.destroy();
+           //mole = this.physics.add.sprite(sprite.x + 3099, sprite.y + 170, 'mole', 'mole_walk1').setScale(0.38);
+            mole.setScale(0.38)
+            mole.x = 3120;
+            mole.setCollideWorldBounds(true);
+        }
     }
     distort(sprite){
         if(distorted == false){
