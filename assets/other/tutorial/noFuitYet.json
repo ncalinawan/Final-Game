@@ -1,0 +1,27 @@
+[
+	[
+		{
+			"speaker" : "snek",
+			"dialog" : "HDFGJMDFJHKGMFMEFHVEMRQFCJEWHERES FUITTTTTTTTTTTTTT!!!!!!!!!!!!!!1!!!!!!!!!!!1111111!!!",
+			"newSpeaker" : "true"
+        },
+        
+        {
+			"speaker" : "cat",
+			"dialog" : "Frog for the love of god please don't spam [A] WE'RE TRYING TO GET FUIT Y'KNOW",
+			"newSpeaker" : "true"
+        },
+
+        {
+			"speaker" : "frog",
+			"dialog" : "Alright alright, I'm just curious if there's more dialog. >->",
+			"newSpeaker" : "true"
+        },
+
+        {
+			"speaker" : "mole",
+			"dialog" : "that snek do be vibin' yo",
+			"newSpeaker" : "true"
+		}
+    ]
+]
