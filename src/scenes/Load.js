@@ -79,7 +79,7 @@ class Load extends Phaser.Scene{
         this.load.atlas('mole', './assets/chars/mole/mole.png', './assets/chars/mole/mole.json');
         
         //assets
-        this.load.image('inventory', './assets/other/backpack_inventory.png');
+        //this.load.image('inventory', './assets/other/backpack_inventory.png');
 
         //visual dialogue assets
         this.load.image('dialoguebox', './assets/other/textbox.png');
@@ -106,8 +106,9 @@ class Load extends Phaser.Scene{
         this.load.json('distortion', './assets/other/tutorial/distortion.json');
         this.load.json('fuit', './assets/other/tutorial/fuit.json');
         this.load.json('fuitwhoops', './assets/other/tutorial/fuitwhoops.json');
+        this.load.json('fuitWhere', './assets/other/tutorial/noFuitYet.json');
 
-//------------------ BEACH STAGE ------------------
+//------------------ BEACH STAGE (and hell) ------------------
         //background assets [ stage 1 ]
         this.load.atlas('ocean_waves', './assets/bgs/beach_waves.png', './assets/bgs/beach_waves.json');
         this.load.atlas('tutorialBeach', './assets/transition/sceneTransition.png', './assets/transition/tutorial_to_beach.json');
@@ -130,6 +131,8 @@ class Load extends Phaser.Scene{
         this.load.json('shake', './assets/other/stageOne/shake_coconuts.json');
         this.load.json('gameOver', './assets/other/stageOne/game_over.json');
         this.load.json('bonked', './assets/other/stageOne/bonked.json');
+        this.load.json('f', './assets/other/stageOne/fForRespects.json');
+
         this.load.json('welcometohell', './assets/other/hell/welcometohell.json');
         this.load.json('timetogetout', './assets/other/hell/timetogetout.json');
         this.load.json('stop', './assets/other/hell/stop.json');
