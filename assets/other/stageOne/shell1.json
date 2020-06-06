@@ -1,0 +1,19 @@
+[
+    [
+        {
+            "speaker" : "mole",
+            "dialog" : "ayy fam there was a note hidden under these shells. can't read it tho",
+            "newSpeaker" : "true"
+        },
+  {
+            "speaker" : "froggie",
+            "dialog" : "Mai write something here thats like i gotchu fam ",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "note",
+            "dialog" : "something something dig at the other shells or something",
+            "newSpeaker" : "true"
+        }
+    ]
+]

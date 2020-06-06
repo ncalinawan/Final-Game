@@ -25,3 +25,4 @@ let cursors;
 let keyA, keyS, keyD, keyF, keyG, keyR
 let frog, mole, cat;
 let tester = false;
+let distorted = false;

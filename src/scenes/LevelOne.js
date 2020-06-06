@@ -29,6 +29,7 @@ class LevelOne extends Phaser.Scene{
     create(){
         this.cameras.main.fadeIn(2000);
         cursors = this.input.keyboard.createCursorKeys();
+     
 
         //dialogue assets
         this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialoguebox').setOrigin(0);
@@ -195,7 +196,9 @@ class LevelOne extends Phaser.Scene{
         this.bathwater = this.add.sprite(200, 200, 'beach_stuff', 'spilled_bucket1' );
         this.add.sprite(900, 500, 'beach_stuff', 'shells1');
         this.add.sprite(700,550, 'beach_stuff', 'shells2');
-        this.add.sprite(2500,525, 'beach_stuff', 'shells').setScale(0.5);
+        
+        this.shells = this.add.sprite(2500,525, 'beach_stuff', 'shells').setScale(0.5);
+        this.shellsDug = false;
         
         //foreground
         this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
@@ -203,19 +206,19 @@ class LevelOne extends Phaser.Scene{
         //characters -- if someone move them a little bit up that'd be great
         this.physics.world.gravity.y = 1000;
         this.velocity = 300;
-        frog = this.physics.add.sprite(340, 450, 'frog', 'frog_walk1').setScale(0.3);
+        frog = this.physics.add.sprite(340, 450, 'frog', 'shitty_frog').setScale(0.5);
         frog.setCollideWorldBounds(true);
-        this.distorted = false;
+        distorted = true;
         this.start = true;
-        this.firstDistort = true;
         this.movement = true;
         this.shifted = false;
+        this.questGet = false;
  
-        mole = this.physics.add.sprite(40, 450, 'mole', 'mole_walk1').setScale(0.38);
+        mole = this.physics.add.sprite(40, 450, 'mole', 'shitty_mole').setScale(0.5);
         mole.setCollideWorldBounds(true);
         this.isDigging = false;
 
-        cat = this.physics.add.sprite(190, 450, 'cat', 'cat_walk1').setScale(0.33);
+        cat = this.physics.add.sprite(190, 450, 'cat', 'shitty_stretch1').setScale(0.33);
         cat.setCollideWorldBounds(true);
         this.isStretching = false;
         
@@ -239,8 +242,8 @@ class LevelOne extends Phaser.Scene{
     }
     
     update() {
-        
-        if(this.distorted == false){
+        console.log(frog.x);
+        if(distorted == false){
             if(cursors.left.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
                 if(mole.x <= 52){
                     frog.body.velocity.x = 0;
@@ -290,14 +293,20 @@ class LevelOne extends Phaser.Scene{
             }
         }else{
             if(cursors.left.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false ){
-                frog.setVelocityX(-this.velocity)
-                frog.setFlip(true, false);
+                if(mole.x <= 66){
+                    frog.body.velocity.x = 0;
+                    mole.body.velocity.x = 0;
+                    cat.body.velocity.x = 0;
+                }else{
+                    frog.setVelocityX(-this.velocity)
+                    frog.setFlip(true, false);
 
-                mole.setVelocityX(-this.velocity)
-                mole.setFlip(true, false);
+                    mole.setVelocityX(-this.velocity)
+                    mole.setFlip(true, false);
 
-                cat.setVelocityX(-this.velocity)
-                cat.setFlip(true, false);
+                    cat.setVelocityX(-this.velocity)
+                    cat.setFlip(true, false);
+                }
             }else if(cursors.right.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
                 if(frog.x >= 3545){
                     frog.body.velocity.x = 0;
@@ -321,19 +330,19 @@ class LevelOne extends Phaser.Scene{
         
         }
         
-        //play the dialogue that comes after you clear hell 
-        if (tester == true && this.distorted == false && frog.x >= 340 && frog.x <= 360 && this.shifted == false){
-            this.moveSprite(frog);
-            this.moveSprite(cat);
-            this.moveSprite(mole);
-            this.shifted = true; 
-            this.coconutDrop = false; 
-            this.dialogBoxMove('bonked')
-            this.typeText();
-        }
-        
         if(Phaser.Input.Keyboard.JustDown(keyA) && !this.dialogTyping) {
-            //insert text stuff here
+            if(frog.x <= 1635 && frog.x >= 1165 && this.questGet == false){
+                this.dialogBoxMove('questStart');
+                this.typeText();
+                this.time.delayedCall(10000, () => {
+                    this.questGet = true;
+                }, null, this); 
+            }
+
+            if(frog.x <= 1635 && frog.x >= 1165 && this.questGet == true){
+                this.dialogBoxMove('questOngoing');
+                this.typeText();
+            }
 
             if(this.isTalking == true && !this.dialogTyping){ 
                 this.typeText();
@@ -354,9 +363,9 @@ class LevelOne extends Phaser.Scene{
                         this.catStretch();
                     }, null, this); 
 
-                    this.time.delayedCall(1900, () => {
+                   /* this.time.delayedCall(1900, () => {
                         //this.typeText(); 
-                    }, null, this); 
+                    }, null, this); */
 
                     this.time.delayedCall(2550, () => {
                     if(this.coconutDrop == false){
@@ -379,47 +388,55 @@ class LevelOne extends Phaser.Scene{
             }
         }
 
-        if(frog.x == 305){
-            this.distort(frog);
-            this.distort(mole);
-            this.distort(cat);
-            this.distorted = true;
-        }
-
-        if(frog.x >= 400){
-            this.fix(frog);
-            this.fix(mole);
-            this.fix(cat);
-            this.distorted = false;
-        }
-
 //---------------------------------------------------------- INTERACTIONS ----------------------------------------------------------------------------------------
-        
-        if(frog.x >= 400 && this.movement == true){
+        if(tester == true){
+            distorted = false;
+        }        
+
+        if(frog.x >= 400 && this.movement == true && tester == false){
             this.bathwater.anims.play('bathwater', true);
+            this.movement = false;
+
+            this.time.delayedCall(500, () => {
+                this.fix(frog);
+                this.fix(cat);
+                this.fix(mole);
+                distorted = false;
+            }, null, this);
             
+            this.time.delayedCall(1000, () => {
+                this.dialogBoxMove('beachBeginning');
+                this.typeText();  
+            }, null, this);
+        }
+        
+          //play the dialogue that comes after you clear hell 
+          if (tester == true && frog.x >= 340 && frog.x <= 360 && this.shifted == false){
+            this.moveSprite(frog);
+            this.moveSprite(cat);
+            this.moveSprite(mole);
+            this.shifted = true; 
+            this.coconutDrop = false; 
+            this.dialogBoxMove('bonked')
+            this.typeText();
         }
 
-        if(frog.x >= 400 && this.movement == true){
-            this.dialogBoxMove('beachBeginning');
+        //dig up shells!
+        if(this.isDigging == true && mole.x >= 2425 && mole.x <= 2555 && this.shellsDug == false){
+            this.shells.destroy();
+            this.shellsDug = true;
+            this.dialogBoxMove('shells1');
             this.typeText();
-            this.movement = false;
         }
-        
-        //dig up shells! [ in progress ]
-        /*if(this.isDigging == true && mole.x >= 2565 && mole.x <= 2665 && this.fuitGrounded == true){
-            this.fuit.destroy();
-            this.fuitHave = true;
-        }*/
     
     }
 //----------------------------------------------------------MECHANICS --------------------------------------------
     moleDive(){
         if(this.isDigging == false){    
             this.isDigging = true;
-            if(this.distorted == false){
+            if(distorted == false){
                 mole.anims.play('moledig', true);
-            }else if(this.distorted == true){
+            }else if(distorted == true){
                 mole.y -= 50;
             }
             this.valueChange = this.time.delayedCall(1000, () => { //change value to however long dig animation is
@@ -433,14 +450,14 @@ class LevelOne extends Phaser.Scene{
     catStretch(){
         if(this.isStretching == false){
             this.isStretching = true;
-            if(this.distorted == false){
+            if(distorted == false){
                 cat.anims.play('catStretch', true);
                 this.valueChange = this.time.delayedCall(2000, () => { //change value to however long stretch animation is
                     if(this.isStretching == true){
                         this.isStretching = false;
                     }
                 }, null, this);
-            }else if (this.distorted == true){
+            }else if (distorted == true){
                 cat.anims.play('shittystretch', true);
                 this.valueChange = this.time.delayedCall(1000, () => { //change value to however long stretch animation is
                     if(this.isStretching == true){
@@ -451,7 +468,7 @@ class LevelOne extends Phaser.Scene{
         }    
     }
     
-    fuitDrop(sprite){ 
+    fuitDrop(){ 
         this.drop = this.time.addEvent({
             delay: 7,
             callback: function(){
@@ -477,14 +494,14 @@ class LevelOne extends Phaser.Scene{
         
         //if we spawn them like this, then it preserves the order / foreground
         //frog.destroy();
-        frog = this.physics.add.sprite(3404, sprite.y + 155, 'frog', 'frog_walk1').setScale(0.3);
+        frog = this.physics.add.sprite(3405, sprite.y + 155, 'frog', 'frog_walk1').setScale(0.3);
         frog.setCollideWorldBounds(true);
         this.cameras.main.startFollow(frog);
 
-        cat = this.physics.add.sprite(3235, sprite.y + 622, 'cat', 'cat_walk1').setScale(0.33);
+        cat = this.physics.add.sprite(3325, sprite.y + 622, 'cat', 'cat_walk1').setScale(0.33);
         cat.setCollideWorldBounds(true);
 
-        mole = this.physics.add.sprite(3100, sprite.y + 120, 'mole', 'mole_walk1').setScale(0.38);
+        mole = this.physics.add.sprite(3075, sprite.y + 120, 'mole', 'mole_walk1').setScale(0.38);
         mole.setCollideWorldBounds(true);
 
         //respawn them so they can be back in the foreground
@@ -494,7 +511,7 @@ class LevelOne extends Phaser.Scene{
 
     }
     distort(sprite){
-        if(this.distorted == false){
+        if(distorted == false){
             if(sprite == frog){
                 frog.destroy();
                 frog = this.physics.add.sprite(sprite.x, sprite.y, 'frog', 'shitty_frog').setScale(0.5);
@@ -517,32 +534,32 @@ class LevelOne extends Phaser.Scene{
         this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
         }
     }
-
     fix(sprite){
-        if(this.distorted == true){
+        if(distorted == true){
             if(sprite == frog){
                 frog.destroy();
-                frog = this.physics.add.sprite(sprite.x + 110, sprite.y + 270, 'frog', 'frog_walk1').setScale(0.3);
+                frog = this.physics.add.sprite(sprite.x, sprite.y + 270, 'frog', 'frog_walk1').setScale(0.3);
                 frog.setCollideWorldBounds(true);
                 this.cameras.main.startFollow(frog);
             }
             if(sprite == cat){
                 cat.destroy();
-                cat = this.physics.add.sprite(sprite.x + 140, sprite.y + 716, 'cat', 'cat_walk1').setScale(0.33);
+                cat = this.physics.add.sprite(sprite.x, sprite.y + 716, 'cat', 'cat_walk1').setScale(0.33);
                 cat.setCollideWorldBounds(true);
                 
             }
             if(sprite == mole){
                 mole.destroy();
-                mole = this.physics.add.sprite(sprite.x+ 95, sprite.y + 170, 'mole', 'mole_walk1').setScale(0.38);
+                mole = this.physics.add.sprite(sprite.x, sprite.y + 170, 'mole', 'mole_walk1').setScale(0.38);
                 mole.setCollideWorldBounds(true);
     
             }
+        }
         //foreground
         this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
         this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
-        }
     }
+    
 
     dialogBoxMove(text){
         this.dialogbox.visible = true;
@@ -551,26 +568,18 @@ class LevelOne extends Phaser.Scene{
         this.dialogbox.destroy();
         this.dialogText.destroy();
 
-        this.DBOX_X = frog.x - 410;			    // dialog box x-position
-        this.TEXT_X = frog.x - 360;			// text w/in dialog box x-positio
-        this.NEXT_X = frog.x + 545;			// next text prompt x-position
-        
-        
-        //could be redundant code; not sure about it
-        if (tester == true){
-            this.DBOX_X = 2500;			    
-            this.TEXT_X = 2550;		
-            this.NEXT_X = 3450;
-        }
-        
-        if(this.movement == false && frog.x <= 2995){
-        this.DBOX_X = frog.x - 500;			    // dialog box x-position
-        this.TEXT_X = frog.x - 450;			// text w/in dialog box x-position
-        this.NEXT_X = frog.x + 450;			// next text prompt x-position
-        }else if (this.movement == false &&frog.x >= 3000){
-        this.DBOX_X = 2500;			    // dialog box x-position
-        this.TEXT_X = 2550;			// text w/in dialog box x-position
-        this.NEXT_X = 3450;		
+        if(frog.x <= 600){
+            this.DBOX_X = 100;
+            this.TEXT_X = 150;
+            this.NEXT_X = 1050;			// next text prompt x-position  
+        }else if(this.movement == false && frog.x <= 2995){
+            this.DBOX_X = frog.x - 500;			    // dialog box x-position
+            this.TEXT_X = frog.x - 450;			// text w/in dialog box x-position
+            this.NEXT_X = frog.x + 450;			// next text prompt x-position
+        }else if (frog.x >= 3000){
+            this.DBOX_X = 2500;			    // dialog box x-position
+            this.TEXT_X = 2550;			// text w/in dialog box x-position
+            this.NEXT_X = 3450;		
         }
         this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialoguebox').setOrigin(0);
         this.dialogText = this.add.bitmapText(this.TEXT_X, this.TEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);

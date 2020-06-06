@@ -122,8 +122,10 @@ class Load extends Phaser.Scene{
         this.load.image('partyCrub', './assets/npcs/party_crub.png');
        
         //dialogue preload
+        this.load.json('shells1', './assets/other/stageOne/shell1.json');
         this.load.json('beachBeginning', './assets/other/stageOne/stageOneStart.json');
         this.load.json('questStart', './assets/other/stageOne/crubStart.json');
+        this.load.json('questOngoing', './assets/other/stageOne/crubOngoing.json');
         this.load.json('questDone', './assets/other/stageOne/crubEnd.json');
         this.load.json('shake', './assets/other/stageOne/shake_coconuts.json');
         this.load.json('gameOver', './assets/other/stageOne/game_over.json');

@@ -30,7 +30,7 @@ class Tutorial extends Phaser.Scene{
         this.cameras.main.fadeIn(2000);
         cursors = this.input.keyboard.createCursorKeys();
         this.add.image(0,0,'sky').setOrigin(0,0);
-      
+        tester = false;
         // ------------------------------------------------------------------ animations ---------------------------------------------------------------------
 
         //stars animation
@@ -177,7 +177,6 @@ class Tutorial extends Phaser.Scene{
         frog = this.physics.add.sprite(340, 500, 'frog', 'frog_walk1').setScale(0.3);
         frog.setCollideWorldBounds(true);
         this.movement = true;
-        this.distorted = false;
         this.start = true;
         this.firstDistort = true;
  
@@ -192,7 +191,7 @@ class Tutorial extends Phaser.Scene{
         this.isStretching = false;
         
         //inventory (just to see what it looks like first before moving items there)
-        this.inventorySpace = this.add.image(925, 5, 'inventory').setScale(0.38).setOrigin(0, 0);
+       // this.inventorySpace = this.add.image(925, 5, 'inventory').setScale(0.38).setOrigin(0, 0);
        
 
         //camera follow froggie :)
@@ -211,7 +210,7 @@ class Tutorial extends Phaser.Scene{
     update(){
         
         //--------------------------------------------- movement ------------------------------------------
-        if(this.distorted == false){
+        if(distorted == false){
             if(cursors.left.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
                 if(mole.x <= 52){
                     frog.body.velocity.x = 0;
@@ -395,14 +394,14 @@ class Tutorial extends Phaser.Scene{
             this.distort(frog);
             this.distort(mole);
             this.distort(cat);
-            this.distorted = true;
+            distorted = true;
         }
 
         if(frog.x <= 2225){
             this.fix(frog);
             this.fix(mole);
             this.fix(cat);
-            this.distorted = false;
+            distorted = false;
         }
         
     }
@@ -410,9 +409,9 @@ class Tutorial extends Phaser.Scene{
     moleDive(){
         if(this.isDigging == false){    
             this.isDigging = true;
-            if(this.distorted == false){
+            if(distorted == false){
                 mole.anims.play('moledig', true);
-            }else if(this.distorted == true){
+            }else if(distorted == true){
                 mole.y -= 50;
             }
             this.valueChange = this.time.delayedCall(1000, () => { //change value to however long dig animation is
@@ -426,14 +425,14 @@ class Tutorial extends Phaser.Scene{
     catStretch(){
         if(this.isStretching == false){
             this.isStretching = true;
-            if(this.distorted == false){
+            if(distorted == false){
                 cat.anims.play('catStretch', true);
                 this.valueChange = this.time.delayedCall(2000, () => { //change value to however long stretch animation is
                     if(this.isStretching == true){
                         this.isStretching = false;
                     }
                 }, null, this);
-            }else if (this.distorted == true){
+            }else if (distorted == true){
                 cat.anims.play('shittystretch', true);
                 this.valueChange = this.time.delayedCall(1000, () => { //change value to however long stretch animation is
                     if(this.isStretching == true){
@@ -471,7 +470,7 @@ class Tutorial extends Phaser.Scene{
     }
 
     distort(sprite){
-        if(this.distorted == false){
+        if(distorted == false){
             if(sprite == frog){
                 frog.destroy();
                 frog = this.physics.add.sprite(sprite.x + 110, sprite.y + 155, 'frog', 'shitty_frog').setScale(0.5);
@@ -494,7 +493,7 @@ class Tutorial extends Phaser.Scene{
     }
 
     fix(sprite){
-        if(this.distorted == true){
+        if(distorted == true){
             if(sprite == frog){
                 frog.destroy();
                 frog = this.physics.add.sprite(sprite.x + 110, sprite.y + 270, 'frog', 'frog_walk1').setScale(0.3);
