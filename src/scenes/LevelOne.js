@@ -165,6 +165,17 @@ class LevelOne extends Phaser.Scene{
              frameRate: 5,
              repeat: -1
         });
+        
+        this.anims.create({
+            key: 'rave',
+            frames: this.anims.generateFrameNames('rave',{
+                prefix: 'rave_',
+                start: 1,
+                end: 4 
+             }),
+             frameRate: 5,
+             repeat: -1
+        });
 
    // ------------------------------------------------------------------- background setup ---------------------------------------------------------------------------------------
         //background base
