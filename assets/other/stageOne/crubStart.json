@@ -12,7 +12,7 @@
         },
   {
             "speaker" : "froggie",
-            "dialog" : "What’s wrong little crabs?",
+            "dialog" : "What's wrong little crabs?",
             "newSpeaker" : "true"
         },
   {
@@ -37,17 +37,17 @@
         }, 
   {
             "speaker" : "cat",
-            "dialog" : "Well, I do like parties. But it makes me sad if it’s cancelled. :<",
+            "dialog" : "Well, I do like parties. But it makes me sad if it's cancelled. :<",
             "newSpeaker" : "true"
         },
   {
             "speaker" : "mole",
-            "dialog" : "yo yo i like to party. Let’s find these party hats for these cool crabs yoo",
+            "dialog" : "yo yo i like to party. Let's find these party hats for these cool crabs yoo",
             "newSpeaker" : "true"
         },
   {
             "speaker" : "froggie",
-            "dialog" : "Yeah, let’s search around the ‘b e a c h’ to find them!",
+            "dialog" : "Yeah, let's search around the 'b e a c h' to find them!",
             "newSpeaker" : "true"
         }
     ]
