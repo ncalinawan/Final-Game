@@ -20,19 +20,9 @@
             "dialog" : "yoyoyoyoyoyoyoyo lets party yoooooooooooooooooooooooo",
             "newSpeaker" : "true"
         },
-  {
-            "speaker" : "froggie",
-            "dialog" : "We should get moving though. :o",
-            "newSpeaker" : "true"
-        },
-  {
-            "speaker" : "mole",
-            "dialog" : "awwwww",
-            "newSpeaker" : "true"
-        },
-  {
-            "speaker" : "cat",
-            "dialog" : "Well I did say I wanna go home and eat some fish. :x",
+        {
+            "speaker" : "everyone",
+            "dialog" : "PRESS A TO PARTY!!",
             "newSpeaker" : "true"
         }
     ]

@@ -195,6 +195,7 @@ class LevelOne extends Phaser.Scene{
         //this.nearFeesh = false;
         
         this.bottle = this.add.sprite(1700,500, 'rave', 'bottle').setScale(0.2);
+        this.coconut = this.add.sprite(3260, 130, 'beach_stuff', 'coconut').setScale(.5);
         this.coconutDrop = false;
         
         this.bathwater = this.add.sprite(150, 200, 'beach_stuff', 'spilled_bucket1').setOrigin(0, 0);
@@ -219,7 +220,11 @@ class LevelOne extends Phaser.Scene{
         this.movement = true;
         this.shifted = false;
         this.questGet = false;
- 
+        this.bottleRead = false;
+        this.bonked = false;
+        this.partying = false;
+        this.partyTime = false;
+
         mole = this.physics.add.sprite(40, 450, 'mole', 'shitty_mole').setScale(0.5);
         mole.setCollideWorldBounds(true);
         this.isDigging = false;
@@ -250,7 +255,7 @@ class LevelOne extends Phaser.Scene{
     update() {
         console.log(frog.x);
         if(distorted == false){
-            if(cursors.left.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
+            if(cursors.left.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false && this.partying == false){
                 if(mole.x <= 52){
                     frog.body.velocity.x = 0;
                     mole.body.velocity.x = 0;
@@ -268,7 +273,7 @@ class LevelOne extends Phaser.Scene{
                 frog.anims.play('frogwalk', true);
                 mole.anims.play('molewalk', true);
                 cat.anims.play('catwalk', true);
-            }else if(cursors.right.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
+            }else if(cursors.right.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false && this.partying == false){
                 if(frog.x >= 3545){
                     frog.body.velocity.x = 0;
                     mole.body.velocity.x = 0;
@@ -373,16 +378,29 @@ class LevelOne extends Phaser.Scene{
                 }, null, this); 
             }
 
-            if(frog.x <= 1635 && frog.x >= 1165 && this.questGet == true){
+            if(frog.x <= 1635 && frog.x >= 1165 && this.questGet == true &&  this.partying == false && this.party == false){
                 this.dialogBoxMove('questOngoing');
                 this.typeText();
             }
-            if(frog.x <= 1635 && frog.x >= 1165 && this.questGet == true && this.party == true){
-                this.rave.play('rave');
-                this.rave.alpha = 1;
-                console.log(this.party);
+            if(frog.x <= 1635 && frog.x >= 1165 && this.questGet == true && this.party == true && this.partyTime == false){
+                this.dialogBoxMove('questDone');
+                this.typeText();
+
+                this.time.delayedCall(8000, () => {
+                    this.partyTime = true;
+                }, null, this); 
             }
 
+            if(frog.x <= 1635 && frog.x >= 1165 && this.partyTime == true){
+                this.rave();
+            }
+
+            if(frog.x <= 1760 && frog.x >= 1660 && this.questGet == true && this.bonked == true){
+                this.dialogBoxMove('bottle');
+                this.typeText();
+                this.bottleRead = true;
+            }
+            
             if(this.isTalking == true && !this.dialogTyping){ 
                 this.typeText();
             }
@@ -401,10 +419,6 @@ class LevelOne extends Phaser.Scene{
                         //this.typeText(); 
                         this.catStretch();
                     }, null, this); 
-
-                   /* this.time.delayedCall(1900, () => {
-                        //this.typeText(); 
-                    }, null, this); */
 
                     this.time.delayedCall(2550, () => {
                     if(this.coconutDrop == false){
@@ -430,6 +444,9 @@ class LevelOne extends Phaser.Scene{
 //---------------------------------------------------------- INTERACTIONS ----------------------------------------------------------------------------------------
         if(tester == true){
             distorted = false;
+            this.movement = false;
+            this.questGet = true;
+            this.bonked = true;
         }        
 
         if(frog.x >= 400 && this.movement == true && tester == false){
@@ -470,14 +487,14 @@ class LevelOne extends Phaser.Scene{
         }
 
         //dig up shells!
-        if(this.isDigging == true && mole.x >= 2425 && mole.x <= 2555 && this.shellsDug == false){
+        if(this.isDigging == true && mole.x >= 2425 && mole.x <= 2555 && this.shellsDug == false && tester == true && this.bottleRead == true){
             this.shells.destroy();
             this.shellsDug = true;
             this.dialogBoxMove('shells1');
             this.typeText();
         }
 
-        if(this.isDigging == true && mole.x >= 856 && mole.x <= 911 && this.shells1Dug == false){
+        if(this.isDigging == true && mole.x >= 856 && mole.x <= 911 && this.shells1Dug == false && tester == true && this.bottleRead == true){
             this.shells1.destroy();
             this.shells1Dug = true;
             this.party = true;
@@ -485,7 +502,7 @@ class LevelOne extends Phaser.Scene{
             //this.typeText();
         }
 
-        if(this.isDigging == true && mole.x >= 396 && mole.x <= 511 && this.shells2Dug == false){
+        if(this.isDigging == true && mole.x >= 396 && mole.x <= 511 && this.shells2Dug == false && tester == true && this.bottleRead == true){
             this.shells2.destroy();
             this.shells2Dug = true;
             //this.dialogBoxMove('shells1');
@@ -544,32 +561,37 @@ class LevelOne extends Phaser.Scene{
             loop: true,
         })
     }
+
+    rave(){
+        if(this.partying == false)
+        this.raveBg = this.add.sprite(frog.x - 600, 0, 'rave', 'rave_1').setOrigin(0,0);
+        this.raveBg.anims.play('rave');
+        this.partying = true;
+    }
     
     //replace old sprites -- this is extremely whack, but somehow it works...
     moveSprite (sprite) {
         if(sprite == frog){
-            //frog.destroy();
-            //frog = this.physics.add.sprite(sprite.x + 3000, sprite.y + 270, 'frog', 'frog_walk1').setScale(0.3);
-            frog.x = 3404;
-            //frog.y = 100;
-            console.log(frog.y);
+            frog.destroy();
+            frog = this.physics.add.sprite(3405, 500, 'frog', 'frog_walk1').setScale(0.3);
+            //frog.x = 3404;
             frog.setScale(0.3);
             frog.setCollideWorldBounds(true);
-            //this.cameras.main.startFollow(frog);
+            this.cameras.main.startFollow(frog);
         }
         if(sprite == cat){
-            //cat.destroy();
-            //cat = this.physics.add.sprite(sprite.x+ 3000, sprite.y + 716, 'cat', 'cat_walk1').setScale(0.33);
-            cat.x = 3260;
+            cat.destroy();
+            cat = this.physics.add.sprite(3290, 500, 'cat', 'cat_walk1').setScale(0.33);
+            //cat.x = 3260;
             cat.setScale(0.33)
             cat.setCollideWorldBounds(true);
                 
         }
         if(sprite == mole){
-            //mole.destroy();
-           //mole = this.physics.add.sprite(sprite.x + 3099, sprite.y + 170, 'mole', 'mole_walk1').setScale(0.38);
-            mole.setScale(0.38)
-            mole.x = 3120;
+            mole.destroy();
+            mole = this.physics.add.sprite(3075, 500, 'mole', 'mole_walk1').setScale(0.38);
+            //mole.setScale(0.38)
+            //mole.x = 3120;
             mole.setCollideWorldBounds(true);
         }
     }
@@ -634,14 +656,14 @@ class LevelOne extends Phaser.Scene{
         if(frog.x <= 600){
             this.DBOX_X = 100;
             this.TEXT_X = 150;
-            this.NEXT_X = 1050;			// next text prompt x-position  
+            this.NEXT_X = 1050;			
         }else if(this.movement == false && frog.x <= 2995){
-            this.DBOX_X = frog.x - 500;			    // dialog box x-position
-            this.TEXT_X = frog.x - 450;			// text w/in dialog box x-position
-            this.NEXT_X = frog.x + 450;			// next text prompt x-position
+            this.DBOX_X = frog.x - 500;			    
+            this.TEXT_X = frog.x - 450;			
+            this.NEXT_X = frog.x + 450;			
         }else if (frog.x >= 3000){
-            this.DBOX_X = 2500;			    // dialog box x-position
-            this.TEXT_X = 2550;			// text w/in dialog box x-position
+            this.DBOX_X = 2500;			  
+            this.TEXT_X = 2550;			
             this.NEXT_X = 3450;		
         }
         this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialoguebox').setOrigin(0);

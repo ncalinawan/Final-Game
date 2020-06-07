@@ -29,6 +29,11 @@
             "speaker" : "frog",
             "dialog" : "?????????????????????????????? ur making me angry >8(",
             "newSpeaker" : "true"
+        },
+  {
+            "speaker" : "mole",
+            "dialog" : "anyway lesgo check out that bottle teehee",
+            "newSpeaker" : "true"
         }
 
     ]

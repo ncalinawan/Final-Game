@@ -49,6 +49,11 @@
             "speaker" : "froggie",
             "dialog" : "Yeah, let's search around the 'b e a c h' to find them!",
             "newSpeaker" : "true"
+        },
+  {
+            "speaker" : "mole",
+            "dialog" : "yo i vibe with these palm trees, lets check the coconuts for the party hats",
+            "newSpeaker" : "true"
         }
     ]
 ]
