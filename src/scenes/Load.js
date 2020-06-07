@@ -3,8 +3,7 @@ class Load extends Phaser.Scene{
         super("Loading");
     }
     preload() {
-        this.load.image('logo', './assets/title/loading_screen.png'); //make loading screen
-        this.logo = this.add.image(0, 0, 'preload').setOrigin(0.0);
+        this.logo = this.add.image(0, 0, 'loading').setOrigin(0.0);
 
         let progressBar = this.add.graphics();
         let progressBox = this.add.graphics();
@@ -18,7 +17,7 @@ class Load extends Phaser.Scene{
             y: height / 2 - 50,
             text: 'Loading...',
             style: {
-                
+                fill: '#000000'
             }
         });
         loadingText.setOrigin(0.5, 0.5);
@@ -30,7 +29,7 @@ class Load extends Phaser.Scene{
             style: {
                 fontFamily: 'Comic Sans MS',
                 fontSize: '18px',
-                fill: '#ffffff'
+                fill: '#000000'
             }
         });
         percentText.setOrigin(0.5, 0.5);
@@ -41,7 +40,7 @@ class Load extends Phaser.Scene{
             text: '',
             style: {
                 font: '18px monospace',
-                fill: '#ffffff'
+                fill: '#000000'
             }
         });
         assetText.setOrigin(0.5, 0.5);
