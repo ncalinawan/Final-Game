@@ -204,7 +204,7 @@ class LevelOne extends Phaser.Scene{
         this.shellsDug = false;
         this.shells1Dug = false;
         this.shells2Dug = false;    
-        this.bottle = this.add.sprite(1700,500, 'beach_stuff', 'bottle').setScale(0.5);
+        this.bottle = this.add.sprite(1700,500, 'rave', 'bottle').setScale(0.2);
         
         //foreground
         this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
