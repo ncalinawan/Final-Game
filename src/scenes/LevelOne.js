@@ -385,13 +385,16 @@ class LevelOne extends Phaser.Scene{
                 this.dialogBoxMove('questDone');
                 this.typeText();
 
-                this.time.delayedCall(8000, () => {
+                this.time.delayedCall(6500, () => {
                     this.partyTime = true;
                 }, null, this); 
             }
 
             if(frog.x <= 1635 && frog.x >= 1165 && this.partyTime == true){
                 this.rave();
+                this.time.delayedCall(10000, () => {
+                    this.scene.switch('Ending');
+                }, null, this); 
             }
 
             if(frog.x <= 1760 && frog.x >= 1660 && this.questGet == true && this.bonked == true){
@@ -496,16 +499,16 @@ class LevelOne extends Phaser.Scene{
         if(this.isDigging == true && mole.x >= 856 && mole.x <= 911 && this.shells1Dug == false && tester == true && this.bottleRead == true){
             this.shells1.destroy();
             this.shells1Dug = true;
-            this.party = true;
-            //this.dialogBoxMove('shells1');
-            //this.typeText();
+            this.dialogBoxMove('shells2');
+            this.typeText();
         }
 
         if(this.isDigging == true && mole.x >= 396 && mole.x <= 511 && this.shells2Dug == false && tester == true && this.bottleRead == true){
             this.shells2.destroy();
             this.shells2Dug = true;
-            //this.dialogBoxMove('shells1');
-            //this.typeText();
+            this.party = true;
+            this.dialogBoxMove('shells3');
+            this.typeText();
         }
 
     

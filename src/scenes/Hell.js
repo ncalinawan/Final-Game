@@ -134,7 +134,7 @@ class Hell extends Phaser.Scene{
         }
 
         //------------------------------------------------------------------ DIALOGUE ------------------------------------------------------------------------------------------
-/*
+
         if(cat.x >= 65 && cat.x <= 550 && this.quip1 == false){
             this.dialogBoxMove('welcometohell');
             this.typeText();
@@ -152,7 +152,7 @@ class Hell extends Phaser.Scene{
             this.typeText();
             this.quip3 = true;
         }
-        */
+        
         if (cat.x >= 3500 && cat.x <= 3600){
             tester = true;
             this.scene.wake('First');

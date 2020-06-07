@@ -19,6 +19,7 @@ class Ending extends Phaser.Scene {
         this.add.sprite(0,0, 'bgs', 'border').setOrigin(0,0);
         this.add.sprite(0,0, 'bgs', 'thanks').setOrigin(0,0);
         this.add.sprite(0,0, 'bgs', 'backpack').setOrigin(0,0);
+        keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         
     }
 
@@ -52,6 +53,14 @@ class Ending extends Phaser.Scene {
                 this.hell.tilePositionX += 0;
                 this.hell.alpha = 0;
                 this.hellFin = true;
+            }, null, this);
+        }
+
+        if(Phaser.Input.Keyboard.JustDown(keyA) && this.tutorialFin == true && this.beachFin == true && this.hellFin == true){
+            tester = false;
+            this.cameras.main.fade(2000);
+            this.sceneChange = this.time.delayedCall(2000, () => {
+                this.scene.start("titleScene");
             }, null, this);
         }
     }

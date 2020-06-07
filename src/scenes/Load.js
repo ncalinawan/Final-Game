@@ -125,6 +125,8 @@ class Load extends Phaser.Scene{
        
         //dialogue preload
         this.load.json('shells1', './assets/other/stageOne/shell1.json');
+        this.load.json('shells2', './assets/other/stageOne/shells2.json');
+        this.load.json('shells3', './assets/other/stageOne/shells3.json');
         this.load.json('beachBeginning', './assets/other/stageOne/stageOneStart.json');
         this.load.json('questStart', './assets/other/stageOne/crubStart.json');
         this.load.json('questOngoing', './assets/other/stageOne/crubOngoing.json');
