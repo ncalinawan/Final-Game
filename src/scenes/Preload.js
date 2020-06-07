@@ -5,6 +5,7 @@ class Preload extends Phaser.Scene{
 
     preload() {
         this.load.image('preload', './assets/title/preload_screen.png');
+        this.load.image('loading', './assets/title/loading_screen.png');
 
         //make loading screen and preload it here
     }
