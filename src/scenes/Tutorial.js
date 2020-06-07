@@ -342,7 +342,7 @@ class Tutorial extends Phaser.Scene{
                 this.learnStretch = false;
             }
             if(frog.x >= 3275 && frog.x <= 3470){
-                this.scene.start("First");
+                this.scene.start("Transition");
             }
             //1st snek dialogue 
             if(frog.x == 3011.5 && this.learnStretch == false && this.learnDig == false){
