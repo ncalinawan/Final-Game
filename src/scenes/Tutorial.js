@@ -113,7 +113,7 @@ class Tutorial extends Phaser.Scene{
                 start: 1,
                 end: 9
              }),
-             frameRate: 8,
+             frameRate: 12,
              repeat: 0
         });
         
