@@ -115,6 +115,7 @@ class Load extends Phaser.Scene{
         this.load.atlas('hell', './assets/bgs/hell.png', './assets/bgs/hell.json');
         this.load.atlas('rave', './assets/bgs/rave.png', './assets/bgs/rave.json');
         this.load.atlas('bgs', './assets/bgs/backgrounds.png', './assets/bgs/backgrounds.json');
+        this.load.image('sand_castle', './assets/bgs/sand_castle.png');
         
         //npcs & assets
         this.load.atlas('beach_stuff', './assets/bgs/beach_assets.png', './assets/bgs/beach_assets.json');
@@ -149,7 +150,7 @@ class Load extends Phaser.Scene{
         //"Cartoon_Whistle" by Brsjak of freesound.org [trimmed by AudioTrimmer.com]
         this.load.audio('stretching', './assets/sounds/stretching.wav');
         
-        //interaction ding (recorded by Noel Calinawan
+        //interaction ding (recorded by Noel Calinawan)
         this.load.audio('interacting', './assets/sounds/InteractionDing.wav');
         
         //Digging audio (recorded by Kiara Yupangco)
@@ -157,18 +158,27 @@ class Load extends Phaser.Scene{
         
         //"Forest" by JayHu of freesound.org
         this.load.audio('tutorial', './assets/sounds/tutorial.wav');
+
+        //"toy_cannon_shot.wav" by ReadeOnly of freesound.org
+        this.load.audio('poof', './assets/sounds/poof.wav');
         
         /*"Carnival Cavalcade – Sunshine filled Reggae with deep bass guitar and rasping sax 
-        that brings the street party directly to wherever you are" by David-Gwyn Jones on zapsplat.com*/
+        that brings the street party directly to wherever you are" by David-Gwyn Jones of zapsplat.com*/
         this.load.audio('beachMusic', './assets/sounds/beachMusic.wav');
+
+        //"Water splash, emptying a bucket 7" by wormer2 of freesound.org
+        this.load.audio('bucket', './assets/sounds/bucket_spill.wav');
+
+        ////"Caveman Bonk" of myinstants.com
+        this.load.audio('bonk', './assets/sounds/bonk.wav');
         
-        //"Lava flow" by ZapSplat
+        //"Lava flow" by ZapSplat of zapsplat.com
         this.load.audio('hell', './assets/sounds/hell.wav');
         
-        //"instant rave" by supervans on freesound.org
+        //"instant rave" by supervans of freesound.org
         this.load.audio('beachRave', './assets/sounds/beachRave.wav');
         
-        //"Comfort Blanket" by ZapSplat
+        //"Comfort Blanket" by ZapSplat of zapsplat.com
         this.load.audio('credits', './assets/sounds/credits.wav');
         
     }
