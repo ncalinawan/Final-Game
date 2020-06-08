@@ -21,6 +21,16 @@
             "newSpeaker" : "true"
         },
         {
+            "speaker" : "cat",
+            "dialog" : "It can't hurt to party for a litte bit right???????",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "froggie",
+            "dialog" : "Why not, ribbit. :p",
+            "newSpeaker" : "true"
+        },
+        {
             "speaker" : "everyone",
             "dialog" : "PRESS A TO PARTY!!",
             "newSpeaker" : "true"

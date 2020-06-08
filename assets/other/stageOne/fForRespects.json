@@ -10,6 +10,62 @@
             "speaker" : "feesh",
             "dialog" : "F",
             "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "froggie",
+            "dialog" : "Hey, can I ask you a question?",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "feesh",
+            "dialog" : "huh? whaddya want ;-;",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "froggie",
+            "dialog" : "Is bathwater in demand around these parts...? Can't you find something better to sell...?",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "froggie",
+            "dialog" : "Sorry, was that too rude a question?",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "feesh",
+            "dialog" : "no, it's fine -- there's no point in crying over spilled bathwater... ;-;-;-;-;-;-;-;",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "feesh",
+            "dialog" : "It seems this world has undergone something very sinister...Folks like me just started permanently distorting left and right ;-;-;-;-;",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "feesh",
+            "dialog" : "oh how beautiful i once was... now im HIDEOUS!@!@#!@%@#%^^@!!!!!! Entire towns just started distorting so badly that business has been failing ever since... In extreme cases, no one can ever move!",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "froggie",
+            "dialog" : "...Ah, so in desperation, you started selling bathwater...?",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "feesh",
+            "dialog" : "m-mayhaps. LISTEN, WE ALL GOTTA EAT SOMEHOW...! ;-;-;-;-;-;-;-;-;",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "cat",
+            "dialog" : "man, poor guy. i hope you find more bathwater to sell!",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "feesh",
+            "dialog" : "th-thanks ;-;-;-;-;-;-;-;-;-;",
+            "newSpeaker" : "true"
         }
+
     ]
 ]

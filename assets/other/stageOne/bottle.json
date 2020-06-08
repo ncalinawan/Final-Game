@@ -9,6 +9,26 @@
             "speaker" : "note in a bottle",
             "dialog" : "crabs are dumbies and sometimes leave their belongings under shells :P",
             "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "cat",
+            "dialog" : "Oh to be a carefree, little crub dancing and partying away on these sandy shores!",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "froggie",
+            "dialog" : "Huh, that was strangely poetic. Didn't think you'd have it in you.",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "cat",
+            "dialog" : "listen punk, once in a long while, my single brain cell somehow works!",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "froggie",
+            "dialog" : ":p",
+            "newSpeaker" : "true"
         }
   
      ]

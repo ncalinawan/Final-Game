@@ -2,7 +2,7 @@
     [
         {
             "speaker" : "frog",
-            "dialog" : "WHOA YOU'RE ALIVE!!!!! #$@#$*()@#$~!",
+            "dialog" : "Hey! You're awake, whew. Doing ok there, buddy?",
             "newSpeaker" : "true"
         },
   {
@@ -17,22 +17,42 @@
         },
   {
             "speaker" : "frog",
-            "dialog" : "Wha--? You're talkin' funny! I don't like that.",
+            "dialog" : "I feel like these are cryptic terms we should not be discussing in this kind of game.",
             "newSpeaker" : "true"
         },
   {
             "speaker" : "cat",
-            "dialog" : "Haha, it's okay, you don't have to understand. :) There's no EXP in this game either. :))",
-            "newSpeaker" : "true"
-        },
-  {
-            "speaker" : "frog",
-            "dialog" : "?????????????????????????????? ur making me angry >8(",
+            "dialog" : "It's ok, there may not be hidden EXP coding, but I feel like I've grown a lot ever since I entered HELL.",
             "newSpeaker" : "true"
         },
   {
             "speaker" : "mole",
-            "dialog" : "anyway lesgo check out that bottle teehee",
+            "dialog" : "?????????????????????????????? YOU WHAT DAWG",
+            "newSpeaker" : "true"
+        },
+  {
+            "speaker" : "froggie",
+            "dialog" : "wh-what?",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "cat",
+            "dialog" : "YEAH, WHEN I GOT BONKED, I HAD A WEIRD DREAM ABOUT GOING TO HELL AND GOT TO TALK WITH A STRANGE VOICE.",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "cat",
+            "dialog" : "It told me that if we don't get out of here and FAST, we're gonna become like these poor NPCS!!",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "mole",
+            "dialog" : "YOOOO LIKE GETTIN' PIXELS JAMMED IN MY BRAINS AGAIN??? NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "cat",
+            "dialog" : "YEAH FELLAS! LET'S HURRY UP AND FIND THEIR PARTY HATS SO WE CAN SKEDDADLE!",
             "newSpeaker" : "true"
         }
 

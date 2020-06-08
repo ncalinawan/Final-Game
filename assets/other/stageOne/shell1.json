@@ -7,12 +7,17 @@
         },
   {
             "speaker" : "froggie",
-            "dialog" : "Mai write something here thats like i gotchu fam ",
+            "dialog" : "It's ok! Let me take a look... ",
             "newSpeaker" : "true"
         },
         {
             "speaker" : "note",
-            "dialog" : "something something dig at the other shells or something",
+            "dialog" : "PARTY HATS!! GET YOUR PARTY HATS!! IF YOU PLAN ON JOINING THE COMPETITION, COME GRAB A HAT!!",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "froggie",
+            "dialog" : "I guess there was a festival going on before we got here...? Anyway, we should probably check out the other shells, too.",
             "newSpeaker" : "true"
         }
     ]
