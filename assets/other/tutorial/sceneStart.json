@@ -17,28 +17,22 @@
         },
         {
             "speaker" : "cat",
-            "dialog" : "Hey look!! There's a sign -- wanna read it to us? I'm illiterate. 3:",
+            "dialog" : "We've been to a lot of places, but this one...Something about this one FREAKS ME THE H*LL OUT.",
             "newSpeaker" : "true"
         },
         {
             "speaker" : "cat",
-            "dialog" : "Though I heard uni is kind of a scam...",
+            "dialog" : "Speaking of which, there's a sign over there! Can you go up to it and read it? I'm illiterate. :( ",
             "newSpeaker" : "true"
         },
         {
             "speaker" : "froggie",
-            "dialog" : "It's not all Bad*** :)))",
-            "newSpeaker" : "true"
-        },
-        {
-            "speaker" : "mole",
-            "dialog" : "ay yo stay in school kids",
-            "newSpeaker" : "true"
-        },
-        {
-            "speaker" : "froggie",
-            "dialog" : "Anyways, let's see… (Press A to interact with stuff!)",
+            "dialog" : "Alrighty, let's go take a look. (To interact with stuff, press A in front of it.)",
             "newSpeaker" : "true"
         }
+        
+        
+        
+        
     ]
 ]

@@ -17,7 +17,7 @@
         },
         {
             "speaker" : "froggie",
-            "dialog" : "We may be distorted, but I think we still look pretty cute. ;)",
+            "dialog" : "I wonder if this is what the sign was referring to...? Anyway, we may be distorted, but I still think we're cute c:",
             "newSpeaker" : "true"
         },
         {
@@ -27,7 +27,7 @@
         },
   {
             "speaker" : "froggie",
-            "dialog" : "[shrug emoji]",
+            "dialog" : "[shrug emoji] Call it a longtime traveler's experience, heh.",
             "newSpeaker" : "true"
         }
     ]

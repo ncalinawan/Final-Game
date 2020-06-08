@@ -1,0 +1,73 @@
+[
+    [
+        [
+            [
+                {
+                    "speaker" : "crub",
+                    "dialog" : "thank you for partying with us!! :D",
+                    "newSpeaker" : "true"
+                },
+          {
+                    "speaker" : "crub",
+                    "dialog" : ":DDDD",
+                    "newSpeaker" : "true"
+                },
+                {
+                    "speaker" : "crub",
+                    "dialog" : "speaking of which, what brings you guys here? i dont think ive ever seen you around.",
+                    "newSpeaker" : "true"
+                },
+                {
+                    "speaker" : "froggie",
+                    "dialog" : "We're travelers from a faraway, more HD land! We're looking for a way out of this world.",
+                    "newSpeaker" : "true"
+                },
+                {
+                    "speaker" : "crub",
+                    "dialog" : "!",
+                    "newSpeaker" : "true"
+                },
+                {
+                    "speaker" : "crub",
+                    "dialog" : "!!",
+                    "newSpeaker" : "true"
+                },
+                {
+                    "speaker" : "crub",
+                    "dialog" : "!!!",
+                    "newSpeaker" : "true"
+                },
+                {
+                    "speaker" : "crub",
+                    "dialog" : "TRAVELERS! WE NEVER GET VISITORS THIS IS SO COOL!! :DDDDDD",
+                    "newSpeaker" : "true"
+                },
+                {
+                    "speaker" : "froggie",
+                    "dialog" : "Uhm...I'm sorry to interrupt, but do you guys know a way out of this place...?",
+                    "newSpeaker" : "true"
+                },
+                {
+                    "speaker" : "crub",
+                    "dialog" : "Yeah! Yeah! We think there's a door that just suddenly appeared! Maybe that's what you're looking for!",
+                    "newSpeaker" : "true"
+                },
+                {
+                    "speaker" : "froggie",
+                    "dialog" : "Thank you! We'll now be on our way, then!",
+                    "newSpeaker" : "true"
+                },
+                {
+                    "speaker" : "mole",
+                    "dialog" : "YOOOOOOOO WE DID IT FELLAS!! WE CAN GO HOME!!",
+                    "newSpeaker" : "true"
+                },
+                {
+                    "speaker" : "cat",
+                    "dialog" : "OHHHH H*LL YEAH!! I CAN FINALLY EAT FISH!!! LET'S GO LET'S GO!!",
+                    "newSpeaker" : "true"
+                }
+            ]
+        ]
+    ]
+]
