@@ -113,7 +113,7 @@ class Tutorial extends Phaser.Scene{
                 start: 1,
                 end: 9
              }),
-             frameRate: 12,
+             frameRate: 8,
              repeat: 0
         });
         
@@ -135,7 +135,7 @@ class Tutorial extends Phaser.Scene{
                 start: 1,
                 end: 9 
              }),
-             frameRate: 8,
+             frameRate: 12,
              repeat: 0
         });
 
@@ -166,9 +166,13 @@ class Tutorial extends Phaser.Scene{
             mute: false,
             volume: 0.50,
             rate: 1,
-        }); 
-    
-    
+        });
+
+        this.poof = this.sound.add('poof', {
+            mute: false,
+            volume: 0.50,
+            rate: 1,
+        });
 
         //background
         this.add.sprite(0,0,'stars', 'star_1').play('star').setOrigin(0,0);
@@ -221,10 +225,6 @@ class Tutorial extends Phaser.Scene{
         cat.setCollideWorldBounds(true);
         this.isStretching = false;
         
-        //inventory (just to see what it looks like first before moving items there)
-       // this.inventorySpace = this.add.image(925, 5, 'inventory').setScale(0.38).setOrigin(0, 0);
-       
-
         //camera follow froggie :)
         this.cameras.main.setBounds(0, 0, 3600, 600);
         this.cameras.main.setZoom(1);
@@ -359,6 +359,7 @@ class Tutorial extends Phaser.Scene{
         if (frog.x == 2338 && this.firstDistort == true){
             this.dialogBoxMove('distortion');                    
             this.typeText(); 
+            this.poof.play();
             this.firstDistort = false;
         }
         
