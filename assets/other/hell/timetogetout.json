@@ -5,66 +5,80 @@
             "dialog" : "how long does this place extend? sheesh",
             "newSpeaker" : "true"
         },
-  {
+    {
             "speaker" : "???",
             "dialog" : "hey you!",
             "newSpeaker" : "true"
         },
-  {
+        {
             "speaker" : "cat",
-            "dialog" : "huh wha -- ? r u talking 2 me????",
+            "dialog" : "WAIT A MINUTE! I DIDN'T IMAGINE THAT...?!",
             "newSpeaker" : "true"
         },
-  {
-            "speaker" : "cat",
-            "dialog" : "yeah you! Wake the h*ck up already! You're not dead, you imbecile! This game doesn't even have HEALTH POINTS (HP)!",
-            "newSpeaker" : "true"
-        },
-  {
-            "speaker" : "cat",
-            "dialog" : "wait a minute, you're right! Uh...but then where is this?  ",
-            "newSpeaker" : "true"
-        },
-  {
+        {
             "speaker" : "???",
-            "dialog" : "HELL.",
+            "dialog" : "No, you did not. Anyway, little creacher, I would like to congratulate you on entering hell!",
             "newSpeaker" : "true"
         },
-  {
+        {
             "speaker" : "cat",
-            "dialog" : "DID I JUST HEAR HELL???? HELL SMELLS LIKE PIZZA???",
+            "dialog" : "WAIT. AM I DEAD???",
             "newSpeaker" : "true"
         },
-  {
-            "speaker" : "cat",
-            "dialog" : "no u imbecile!! This isn't the real hell because we ran out of time for thAT! This is like a demo version of hell. A free trial. A free sample.",
-            "newSpeaker" : "true"
-        },
-  {
-            "speaker" : "cat",
-            "dialog" : "OHHHHH THAT'S WHY IT SMELLS LIKE PIZZA!!!",
-            "newSpeaker" : "true"
-        },
-  {
+        {
             "speaker" : "???",
-            "dialog" : "ok yeah sure whatever. Anyway, my point is: you're not dead (yet)! You still have friends who are waiting for you so WAKE UP.",
+            "dialog" : "NO, YOU CLOWN. YOU CAN'T DIE IN A GAME WITHOUT HEALTH POINTS OR COMBAT!",
             "newSpeaker" : "true"
         },
-  {
+        {
             "speaker" : "cat",
-            "dialog" : "Haha, that makes us sound like a generic RPG with some heroic protagonists! Where's the exit then?",
+            "dialog" : "Good point. Anyway, how do I get out of hell? Is this even like actual hell? All I remember is getting bonked by a coconut...",
             "newSpeaker" : "true"
         },
-  {
+        {
             "speaker" : "???",
-            "dialog" : "if u keep going through this corridor, you'll eventually wake up. I think your friends are screaming their heads off. At least Frog is. Mole is shaking your conked body. It's pretty funny.",
+            "dialog" : "Indeed you did get bonked by a coconut and thus, conked out cold. You friends are trying to shake you awake. I think Mole's thinking about splashing beachwater on your face.",
             "newSpeaker" : "true"
         },
-  {
+        {
             "speaker" : "cat",
-            "dialog" : "HE'S DOING WHAT TO ME??? I'M GONNA -- ANYWAY SEE YA GOTTA GO THANKS FOR THE DIRECTIONS OUT OF HELL",
+            "dialog" : "EXCUSE ME?!",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "cat",
+            "dialog" : "LET",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "ME",
+            "dialog" : "hey you!",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "cat",
+            "dialog" : "OUT!!!1!!!!11!!!!!!111",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "???",
+            "dialog" : "Ok, ok, sheesh. You're lucky hell got scrapped or else you all would have been in for a VERY BAD TIME. Anyway. This stage is really short.",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "???",
+            "dialog" : "Anyway, just keep walking down the corridor. That's it. I hope you enjoyed this free trial -- a wee sample -- of hell :3",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "cat",
+            "dialog" : "Sure...? Man, that was weird...",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "cat",
+            "dialog" : "Gosh, i wonder how many NPCS got dragged down to hell...? Like those poor anchovies...",
             "newSpeaker" : "true"
         }
-
     ]
 ]

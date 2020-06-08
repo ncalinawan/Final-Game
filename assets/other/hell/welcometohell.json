@@ -2,22 +2,17 @@
     [
         {
             "speaker" : "cat",
-            "dialog" : "whoa, this definitely isn't the beach! WHERE THE H*CK AM I???", 
+            "dialog" : "wh-", 
             "newSpeaker" : "true"
         },
-  {
+        {
             "speaker" : "cat",
-            "dialog" : "Huh, it weirdly smells like tomato sauce and anchovies. A hint of mushroom in there too. And cheese…?",
+            "dialog" : "whERE IS THIS??? THIS IS NOT THE BEACH.", 
             "newSpeaker" : "true"
         },
-  {
+        {
             "speaker" : "cat",
-            "dialog" : "haha, what's that one round, dough-based food with tomato sauce and cheese and all these toppings called again…?",
-            "newSpeaker" : "true"
-        },
-  {
-            "speaker" : "cat",
-            "dialog" : "PIZZA! That's it! It sure smells like pizza!",
+            "dialog" : "Weirdly enough, this place smells a lot like anchovy pizza. Oh what I'd do for some fish...", 
             "newSpeaker" : "true"
         }
     ]
