@@ -141,7 +141,35 @@ class Load extends Phaser.Scene{
         this.load.json('timetogetout', './assets/other/hell/timetogetout.json');
         this.load.json('stop', './assets/other/hell/stop.json');
         this.load.json('hellcontinues', './assets/other/hell/hellcontinues.json');
-
+        
+//------------------ SOUNDS ------------------
+        //"Fun Loop" by DDmyzik of freesound.org
+        this.load.audio('title', './assets/sounds/title.wav');
+        
+        //"Cartoon_Whistle" by Brsjak of freesound.org [trimmed by AudioTrimmer.com]
+        this.load.audio('stretching', './assets/sounds/stretching.wav');
+        
+        //interaction ding (recorded by Noel Calinawan
+        this.load.audio('interacting', './assets/sounds/InteractionDing.wav');
+        
+        //Digging audio (recorded by Kiara Yupangco)
+        this.load.audio('digging', './assets/sounds/digging.wav');
+        
+        //"Forest" by JayHu of freesound.org
+        this.load.audio('tutorial', './assets/sounds/tutorial.wav');
+        
+        /*"Carnival Cavalcade – Sunshine filled Reggae with deep bass guitar and rasping sax 
+        that brings the street party directly to wherever you are" by David-Gwyn Jones on zapsplat.com*/
+        this.load.audio('beachMusic', './assets/sounds/beachMusic.wav');
+        
+        //"Lava flow" by ZapSplat
+        this.load.audio('hell', './assets/sounds/hell.wav');
+        
+        //"instant rave" by supervans on freesound.org
+        this.load.audio('beachRave', './assets/sounds/beachRave.wav');
+        
+        //"Comfort Blanket" by ZapSplat
+        this.load.audio('credits', './assets/sounds/credits.wav');
         
     }
      
