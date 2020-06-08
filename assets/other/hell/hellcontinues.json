@@ -2,12 +2,27 @@
     [
         {
             "speaker" : "cat",
-            "dialog" : "DUDE IS THAT AN ANCHOVY??? DUDE THIS PLACE IS WHACK!! Gosh, what I'd do for some fish right now....",
+            "dialog" : "DUDE IS THAT AN ANCHOVY??? DUDE THIS PLACE IS WHACK!! Wait...I wonder if they're edible...",
             "newSpeaker" : "true"
         },
   {
             "speaker" : "cat",
-            "dialog" : "At least these mushrooms are pretty. I like them.",
+            "dialog" : "They have souls flying out of their corpses...Uh...",
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "cat",
+            "dialog" : "But I'm so hungry...", 
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "???",
+            "dialog" : "No, they're not edible, you imebecile!", 
+            "newSpeaker" : "true"
+        },
+        {
+            "speaker" : "cat",
+            "dialog" : "What in the woRLD? Did I just hear a voice???????", 
             "newSpeaker" : "true"
         }
 
