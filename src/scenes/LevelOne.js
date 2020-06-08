@@ -126,7 +126,7 @@ class LevelOne extends Phaser.Scene{
                 start: 1,
                 end: 9 
              }),
-             frameRate: 8,
+             frameRate: 12,
              repeat: 0
         });
         
@@ -141,19 +141,7 @@ class LevelOne extends Phaser.Scene{
              frameRate: 12,
              repeat: 0
         });
-
-        // character poof 
-        this.anims.create({
-            key: 'poof',
-            frames: this.anims.generateFrameNames('beach_stuff',{
-                prefix: 'poof_',
-                start: 1,
-                end: 3 
-             }),
-             frameRate: 5,
-             repeat: 0
-        });
-
+        
         // indicator 
         this.anims.create({
             key: 'indicator',
