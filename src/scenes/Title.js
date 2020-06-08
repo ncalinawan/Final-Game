@@ -23,6 +23,20 @@ class Title extends Phaser.Scene{
         repeat: -1
     });
 
+    this.bgm = this.sound.add('title', {
+        mute: false,
+        volume: 0.35,
+        rate: 1,
+        loop: true
+    }); 
+    this.bgm.play();
+
+    this.interact = this.sound.add('interacting', {
+        mute: false,
+        volume: 0.50,
+        rate: 1,
+    }); 
+
     this.add.sprite(560, 290, 'title', 'full_title1').play('titleAll');
 
     keyG = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.G);
@@ -32,8 +46,10 @@ class Title extends Phaser.Scene{
         if (Phaser.Input.Keyboard.JustDown(keyG)){
             this.cameras.main.fade(2000);
             this.sceneChange = this.time.delayedCall(2000, () => {
-                this.scene.start("tutorialScene");
+                this.scene.start("First");
             }, null, this);
+            this.interact.play();
+            this.bgm.stop();
         }
     }
     

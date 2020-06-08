@@ -80,6 +80,21 @@ class Hell extends Phaser.Scene{
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
 
+        this.bgm = this.sound.add('hell', {
+            mute: false,
+            volume: 0.35,
+            rate: 1,
+            loop: true
+        }); 
+        this.bgm.play();
+
+        this.interact = this.sound.add('interacting', {
+            mute: false,
+            volume: 0.50,
+            rate: 1,
+        }); 
+    
+
     }
 
     update () {
@@ -130,6 +145,7 @@ class Hell extends Phaser.Scene{
             //insert text stuff here
             if(this.isTalking == true && !this.dialogTyping){ 
                 this.typeText();
+                this.interact.play();
             }
         }
 
@@ -138,18 +154,21 @@ class Hell extends Phaser.Scene{
         if(cat.x >= 65 && cat.x <= 550 && this.quip1 == false){
             this.dialogBoxMove('welcometohell');
             this.typeText();
+            this.interact.play();
             this.quip1 = true;
         }
 
         if(cat.x >= 840 && cat.x <= 1195  && this.quip2 == false && this.quip1 == true){
             this.dialogBoxMove('hellcontinues');
             this.typeText();
+            this.interact.play();
             this.quip2 = true;
         }
 
         if(cat.x >= 2105 && cat.x <= 2695 && this.quip3 == false && this.quip1 == true && this.quip2 == true){
             this.dialogBoxMove('timetogetout');
             this.typeText();
+            this.interact.play();
             this.quip3 = true;
         }
         
@@ -159,6 +178,7 @@ class Hell extends Phaser.Scene{
             this.scene.moveAbove('Hell','First');
             this.cameras.main.fade(500);
             this.scene.switch('First');
+            this.bgm.stop();
         }
     }
 

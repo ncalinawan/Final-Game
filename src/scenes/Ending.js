@@ -20,6 +20,14 @@ class Ending extends Phaser.Scene {
         this.add.sprite(0,0, 'bgs', 'thanks').setOrigin(0,0);
         this.add.sprite(0,0, 'bgs', 'backpack').setOrigin(0,0);
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+
+        this.bgm = this.sound.add('credits', {
+            mute: false,
+            volume: 0.35,
+            rate: 1,
+            loop: true
+        }); 
+        this.bgm.play();
         
     }
 
@@ -61,6 +69,7 @@ class Ending extends Phaser.Scene {
             this.cameras.main.fade(2000);
             this.sceneChange = this.time.delayedCall(2000, () => {
                 this.scene.start("titleScene");
+                this.bgm.stop();
             }, null, this);
         }
     }

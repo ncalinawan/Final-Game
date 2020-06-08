@@ -248,6 +248,40 @@ class LevelOne extends Phaser.Scene{
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
+
+        this.bgm = this.sound.add('beachMusic', {
+            mute: false,
+            volume: 0.1,
+            rate: 1,
+            loop: true
+        }); 
+        this.bgm.play();
+
+        this.raveMusic = this.sound.add('beachRave', {
+            mute: false,
+            volume: 0.1,
+            rate: 1,
+            loop: true
+        }); 
+
+        this.interact = this.sound.add('interacting', {
+            mute: false,
+            volume: 0.50,
+            rate: 1,
+        }); 
+
+        this.stretch = this.sound.add('stretching', {
+            mute: false,
+            volume: 0.50,
+            rate: 1,
+        }); 
+
+        this.dig = this.sound.add('digging', {
+            mute: false,
+            volume: 0.50,
+            rate: 1,
+        }); 
+    
         
     }
     
@@ -340,27 +374,6 @@ class LevelOne extends Phaser.Scene{
         
         }
 
-        //Speech bubble appearing / disappearing
-        /*
-        if(frog.x >= 550 && frog.x <= 600){
-            this.npcBubble2.alpha = 1;
-            this.nearFeesh = true;
-        }else{
-            this.npcBubble2.alpha = 0;
-            this.nearFeesh = false;
-        }
-        if(Phaser.Input.Keyboard.JustDown(keyA) && !this.dialogTyping) {
-            if(frog.x >= 550 && frog.x <= 600){
-                this.dialogBoxMove('f');
-                this.typeText();
-            }
-
-            if(this.isTalking == true && !this.dialogTyping){ 
-                this.typeText();
-            }
-        }
-        */
-
         if(frog.x <= 1635 && frog.x >= 1165){
             this.npcBubble.alpha = 1;
             this.nearCrab = true;
@@ -371,6 +384,7 @@ class LevelOne extends Phaser.Scene{
         if(Phaser.Input.Keyboard.JustDown(keyA) && !this.dialogTyping) {
             if(frog.x <= 1635 && frog.x >= 1165 && this.questGet == false){
                 this.dialogBoxMove('questStart');
+                this.interact.play();
                 this.typeText();
                 this.time.delayedCall(10000, () => {
                     this.questGet = true;
@@ -379,47 +393,59 @@ class LevelOne extends Phaser.Scene{
 
             if(frog.x <= 1635 && frog.x >= 1165 && this.questGet == true &&  this.partying == false && this.party == false){
                 this.dialogBoxMove('questOngoing');
+                this.interact.play();
                 this.typeText();
+                
             }
             if(frog.x <= 1635 && frog.x >= 1165 && this.questGet == true && this.party == true && this.partyTime == false){
                 this.dialogBoxMove('questDone');
+                this.interact.play();
                 this.typeText();
+               
 
-                this.time.delayedCall(6500, () => {
+                this.time.delayedCall(8000, () => {
                     this.partyTime = true;
                 }, null, this); 
             }
 
-            if(frog.x <= 1635 && frog.x >= 1165 && this.partyTime == true){
+            if(frog.x <= 1635 && frog.x >= 1165 && this.partyTime == true && this.partying == false){
                 this.rave();
+                this.bgm.stop();
+                this.raveMusic.play();
                 this.time.delayedCall(10000, () => {
                     this.scene.switch('Ending');
+                    this.raveMusic.stop();
                 }, null, this); 
             }
 
             if(frog.x <= 1760 && frog.x >= 1660 && this.questGet == true && this.bonked == true){
                 this.dialogBoxMove('bottle');
                 this.typeText();
+                this.interact.play();
                 this.bottleRead = true;
             }
             
             if(this.isTalking == true && !this.dialogTyping){ 
                 this.typeText();
+                this.interact.play();
             }
         }
 
         if(Phaser.Input.Keyboard.JustDown(keyD) && !this.isTalking && this.isStretching == false){
             this.moleDive();
+            this.dig.play();
         }
         if(Phaser.Input.Keyboard.JustDown(keyS) && !this.isTalking && this.isDigging == false){
             if(cat.x >= 3230 && cat.x <= 3280 && tester == false){
                 if(this.coconutDrop == false){
                     this.dialogBoxMove('shake');
                     this.typeText();
+                    this.interact.play();
                    
                     this.time.delayedCall(1300, () => {
                         //this.typeText(); 
                         this.catStretch();
+                        this.stretch.play();
                     }, null, this); 
 
                     this.time.delayedCall(2550, () => {
@@ -434,12 +460,14 @@ class LevelOne extends Phaser.Scene{
                     }, null, this);
                     
                     this.time.delayedCall(3000, () => {
+                        this.bgm.pause();
                         this.scene.switch('Hell');
                     }, null, this);
                     
                 }
             }else{
                 this.catStretch();
+                this.stretch.play();
             }
         }
 

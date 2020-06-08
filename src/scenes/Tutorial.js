@@ -141,6 +141,35 @@ class Tutorial extends Phaser.Scene{
 
         //------------------------------------------------------------------ background setup --------------------------------------------------------------------------------
         
+
+        this.bgm = this.sound.add('tutorial', {
+            mute: false,
+            volume: 0.1,
+            rate: 1,
+            loop: true
+        }); 
+        this.bgm.play();
+
+        this.interact = this.sound.add('interacting', {
+            mute: false,
+            volume: 0.50,
+            rate: 1,
+        }); 
+
+        this.stretch = this.sound.add('stretching', {
+            mute: false,
+            volume: 0.50,
+            rate: 1,
+        }); 
+
+        this.dig = this.sound.add('digging', {
+            mute: false,
+            volume: 0.50,
+            rate: 1,
+        }); 
+    
+    
+
         //background
         this.add.sprite(0,0,'stars', 'star_1').play('star').setOrigin(0,0);
         this.add.sprite(0,0,'turtle', 'turtle_1').play('turtle').setOrigin(0,0);
@@ -206,11 +235,11 @@ class Tutorial extends Phaser.Scene{
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
-
+     
     }
 
     update(){
-        
+        console.log(frog.x);
         //--------------------------------------------- movement ------------------------------------------
         if(distorted == false){
             if(cursors.left.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
@@ -232,7 +261,7 @@ class Tutorial extends Phaser.Scene{
                 mole.anims.play('molewalk', true);
                 cat.anims.play('catwalk', true);
             }else if(cursors.right.isDown && this.isDigging == false && this.isStretching == false && this.isTalking == false){
-                if(frog.x >= 3545){
+                if(frog.x >= 3540){
                     frog.body.velocity.x = 0;
                     mole.body.velocity.x = 0;
                     cat.body.velocity.x = 0; 
@@ -340,15 +369,18 @@ class Tutorial extends Phaser.Scene{
                 this.typeText();
                 this.learnDig = false;
                 this.learnStretch = false;
+                this.interact.play();
             }
             if(frog.x >= 3275 && frog.x <= 3470){
                 this.scene.start("Transition");
+                this.bgm.stop();
             }
             //1st snek dialogue 
             if(frog.x == 3011.5 && this.learnStretch == false && this.learnDig == false){
                 this.dialogBoxMove('fuit');
                 this.typeText(); 
                 this.learnStretch = true;
+                this.interact.play();
             }
 
             
@@ -361,9 +393,11 @@ class Tutorial extends Phaser.Scene{
                     this.npcBubble.destroy();
                 }, null, this); 
                 this.isBlocking = false;
+                this.interact.play();
             }
             if(this.isTalking == true && this.nearSign == false && !this.dialogTyping){ //I literally don't know what's going on here but it makes everything else work ;w;
                 this.typeText();
+                this.interact.play();
             }
         }
 
@@ -371,10 +405,12 @@ class Tutorial extends Phaser.Scene{
         
         if(Phaser.Input.Keyboard.JustDown(keyD) && this.learnDig == true && !this.isTalking && this.isStretching == false){
             this.moleDive();
+            this.dig.play();
         }
 
         if(Phaser.Input.Keyboard.JustDown(keyS) && this.learnStretch == true && !this.isTalking && this.isDigging == false){
             this.catStretch();
+            this.stretch.play();
         }
         
         if(this.isStretching == true && cat.x >= 2590 && cat.x <= 2675){
