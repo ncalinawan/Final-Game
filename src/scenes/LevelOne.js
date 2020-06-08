@@ -61,6 +61,17 @@ class LevelOne extends Phaser.Scene{
              repeat: -1
         });
 
+        this.anims.create({
+            key: 'party',
+            frames: this.anims.generateFrameNames('beach_stuff',{
+                prefix: 'party_crab',
+                start: 1,
+                end: 2
+             }),
+             frameRate: 5,
+             repeat: -1
+        });
+
         //froggie :3
         this.anims.create({
             key: 'frogwalk',
@@ -167,21 +178,18 @@ class LevelOne extends Phaser.Scene{
 
    // ------------------------------------------------------------------- background setup ---------------------------------------------------------------------------------------
         //background base
-        //this.add.image(0,0, 'base').setOrigin(0,0);
         this.add.sprite(0, 0, 'ocean_waves', 'beach_1').setOrigin(0, 0).play('waves');
 
         //midground
         this.add.sprite(3300,280, 'beach_stuff', 'palm_tree').setScale(0.7);
         this.add.sprite(2800,325, 'beach_stuff', 'palm_tree').setScale(0.5);
         this.add.sprite(0,0, 'beach_stuff', 'tree2').setOrigin(0,0);
-        this.add.sprite(1300,490,'beach_stuff', 'crab1').setScale(0.3).play('crab');
-        this.add.sprite(1500,500,'crub').setScale(0.5);
+        this.normalCrab = this.add.sprite(1300,490,'beach_stuff', 'crab1').setScale(0.3).play('crab');
+        this.crub = this.add.sprite(1500,500,'crub').setScale(0.5);
         this.npcBubble = this.add.sprite(1400, 350, 'stuff', 'sign_bubble').setScale(0.3).setOrigin(0,0);
         this.nearCrab = false;
         this.add.sprite(550, 500, 'fesh').setScale(0.2);
-        //this.npcBubble2 = this.add.sprite(550, 350, 'stuff', 'sign_bubble').setScale(0.3).setOrigin(0,0);
-        //this.nearFeesh = false;
-    
+
         this.coconut = this.add.sprite(3260, 130, 'beach_stuff', 'coconut').setScale(.5);
         this.coconutDrop = false;
         
@@ -222,7 +230,7 @@ class LevelOne extends Phaser.Scene{
         
         //foreground
         this.tree1 = this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
-        this.sand_castle = this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
+        this.sand_castle = this.add.sprite(1950,500, 'sand_castle').setScale(0.6);
 
        
         //camera follow froggie :)
@@ -268,8 +276,19 @@ class LevelOne extends Phaser.Scene{
             mute: false,
             volume: 0.50,
             rate: 1,
-        }); 
-    
+        });
+
+        this.spill = this.sound.add('bucket', {
+            mute: false,
+            volume: 0.30,
+            rate: 1,
+        });
+
+        this.bonk = this.sound.add('bonk', {
+            mute:false,
+            volume: 0.50,
+            rate: 1,
+        });
         
     }
     
@@ -362,7 +381,7 @@ class LevelOne extends Phaser.Scene{
         
         }
 
-        if(frog.x <= 1635 && frog.x >= 1165){
+        if(frog.x <= 1165 && frog.x >= 1050){
             this.npcBubble.alpha = 1;
             this.nearCrab = true;
         }else{
@@ -370,7 +389,7 @@ class LevelOne extends Phaser.Scene{
             this.nearCrab = false;
         }
         if(Phaser.Input.Keyboard.JustDown(keyA) && !this.dialogTyping) {
-            if(frog.x <= 1635 && frog.x >= 1165 && this.questGet == false){
+            if(frog.x <= 1165 && frog.x >= 1050 && this.questGet == false){
                 this.dialogBoxMove('questStart');
                 this.interact.play();
                 this.typeText();
@@ -379,14 +398,18 @@ class LevelOne extends Phaser.Scene{
                 }, null, this); 
             }
 
-            if(frog.x <= 1635 && frog.x >= 1165 && this.questGet == true &&  this.partying == false && this.party == false){
+            if(frog.x <= 1165 && frog.x >= 1050 && this.questGet == true &&  this.partying == false && this.party == false){
                 this.dialogBoxMove('questOngoing');
                 this.interact.play();
                 this.typeText();
                 
             }
-            if(frog.x <= 1635 && frog.x >= 1165 && this.questGet == true && this.party == true && this.partyTime == false){
+            if(frog.x <= 1165 && frog.x >= 1050 && this.questGet == true && this.party == true && this.partyTime == false){
                 this.dialogBoxMove('questDone');
+                this.normalCrab.destroy();
+                this.normalCrab = this.add.sprite(1300,490,'beach_stuff', 'party_crab1').setScale(0.3).play('party');
+                this.crub = this.add.sprite(1500,500,'partyCrub').setScale(0.5);
+
                 this.interact.play();
                 this.typeText();
                
@@ -431,7 +454,6 @@ class LevelOne extends Phaser.Scene{
                     this.interact.play();
                    
                     this.time.delayedCall(1300, () => {
-                        //this.typeText(); 
                         this.catStretch();
                         this.stretch.play();
                     }, null, this); 
@@ -449,6 +471,8 @@ class LevelOne extends Phaser.Scene{
                     
                     this.time.delayedCall(3000, () => {
                         this.bgm.pause();
+                        this.stretch.stop();
+                        this.bonk.play();
                         this.scene.switch('Hell');
                     }, null, this);
                     
@@ -470,6 +494,7 @@ class LevelOne extends Phaser.Scene{
         if(frog.x >= 400 && this.movement == true && tester == false){
             this.bathwater.anims.play('bathwater', true);
             this.movement = false;
+            this.spill.play();
 
             this.time.delayedCall(500, () => {
                 this.fix(frog);
@@ -496,7 +521,7 @@ class LevelOne extends Phaser.Scene{
             this.moveSprite(mole);
 
             this.tree1 = this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
-            this.sand_castle = this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
+            this.sand_castle = this.add.sprite(1950,500, 'sand_castle').setScale(0.6);
 
             this.shifted = true; 
             this.coconutDrop = false; 
@@ -592,7 +617,6 @@ class LevelOne extends Phaser.Scene{
         if(sprite == frog){
             frog.destroy();
             frog = this.physics.add.sprite(3405, 500, 'frog', 'frog_walk1').setScale(0.3);
-            //frog.x = 3404;
             frog.setScale(0.3);
             frog.setCollideWorldBounds(true);
             this.cameras.main.startFollow(frog);
@@ -600,7 +624,6 @@ class LevelOne extends Phaser.Scene{
         if(sprite == cat){
             cat.destroy();
             cat = this.physics.add.sprite(3290, 500, 'cat', 'cat_walk1').setScale(0.33);
-            //cat.x = 3260;
             cat.setScale(0.33)
             cat.setCollideWorldBounds(true);
                 
@@ -608,8 +631,6 @@ class LevelOne extends Phaser.Scene{
         if(sprite == mole){
             mole.destroy();
             mole = this.physics.add.sprite(3075, 500, 'mole', 'mole_walk1').setScale(0.38);
-            //mole.setScale(0.38)
-            //mole.x = 3120;
             mole.setCollideWorldBounds(true);
         }
     }
@@ -634,7 +655,7 @@ class LevelOne extends Phaser.Scene{
             }
         //foreground
         this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
-        this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
+        this.add.sprite(1950,500, 'sand_castle').setScale(0.6);
         }
     }
     fix(sprite){
@@ -660,7 +681,7 @@ class LevelOne extends Phaser.Scene{
         }
         //foreground
         this.add.sprite(0,0, 'beach_stuff', 'tree1').setOrigin(0,0);
-        this.add.sprite(1950,550, 'beach_stuff', 'sand_castle').setScale(0.5);
+        this.add.sprite(1950,500, 'sand_castle').setScale(0.6);
     }
     
 
